@@ -40,21 +40,25 @@
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
-            <h1>Admin Registration</h1>
-            <form method="POST" onsubmit="editdata();
-                    return false;">
-                <label for="username" class="control-label">Username</label>
-                <input name="username" type="text" class="form-control" id="usernamer" placeholder="Username(Email Address)" required>
-                <label for="password" class="control-label">Password</label>
-                <input name="password" type="password" class="form-control" id="passwordr" placeholder="Password" required>
-                <label for="confirmpassword" class="control-label">Confirm Password</label>
-                <input name="confirmpassword" type="password" class="form-control" id="confirmpasswordr" placeholder="Confirm Password" required>
-                </br>
-                <button type="submit" name="adminRegist" class="btn btn-lg btn-primary btn-block ">Submit</button> 
-                <div class="col-sm-6" style="color:#FF0000" id="signin_message"></div>
-            </form> 
+            <h1>Admin Menu</h1>
             </br>
-            <a href="adminSignIn.php">Admin Sign In</a>
+            </br>
+            <a href="../userforms/userRegist.php">User Registration</a>
+            </br>  
+            </br>
+            <a href="editUser.php">Edit Users</a>
+            </br> 
+            </br>
+            <a href="delUser.php">Delete Users</a>
+             </br>
+            </br>
+            <a href="adminRegist.php">Admin Registration</a>
+            </br>  
+            </br>
+            <a href="editAdmin.php">Edit Admin Users</a>
+            </br> 
+            </br>
+            <a href="delAdmin.php">Delete Admin Users</a>
         </div>
         <div class="container">
             <div class="row">   

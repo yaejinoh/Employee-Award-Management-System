@@ -1,3 +1,8 @@
+<?php
+if (!empty($_POST)) {
+    header("Location: adminMenu.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -48,7 +53,7 @@
                 <label for="password" class="control-label">Password</label>
                 <input name="password" type="password" class="form-control" id="passwordr" placeholder="Password" required>
                 </br>
-                <button type="submit" name="usersignin" class="btn btn-lg btn-primary btn-block ">Submit</button> 
+                <button type="submit" name="adminsignin" class="btn btn-lg btn-primary btn-block ">Submit</button> 
                 <div class="col-sm-6" style="color:#FF0000" id="signin_message"></div>
             </form> 
             </br>

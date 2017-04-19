@@ -1,3 +1,8 @@
+<?php
+if (!empty($_POST)) {
+    header("Location: userforms/userMenu.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,19 +29,19 @@
         <div class="blog-masthead">
             <div class="container">
                 <nav class="blog-nav">
-                    <h2><a class="navbar-brand" href="index.php"> Employee Recognition Awards</a></h2>                   
-                </nav>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                    <h2><a class="navbar-brand" href="index.php"> Employee Recognition Awards</a></h2>
+                </nav>
             </div>
         </div>
         <div class="container">
-            <div class="row"> 
+            <div class="row">
                 <br/>
-                <div class="col-sm-4"></div> 
+                <div class="col-sm-4"></div>
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4" style="color:#FF0000" id="login_message"></div>
                 </br>
-            </div>     
-        </div>  
+            </div>
+        </div>
 
         <!-- --------------------------------- Registration Form --------------------------------- -->
         <div class="container" >
@@ -48,9 +53,9 @@
                 <label for="password" class="control-label">Password</label>
                 <input name="password" type="password" class="form-control" id="passwordr" placeholder="Password" required>
                 </br>
-                <button type="submit" name="usersignin" class="btn btn-lg btn-primary btn-block ">Submit</button> 
+                <button type="submit" name="usersignin" class="btn btn-lg btn-primary btn-block ">Submit</button>
                 <div class="col-sm-6" style="color:#FF0000" id="signin_message"></div>
-            </form> 
+            </form>
             </br>
             <a href="adminforms/restore.php">Forgot the password</a>
             </br>
@@ -59,8 +64,8 @@
 
         </div>
         <div class="container">
-            <div class="row">   
-                <div class="col-sm-4"></div> 
+            <div class="row">
+                <div class="col-sm-4"></div>
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4" style="color:#006600" id="signed_message"></div>
                 </br>
@@ -82,7 +87,7 @@
                 </br>
                 </br>
                 </br>
-            </div>     
+            </div>
         </div>
         <!-- --------------------------------- Footer --------------------------------- -->
         <footer class="blog-footer">
