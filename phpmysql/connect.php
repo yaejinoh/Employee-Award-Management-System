@@ -1,10 +1,10 @@
 <?php
 
 //Database for Host
-$servername = "delphinusmysql.database.windows.net";
-$usernameDb = "delphinus";
-$passwordDb = "OSUdatproj8615";
-$dbname = "delphinus";
+#$servername = "us-cdbr-azure-east-c.cloudapp.net";
+#$usernameDb = "bd07944a668fd5";
+#$passwordDb = "ee00cbfd";
+#$dbname = "bd07944a668fd5";
 
 $mysqli = new mysqli($servername, $usernameDb, $passwordDb, $dbname);
 
