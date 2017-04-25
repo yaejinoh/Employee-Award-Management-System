@@ -1,8 +1,3 @@
-<?php
-if (!empty($_POST)) {
-    header("Location: userforms/userMenu.php");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,33 +24,22 @@ if (!empty($_POST)) {
         <div class="blog-masthead">
             <div class="container">
                 <nav class="blog-nav">
-                    <h2><a class="navbar-brand" href="index.php"> Employee Recognition Awards</a></h2>
+                    <h1><a class="navbar-brand" href="index.php"> Employee Recognition Awards</a></h1>
                 </nav>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <br/>
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4" style="color:#FF0000" id="login_message"></div>
-                </br>
             </div>
         </div>
 
         <!-- --------------------------------- Registration Form --------------------------------- -->
         <div class="container" >
             <h1>User Sign In</h1>
-            <form method="POST" onsubmit="editdata();
-                    return false;">
+            <form method="POST" onsubmit="userLogin(); return false;">
                 <label for="username" class="control-label">Username</label>
                 <input name="username" type="text" class="form-control" id="usernamer" placeholder="Username(Email Address)" required>
                 <label for="password" class="control-label">Password</label>
                 <input name="password" type="password" class="form-control" id="passwordr" placeholder="Password" required>
                 </br>
-                <button type="submit" name="usersignin" class="btn btn-lg btn-primary btn-block ">Submit</button>
-                <div class="col-sm-6" style="color:#FF0000" id="signin_message"></div>
-            </form>
+                <button type="submit" name="usersignin" class="btn btn-sm btn-primary ">Submit</button>
+               </form>
             </br>
             <a href="adminforms/restore.php">Forgot the password</a>
             </br>
@@ -63,11 +47,12 @@ if (!empty($_POST)) {
 
 
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4" style="color:#006600" id="signed_message"></div>
+      <div class="container">
+          <div class="row"> 
+                  <br/>
+              <div class="col-sm-4"></div> 
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4" style="color:#FF0000" id="login_message"></div>
                 </br>
                 </br>
                 </br>

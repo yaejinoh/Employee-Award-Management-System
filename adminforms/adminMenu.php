@@ -1,3 +1,20 @@
+<?php
+#userMenu.php - CS467, Emmalee Jones, Yae Jin Oh 
+#User Menu  
+#Error Reporting Settings
+error_reporting(E_ALL);
+ini_set("display_errors", "ON");
+//Start PHP Session
+session_start();
+
+#Test for valid Session
+if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])) {
+    $_SESSION = array();
+    session_destroy();
+    header("Location:../index.php");
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,7 +41,14 @@
         <div class="blog-masthead">
             <div class="container">
                 <nav class="blog-nav">
-                    <h2><a class="navbar-brand" href="../index.php"> Employee Recognition Awards</a></h2>                   
+                    <a class="navbar-brand" href="adminLogout.php"> Employee Recognition Awards</a>  
+                    <form class="navbar-brand pull-right">
+                        <a> <?php echo "Admin Email Address:" . " " . $_SESSION['adminEmailAddress']; ?> </a>
+                    </form>
+                    <!-- --------------------------------- Logout Form --------------------------------- -->
+                    <form class="navbar-form pull-right" method="POST" action="adminLogout.php">
+                        <input type="submit" value = "Sign out" name="logout form)"> 
+                    </form>
                 </nav>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             </div>
         </div>
@@ -43,7 +67,7 @@
             <h1>Admin Menu</h1>
             </br>
             </br>
-            <a href="../userforms/userRegist.php">User Registration</a>
+            <a href="userRegist.php">User Registration</a>
             </br>  
             </br>
             <a href="editUser.php">Edit Users</a>

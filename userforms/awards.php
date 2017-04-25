@@ -1,3 +1,20 @@
+<?php
+#awards.php - CS467, Emmalee Jones, Yae Jin Oh 
+#Create Awards 
+#Error Reporting Settings
+error_reporting(E_ALL);
+ini_set("display_errors", "ON");
+//Start PHP Session
+session_start();
+
+#Test for valid Session
+if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'])) {
+    $_SESSION = array();
+    session_destroy();
+    header("Location:../index.php");
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,7 +41,14 @@
         <div class="blog-masthead">
             <div class="container">
                 <nav class="blog-nav">
-                    <h2><a class="navbar-brand" href="../index.php"> Employee Recognition Awards</a></h2>                   
+                    <a class="navbar-brand" href="userLogout.php"> Employee Recognition Awards</a>  
+                    <form class="navbar-brand pull-right">
+                         <a> <?php echo "Employee Name:" . " " . $_SESSION['employeeFirstName']. " " . $_SESSION['employeeLastName'] ; ?> </a>
+                    </form>
+                    <!-- --------------------------------- Logout Form --------------------------------- -->
+                    <form class="navbar-form pull-right" method="POST" action="userLogout.php">
+                        <input type="submit" value = "Sign out" name="logout form)"> 
+                    </form>
                 </nav>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             </div>
         </div>

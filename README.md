@@ -1,13 +1,13 @@
 # Employee Recognition Awards Application
 
 # Oregon State University  
-# CS 467 Capstone Project, Spring 2017**
+# CS 467 Capstone Project, Spring 2017 
  
-#(Emmalee Jones) (https://github.com/??????)
+#(Emmalee Jones) (https://github.com/jonese8/CS467)
 #(Yae Jin Oh) (https://github.com/??????)
 
 # Intro
-# The Employee Recognition Awards Application (http://??????/) project is PHP 
+# The Employee Recognition Awards Application (http://employeerecognition.azurewebsites.net/) project is PHP 
 # website with a MySQL database. 
 
 # Languages & Frameworks  

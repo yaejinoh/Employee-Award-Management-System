@@ -1,6 +1,6 @@
 <?php
-#userMenu.php - CS467, Emmalee Jones, Yae Jin Oh 
-#User Menu  
+#userRegister.php - CS467, Emmalee Jones, Yae Jin Oh 
+#User Register Menu  
 #Error Reporting Settings
 error_reporting(E_ALL);
 ini_set("display_errors", "ON");
@@ -8,7 +8,7 @@ ini_set("display_errors", "ON");
 session_start();
 
 #Test for valid Session
-if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'])) {
+if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])) {
     $_SESSION = array();
     session_destroy();
     header("Location:../index.php");
@@ -41,18 +41,17 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <div class="blog-masthead">
             <div class="container">
                 <nav class="blog-nav">
-                    <a class="navbar-brand" href="userLogout.php"> Employee Recognition Awards</a>  
+                    <a class="navbar-brand" href="adminLogout.php"> Employee Recognition Awards</a>  
                     <form class="navbar-brand pull-right">
-                        <a> <?php echo "Employee Name:" . " " . $_SESSION['employeeFirstName'] . " " . $_SESSION['employeeLastName']; ?> </a>
+                        <a> <?php echo "Admin Email Address:" . " " . $_SESSION['adminEmailAddress']; ?> </a>
                     </form>
                     <!-- --------------------------------- Logout Form --------------------------------- -->
-                    <form class="navbar-form pull-right" method="POST" action="userLogout.php">
+                    <form class="navbar-form pull-right" method="POST" action="adminLogout.php">
                         <input type="submit" value = "Sign out" name="logout form)"> 
                     </form>
                 </nav>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             </div>
         </div>
-
         <div class="container">
             <div class="row"> 
                 <br/>
@@ -65,16 +64,26 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
-            <h1>User Menu</h1>
+            <h1>User Registration</h1>
+            <form method="POST" onsubmit="editdata();
+                    return false;">
+                <label for="username" class="control-label">Username</label>
+                <input name="username" type="text" class="form-control" id="usernamer" placeholder="Username(Email Address)" required>
+                <label for="fullname" class="control-label">Full Name</label>
+                <input name="fullname" type="password" class="form-control" id="fullnamer" placeholder="Full Name" required>
+                <label for="password" class="control-label">Password</label>
+                <input name="password" type="password" class="form-control" id="passwordr" placeholder="Password" required>
+                <label for="confirmpassword" class="control-label">Confirm Password</label>
+                <input name="confirmpassword" type="password" class="form-control" id="confirmpasswordr" placeholder="Confirm Password" required>
+                <div class="image-editor">
+                    <label>Upload Signature</label><input type="file" class="image" name="signature" accept="image/*" required />
+                </div>
+                </br>
+                <button type="submit" name="usersignin" class="btn btn-lg btn-primary btn-block ">Submit</button> 
+                <div class="col-sm-6" style="color:#FF0000" id="signin_message"></div>
+            </form> 
             </br>
-            </br>
-            <a href="awards.php">Award Creation</a>
-            </br>  
-            </br>
-            <a href="userMod.php">Modify Profile</a>
-            </br> 
-            </br>
-            <a href="delAwards.php">Delete Awards</a>
+            <a href="../index.php">User Sign In</a>
         </div>
         <div class="container">
             <div class="row">   

@@ -46,9 +46,8 @@
                 <label for="username" class="control-label">Email Address</label>
                 <input name="username" type="text" class="form-control" id="usernamer" placeholder="Username(Email Address)" required>
                 </br>
-                <button type="submit" name="usersignin" class="btn btn-lg btn-primary btn-block ">Submit</button> 
-                <div class="col-sm-6" style="color:#FF0000" id="signin_message"></div>
-            </form> 
+                <button type="submit" name="usersignin" class="btn btn-sm btn-primary ">Submit</button> 
+             </form> 
             </br>
             <a href="../index.php">User Sign In</a>
             </br>
