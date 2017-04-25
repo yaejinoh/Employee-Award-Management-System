@@ -9,30 +9,30 @@ DROP TABLE IF EXISTS Regions;
 
 /* Create database tables */
 CREATE TABLE Admins (
-    id				INT				AUTO_INCREMENT PRIMARY KEY,
+    id			INT		AUTO_INCREMENT PRIMARY KEY,
     password		VARCHAR (40)	NOT NULL,
-    datetimestamp 	TIMESTAMP		NULL,
+    datetimestamp 	TIMESTAMP	NULL,
     emailaddress  	VARCHAR (75)	NOT NULL
 );
 
 
 
 CREATE TABLE Employees (
-    id            	INT				AUTO_INCREMENT PRIMARY KEY,
+    id            	INT		AUTO_INCREMENT PRIMARY KEY,
     firstname     	VARCHAR (40)	NOT NULL,
-	lastname		VARCHAR (40)	NOT NULL,
-	password		VARCHAR (40)	NOT NULL,
-    datetimestamp	TIMESTAMP		NULL,
+    lastname		VARCHAR (40)	NOT NULL,
+    password		VARCHAR (40)	NOT NULL,
+    datetimestamp	TIMESTAMP	NULL,
     emailaddress	VARCHAR (75)	NOT NULL,
-    signature		BLOB			NULL
+    signature		BLOB		NULL
 );
 
 
 
 CREATE TABLE CertType (
-    ctid			INT        		AUTO_INCREMENT PRIMARY KEY,
-    type			VARCHAR (30) 	NOT NULL,
-	UNIQUE (type)
+    ctid		INT        	AUTO_INCREMENT PRIMARY KEY,
+    type		VARCHAR (30) 	NOT NULL,
+    UNIQUE (type)
 );
 INSERT INTO CertType (type) 
 VALUES ('Employee of the Year'), ('Employee of the Month');
@@ -40,9 +40,9 @@ VALUES ('Employee of the Year'), ('Employee of the Month');
 
 
 CREATE TABLE Regions (
-    rid           	INT        		AUTO_INCREMENT PRIMARY KEY,
-    sector			VARCHAR (30) 	NOT NULL,
-	UNIQUE (sector)
+    rid           	INT        	AUTO_INCREMENT PRIMARY KEY,
+    sector		VARCHAR (30) 	NOT NULL,
+    UNIQUE (sector)
 );
 INSERT INTO Regions (sector) 
 VALUES ('New York City'), ('Washington D.C.'), ('San Francisco'), ('London'), ('Cambridge'), ('Venice'), ('Florence'), ('Rome');
@@ -50,20 +50,20 @@ VALUES ('New York City'), ('Washington D.C.'), ('San Francisco'), ('London'), ('
 
 
 CREATE TABLE Awards (
-    id            	INT        AUTO_INCREMENT PRIMARY KEY,
-    name			INT		   NOT NULL,
-    date			DATE	   NOT NULL,
-    time			TIME	   NOT NULL,
-    awardee			INT		   NOT NULL,
-    region			INT		   NOT NULL,
-	type			INT		   NOT NULL,
+    id            	INT      	AUTO_INCREMENT PRIMARY KEY,
+    name		INT		NOT NULL,
+    date		DATE		NOT NULL,
+    time		TIME		NOT NULL,
+    awardee		INT		NOT NULL,
+    region		INT		NOT NULL,
+    type		INT		NOT NULL,
 	CONSTRAINT fk_awards_type FOREIGN KEY (type) 
 	REFERENCES CertType (ctid)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	CONSTRAINT fk_awards_region FOREIGN KEY (region)
 	REFERENCES Regions (rid)
-    	ON DELETE CASCADE
+    		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 	CONSTRAINT fk_awards_presenter FOREIGN KEY (name)
 	REFERENCES Employees (id)
