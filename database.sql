@@ -1,91 +1,89 @@
-﻿/* Flush out and delete pre-existing tables */
-DROP TABLE IF EXISTS [dbo].[Awards];
-DROP TABLE IF EXISTS [dbo].[CertType];
-DROP TABLE IF EXISTS [dbo].[Regions];
-DROP TABLE IF EXISTS [dbo].[Employees];
-DROP TABLE IF EXISTS [dbo].[Admins];
+/* Flush out database */
+DROP TABLE IF EXISTS Awards;
+DROP TABLE IF EXISTS Admins;
+DROP TABLE IF EXISTS Employees;
+DROP TABLE IF EXISTS CertType;
+DROP TABLE IF EXISTS Regions;
 
-/*
-IF OBJECT_ID ('dbo.Awards', 'U') IS NOT NULL
-DROP TABLE dbo.Awards;
-IF OBJECT_ID ('dbo.CertType', 'U') IS NOT NULL
-DROP TABLE dbo.CertType;
-IF OBJECT_ID ('dbo.Regions', 'U') IS NOT NULL
-DROP TABLE dbo.Regions;
-IF OBJECT_ID ('dbo.Employees', 'U') IS NOT NULL
-DROP TABLE dbo.Employees;
-IF OBJECT_ID ('dbo.Admins', 'U') IS NOT NULL
-DROP TABLE dbo.Admins;
-*/
+
 
 /* Create database tables */
-CREATE TABLE [dbo].[Employees] (
-    [id]            INT			IDENTITY(1,1) PRIMARY KEY,
-    [firstname]     NCHAR (40)	NOT NULL,
-	[lastname]      NCHAR (40)	NOT NULL,
-    [password]      NCHAR (40)	NOT NULL,
-    [datetimestamp] DATETIME	NULL,
-    [emailaddress]  NCHAR (75)	NOT NULL,
-    [signature]     IMAGE		NULL
- /*   PRIMARY KEY CLUSTERED ([id] ASC)*/
+CREATE TABLE Admins (
+    id				INT				AUTO_INCREMENT PRIMARY KEY,
+    password		VARCHAR (40)	NOT NULL,
+    datetimestamp 	TIMESTAMP		NULL,
+    emailaddress  	VARCHAR (75)	NOT NULL
 );
 
 
 
-CREATE TABLE [dbo].[CertType] (
-    [ctid]          INT        IDENTITY(1,1) PRIMARY KEY,
-    [type]		    NCHAR (30) NOT NULL,
+CREATE TABLE Employees (
+    id            	INT				AUTO_INCREMENT PRIMARY KEY,
+    firstname     	VARCHAR (40)	NOT NULL,
+	lastname		VARCHAR (40)	NOT NULL,
+	password		VARCHAR (40)	NOT NULL,
+    datetimestamp	TIMESTAMP		NULL,
+    emailaddress	VARCHAR (75)	NOT NULL,
+    signature		BLOB			NULL
+);
+
+
+
+CREATE TABLE CertType (
+    ctid			INT        		AUTO_INCREMENT PRIMARY KEY,
+    type			VARCHAR (30) 	NOT NULL,
 	UNIQUE (type)
 );
-INSERT INTO [dbo].[CertType] (type) 
+INSERT INTO CertType (type) 
 VALUES ('Employee of the Year'), ('Employee of the Month');
 
 
 
-CREATE TABLE [dbo].[Regions] (
-    [rid]           INT        IDENTITY(1,1) PRIMARY KEY,
-    [sector]		NCHAR (30) NOT NULL,
+CREATE TABLE Regions (
+    rid           	INT        		AUTO_INCREMENT PRIMARY KEY,
+    sector			VARCHAR (30) 	NOT NULL,
 	UNIQUE (sector)
 );
-INSERT INTO [dbo].[Regions] (sector) 
+INSERT INTO Regions (sector) 
 VALUES ('New York City'), ('Washington D.C.'), ('San Francisco'), ('London'), ('Cambridge'), ('Venice'), ('Florence'), ('Rome');
 
 
 
-CREATE TABLE [dbo].[Awards] (
-    [id]            INT        IDENTITY(1,1) PRIMARY KEY,
-    [name]			INT		   NOT NULL,
-    [date]			DATE	   NOT NULL,
-    [time]			TIME	   NOT NULL,
-    [awardee]		INT		   NOT NULL,
-    [region]		INT		   NOT NULL,
-	[type]          INT		   NOT NULL,
+CREATE TABLE Awards (
+    id            	INT        AUTO_INCREMENT PRIMARY KEY,
+    name			INT		   NOT NULL,
+    date			DATE	   NOT NULL,
+    time			TIME	   NOT NULL,
+    awardee			INT		   NOT NULL,
+    region			INT		   NOT NULL,
+	type			INT		   NOT NULL,
 	CONSTRAINT fk_awards_type FOREIGN KEY (type) 
-	REFERENCES [dbo].[CertType] (ctid),
+	REFERENCES CertType (ctid)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
 	CONSTRAINT fk_awards_region FOREIGN KEY (region)
-	REFERENCES [dbo].[Regions] (rid),
+	REFERENCES Regions (rid)
+    	ON DELETE CASCADE
+		ON UPDATE CASCADE,
 	CONSTRAINT fk_awards_presenter FOREIGN KEY (name)
-	REFERENCES [dbo].[Employees] (id),
+	REFERENCES Employees (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
 	CONSTRAINT fk_awards_awardee FOREIGN KEY (awardee)
-	REFERENCES [dbo].[Employees] (id)
+	REFERENCES Employees (id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE
 );
 
 
 
-CREATE TABLE [dbo].[Admins] (
-    [id]            INT			IDENTITY(1,1) PRIMARY KEY,
-    [password]      NCHAR (40)	NOT NULL,
-    [datetimestamp] DATETIME	NULL,
-    [emailaddress]  NCHAR (75)	NOT NULL
-);
+/* Populating database tables with sample entries */
 
-
-
-/* Populate databases with sample entries */
 /* Employees Table */
-INSERT INTO [dbo].[Employees] (firstname, lastname, password, emailaddress, datetimestamp) 
+INSERT INTO Employees (firstname, lastname, password, emailaddress, datetimestamp) 
 VALUES 
 ('John', 'Doe', 'hunter2', 'johndoe85@gmail.com', CURRENT_TIMESTAMP), 
+('Jane', 'Doe', 'cestlavie', 'janedoe@gmail.com', CURRENT_TIMESTAMP),
 ('Megara', 'Creon', 'hjuQ767', 'mcreon@thebes.net', CURRENT_TIMESTAMP),
 ('Smith', 'Carlson', 'monalisa21', 'artisticman11@sbcglobal.net', CURRENT_TIMESTAMP),
 ('Hermione', 'Granger', 'wikrio32nklAdwa', 'hgranger@hogwarts.edu', CURRENT_TIMESTAMP),
@@ -95,36 +93,40 @@ VALUES
 ('Aaron', 'Smith', 'wqd3fsdjuy', 'smith39022@gmail.com', CURRENT_TIMESTAMP),
 ('Smith', 'Smith', 'smithsmith', 'sm9912@yahoo.com', CURRENT_TIMESTAMP);
 
+
 /* Admins Table */
-INSERT INTO [dbo].[Admins] (emailaddress, password, datetimestamp) 
+INSERT INTO Admins (emailaddress, password, datetimestamp) 
 VALUES 
 ('johnson@oregonstate.edu', 'adminpw123', CURRENT_TIMESTAMP),
 ('smith@oregonstate.edu', 'wioad214', CURRENT_TIMESTAMP),
 ('ze231@gmail.com', '987654321', CURRENT_TIMESTAMP);
 
-/* Awards Table */
-INSERT INTO [dbo].[Awards] (name, date, time, awardee, region, type) 
-VALUES 
-(1, CAST(GETDATE() AS date), CAST(GETDATE() AS time), 3, 2, 1),
-(1, CAST(GETDATE() AS date), CAST(GETDATE() AS time), 3, 1, 2),
-(3, CAST(GETDATE() AS date), CAST(GETDATE() AS time), 1, 4, 2),
-(4, CAST(GETDATE() AS date), CAST(GETDATE() AS time), 4, 7, 2),
-(1, CAST(GETDATE() AS date), CAST(GETDATE() AS time), 2, 8, 1),
-(5, CAST(GETDATE() AS date), CAST(GETDATE() AS time), 6, 5, 1);
 
-/* Queries */
+/* Awards Table */
+INSERT INTO Awards (name, date, time, awardee, region, type) 
+VALUES 
+(1, CURDATE(), CURTIME(), 21, 11, 1),
+(1, CURDATE(), CURTIME(), 21, 1, 11),
+(21, CURDATE(), CURTIME(), 1, 31, 11),
+(31, CURDATE(), CURTIME(), 31, 61, 11),
+(1, CURDATE(), CURTIME(), 11, 71, 1),
+(41, CURDATE(), CURTIME(), 51, 41, 1);
+
+
+
+/* MySQL SELECT queries for testing */
 
 /* Show all employees */
-SELECT * FROM [dbo].[Employees];
+SELECT * FROM Employees;
 
 /* Show all admins */
-SELECT * FROM [dbo].[Admins];
-
-/* Show all regions */
-SELECT * FROM [dbo].[Regions];
+SELECT * FROM Admins;
 
 /* Show all certificate types */
-SELECT * FROM [dbo].[CertType];
+SELECT * FROM CertType;
+
+/* Show all regions */
+SELECT * FROM Regions;
 
 /* Show all awards */
 SELECT	A.id, A.date, A.time,
@@ -134,25 +136,25 @@ SELECT	A.id, A.date, A.time,
 		AE.lastname AS AwardeeLastName,
 		CT.type AS CertificateType,
 		R.sector AS Region
-FROM [dbo].[Awards] A
-JOIN [dbo].[Employees] PE ON PE.id=A.name
-JOIN [dbo].[Employees] AE ON AE.id=A.awardee
-JOIN [dbo].[CertType] CT ON CT.ctid=A.type
-JOIN [dbo].[Regions] R ON R.rid=A.region;
+FROM Awards A
+JOIN Employees PE ON PE.id=A.name
+JOIN Employees AE ON AE.id=A.awardee
+JOIN CertType CT ON CT.ctid=A.type
+JOIN Regions R ON R.rid=A.region;
 
 /* Show all employees with the last name ____ */
 SELECT * 
-FROM [dbo].[Employees] 
+FROM Employees
 WHERE lastname = 'Smith';
 
 /* Show all employees with the first name ____ */
 SELECT * 
-FROM [dbo].[Employees] 
+FROM Employees
 WHERE firstname = 'Ramsay';
 
 /* Show all employees with a first or last name of ____ */
 SELECT *
-FROM [dbo].[Employees]
+FROM Employees
 WHERE lastname = 'Smith' OR firstname = 'Smith';
 
 /* Show all awards created by ____, sorted by date */
@@ -163,19 +165,29 @@ SELECT	A.id, A.date, A.time,
 		AE.lastname AS AwardeeLastName,
 		CT.type AS CertificateType,
 		R.sector AS Region
-FROM [dbo].[Awards] A
-JOIN [dbo].[Employees] PE ON PE.id=A.name
-JOIN [dbo].[Employees] AE ON AE.id=A.awardee
-JOIN [dbo].[CertType] CT ON CT.ctid=A.type
-JOIN [dbo].[Regions] R ON R.rid=A.region
+FROM Awards A
+JOIN Employees PE ON PE.id=A.name
+JOIN Employees AE ON AE.id=A.awardee
+JOIN CertType CT ON CT.ctid=A.type
+JOIN Regions R ON R.rid=A.region
 WHERE PE.firstname = 'John' AND PE.lastname = 'Doe'
-ORDER BY convert(date, A.date, 103) DESC;
+ORDER BY A.date, A.time;
 
 /* Delete specific award created by ____ */
-DELETE FROM [dbo].[Awards]
+DELETE FROM Awards
 WHERE id = 1
 AND name = 1;
 
 /* Delete all awards created by ____ */
-DELETE FROM [dbo].[Awards]
+DELETE FROM Awards
 WHERE name = 1;
+
+/* Delete specific employee */
+DELETE FROM Employees
+WHERE id = 1;
+
+/* Delete all employees */
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE Employees;
+SET FOREIGN_KEY_CHECKS = 1;
+
