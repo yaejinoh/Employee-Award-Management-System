@@ -18,7 +18,7 @@ if (isset($_POST["adminname"]) && isset($_POST["password"])) {
     $password = $_POST["password"];
 
     if (!($stmt = $mysqli->prepare("SELECT id, password, "
-            . "emailaddress FROM admins WHERE emailaddress=? "))) {
+            . "emailaddress FROM Admins WHERE emailaddress=? "))) {
         echo "Error: Failed prepare: (" . $mysqli->errno . ") " . $mysqli->error;
     }
 

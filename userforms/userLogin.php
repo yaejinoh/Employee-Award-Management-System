@@ -20,7 +20,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     #$hashed_password = \base64_encode(hash("sha256",$password));
 
     if (!($stmt = $mysqli->prepare("SELECT id, firstname, lastname, password, "
-            . "emailaddress FROM employees WHERE emailaddress=? "))) {
+            . "emailaddress FROM Employees WHERE emailaddress=? "))) {
         echo "Error: Failed prepare: (" . $mysqli->errno . ") " . $mysqli->error;
     }
 
