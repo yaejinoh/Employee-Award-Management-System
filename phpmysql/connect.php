@@ -1,10 +1,10 @@
 <?php
 
 //Database for Host
-#$servername = "us-cdbr-azure-east-c.cloudapp.net";
-#$usernameDb = "bd07944a668fd5";
-#$passwordDb = "ee00cbfd";
-#$dbname = "EmployeeRecognition";
+$servername = "us-cdbr-azure-east-c.cloudapp.net";
+$usernameDb = "bd07944a668fd5";
+$passwordDb = "ee00cbfd";
+$dbname = "EmployeeRecognition";
 
 $mysqli = new mysqli($servername, $usernameDb, $passwordDb, $dbname);
 
