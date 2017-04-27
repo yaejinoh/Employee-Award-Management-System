@@ -71,7 +71,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             echo " Stub for Awards";
             ?>
 
-            </br>  
+            </br> 
+            <a href="userMenu.php">User Menu</a>
             </br>
         </div>
         <div class="container">

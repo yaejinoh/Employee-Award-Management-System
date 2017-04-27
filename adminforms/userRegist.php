@@ -83,7 +83,9 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
                 <div class="col-sm-6" style="color:#FF0000" id="signin_message"></div>
             </form> 
             </br>
-            <a href="../index.php">User Sign In</a>
+            </br>  
+            <a href="adminMenu.php">Admin Menu</a>
+            </br>
         </div>
         <div class="container">
             <div class="row">   

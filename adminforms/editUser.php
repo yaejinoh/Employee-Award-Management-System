@@ -72,6 +72,7 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
             ?>
 
             </br>  
+            <a href="adminMenu.php">Admin Menu</a>
             </br>
         </div>
         <div class="container">

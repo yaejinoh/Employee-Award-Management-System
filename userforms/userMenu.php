@@ -63,7 +63,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </div>     
         </div>  
 
-        <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
+        <!-- --------------------------------- user Menu Form --------------------------------- -->
         <div class="container" >
             <h1>User Menu</h1>
             </br>

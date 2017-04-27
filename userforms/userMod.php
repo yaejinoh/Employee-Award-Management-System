@@ -43,7 +43,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                 <nav class="blog-nav">
                     <a class="navbar-brand" href="userLogout.php"> Employee Recognition Awards</a>  
                     <form class="navbar-brand pull-right">
-                         <a> <?php echo "Employee Name:" . " " . $_SESSION['employeeFirstName']. " " . $_SESSION['employeeLastName'] ; ?> </a>
+                        <a> <?php echo "Employee Name:" . " " . $_SESSION['employeeFirstName'] . " " . $_SESSION['employeeLastName']; ?> </a>
                     </form>
                     <!-- --------------------------------- Logout Form --------------------------------- -->
                     <form class="navbar-form pull-right" method="POST" action="userLogout.php">
@@ -62,7 +62,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </div>     
         </div>  
 
-        <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
+        <!-- --------------------------------- User Mod Form --------------------------------- -->
         <div class="container" >
             <h1>User Modifications</h1>
             </br>
@@ -72,6 +72,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             ?>
 
             </br>  
+            <a href="userMenu.php">User Menu</a>
             </br>
         </div>
         <div class="container">

@@ -71,7 +71,8 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
             echo " Stub for Admin Edit";
             ?>
 
-            </br>  
+            </br> 
+             <a href="adminMenu.php">Admin Menu</a>
             </br>
         </div>
         <div class="container">
