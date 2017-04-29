@@ -71,6 +71,39 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             echo " Stub for Awards";
             ?>
 
+
+        <!--testing -->
+            <form method="post" action="createdAward.php"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Create an Award Certificate </legend>
+                    <p>Name: 
+                        <select name="name"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, firstname, lastname, emailaddress FROM `Employees`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $firstname, $lastname, $emailaddress)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $firstname . ", " . $lastname . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> </p>
+                    <p>Award Type: <select name="awardType"> </select></p>
+                    <p>Region: <select name="region"> </select></p>
+                </fieldset>
+            </form>
+        
+
+
+
+
             </br> 
             <a href="userMenu.php">User Menu</a>
             </br>
