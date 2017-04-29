@@ -7,6 +7,8 @@ ini_set("display_errors", "ON");
 //Start PHP Session
 session_start();
 
+include '../phpmysql/connect.php';
+
 #Test for valid Session
 if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'])) {
     $_SESSION = array();
