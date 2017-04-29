@@ -75,7 +75,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
 
         <!--testing -->
-            <form method="post" action="createdAward.php"> <!-- post to page handling form-->    
+            <form method="post" action="createAward.php"> <!-- post to page handling form-->    
                 <fieldset>
                     <legend> Create an Award Certificate </legend>
                     <p>Name: 
