@@ -137,6 +137,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                             ?>
                         </select>
                     </p>
+                    <p>
+                        <input type="submit" name="add" value="Create Award">
+                        <input type="submit" name="view" value="View All Awards">
+                    </p>
                 </fieldset>
             </form>
         
