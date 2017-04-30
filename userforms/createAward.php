@@ -116,7 +116,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                             AE.lastname AS AwardeeLastName,
                             CT.type AS CertificateType,
                             R.sector AS Region,
-			    HEX(A.signature) AS Signature,
+			    HEX(A.signature) AS Signature
                         FROM Awards A
                         JOIN Employees PE ON PE.id=A.name
                         JOIN Employees AE ON AE.id=A.awardee
