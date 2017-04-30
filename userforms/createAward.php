@@ -67,6 +67,80 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             <h1>Award Creation</h1>
             </br>
             </br>
+
+        <!-- --------------------------------- Award Creation Form --------------------------------- -->
+	    <form method="post" action="createAward.php"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Create an Award Certificate </legend>
+                    <p>Name: 
+                        <select name="name"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, firstname, lastname, emailaddress FROM `Employees`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $firstname, $lastname, $emailaddress)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $firstname . ", " . $lastname . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> </p>
+                    <p>Award Type: 
+                        <select name="awardType"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT ctid, type FROM `CertType`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($ctid, $type)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $ctid . ' "> ' . $type . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>Region: 
+                        <select name="region"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT rid, sector FROM `Regions`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($rid, $sector)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $rid . ' "> ' . $sector . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>
+                        <input type="submit" name="add" value="Create Award">
+                        <input type="submit" name="view" value="View All Awards">
+                    </p>
+                </fieldset>
+            </form>
+
+
+
+        <!-- --------------------------------- Awards table view --------------------------------- -->
             <table>
               <h4>Awards:</h4>
               <tbody>
