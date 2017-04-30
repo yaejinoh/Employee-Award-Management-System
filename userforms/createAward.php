@@ -103,7 +103,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       <?php
 		      $employeefname = $_SESSION['employeeFirstName'];
 		      $employeelname = $_SESSION['employeeLastName'];
-		      $eid = $_SESSION['id'];
+		      $eid = $_SESSION['employeeid'];
 		      echo $eid;
 		      
                       // shows all award attributes with view button
