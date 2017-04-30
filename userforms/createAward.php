@@ -104,7 +104,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      $employeefname = $_SESSION['employeeFirstName'];
 		      $employeelname = $_SESSION['employeeLastName'];
 		      $eid = $_SESSION['employeeid'];
-		      echo $eid;
 		      
                       // shows all award attributes with view button
                       if(isset($_POST["view"])){
@@ -121,7 +120,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         JOIN Employees AE ON AE.id=A.awardee
                         JOIN CertType CT ON CT.ctid=A.type
                         JOIN Regions R ON R.rid=A.region
-			WHERE PE.firstname = $employeefname AND PE.lastname = $employeelname
+			WHERE PE.id = $eid
 			ORDER BY A.date, A.time;"))){
                           echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
                         }
