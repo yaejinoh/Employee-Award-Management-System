@@ -57,6 +57,7 @@ CREATE TABLE Awards (
     awardee		INT		NOT NULL,
     region		INT		NOT NULL,
     type		INT		NOT NULL,
+    signature		BLOB	   	NULL,
 	CONSTRAINT fk_awards_type FOREIGN KEY (type) 
 	REFERENCES CertType (ctid)
 		ON DELETE CASCADE
@@ -119,6 +120,9 @@ VALUES
 /* Show all employees */
 SELECT * FROM Employees;
 
+/* Show all employees with signatures as hex value */
+SELECT id, firstname, lastname, password, datetimestamp, emailaddress, HEX(signature) FROM Employees;
+
 /* Show all admins */
 SELECT * FROM Admins;
 
@@ -135,7 +139,8 @@ SELECT	A.id, A.date, A.time,
 		AE.firstname AS AwardeeFirstName, 
 		AE.lastname AS AwardeeLastName,
 		CT.type AS CertificateType,
-		R.sector AS Region
+		R.sector AS Region,
+		HEX(A.signature) AS Signature
 FROM Awards A
 JOIN Employees PE ON PE.id=A.name
 JOIN Employees AE ON AE.id=A.awardee
@@ -164,7 +169,8 @@ SELECT	A.id, A.date, A.time,
 		AE.firstname AS AwardeeFirstName, 
 		AE.lastname AS AwardeeLastName,
 		CT.type AS CertificateType,
-		R.sector AS Region
+		R.sector AS Region,
+		HEX(A.signature) AS Signature
 FROM Awards A
 JOIN Employees PE ON PE.id=A.name
 JOIN Employees AE ON AE.id=A.awardee
