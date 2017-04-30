@@ -45,7 +45,7 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
                     <form class="navbar-brand pull-right">
                         <a> <?php echo "Admin Email Address:" . " " . $_SESSION['adminEmailAddress']; ?> </a>
                     </form>
-                    <!-- --------------------------------- Logout Form --------------------------------- -->
+                    <!-- --------------------------------- Registration Form --------------------------------- -->
                     <form class="navbar-form pull-right" method="POST" action="adminLogout.php">
                         <input type="submit" value = "Sign out" name="logout form)"> 
                     </form>
@@ -65,17 +65,17 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
             <h1>Admin Registration</h1>
-            <form method="POST" onsubmit="editdata();
-                    return false;">
+            <form method="POST" onsubmit="adminEdit(); return false;">
                 <label for="username" class="control-label">Username</label>
-                <input name="username" type="text" class="form-control" id="usernamer" placeholder="Username(Email Address)" required>
+                <input name="username" type="text" class="form-control" id="adminname2r" placeholder="Username(Email Address)" required>
                 <label for="password" class="control-label">Password</label>
-                <input name="password" type="password" class="form-control" id="passwordr" placeholder="Password" required>
+                <input name="password" type="password" class="form-control" id="password4r" placeholder="Password" required>
+                <span class="help-block">Minimum of 8 characters</span>
                 <label for="confirmpassword" class="control-label">Confirm Password</label>
-                <input name="confirmpassword" type="password" class="form-control" id="confirmpasswordr" placeholder="Confirm Password" required>
+                <input name="confirmpassword" type="password" class="form-control" id="confirmpassword2r" placeholder="Confirm Password" required>
                 </br>
-                <button type="submit" name="adminRegist" class="btn btn-lg btn-primary btn-block ">Submit</button> 
-                <div class="col-sm-6" style="color:#FF0000" id="signin_message"></div>
+                <button type="submit" name="adminedit" class="btn btn-sm btn-primary">Submit</button> 
+
             </form> 
             </br>
             <a href="adminMenu.php">Admin Menu</a>
@@ -84,7 +84,9 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
             <div class="row">   
                 <div class="col-sm-4"></div> 
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4" style="color:#006600" id="signed_message"></div>
+                <div class="col-sm-6" style="color:#FF0000" id="error1_message"></div>
+                <div class="col-sm-6" style="color:#FF0000" id="error2_message"></div>
+                <div class="col-sm-6" style="color:#006600" id="error3_message"></div>
                 </br>
                 </br>
                 </br>
