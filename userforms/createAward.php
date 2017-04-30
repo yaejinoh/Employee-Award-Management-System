@@ -120,7 +120,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         JOIN Employees AE ON AE.id=A.awardee
                         JOIN CertType CT ON CT.ctid=A.type
                         JOIN Regions R ON R.rid=A.region
-			WHERE PE.id = $eid
+			WHERE PE.id = '$eid'
 			ORDER BY A.date, A.time;"))){
                           echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
                         }
