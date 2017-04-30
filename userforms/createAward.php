@@ -103,6 +103,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       <?php
 		      $employeefname = $_SESSION['employeeFirstName'];
 		      $employeelname = $_SESSION['employeeLastName'];
+		      echo $employeefname;
+		      echo $employeelname;
                       // shows all award attributes with view button
                       if(isset($_POST["view"])){
                         if(! ($stmt = $mysqli->prepare( //SIMPLER TEST QUERY "SELECT id, name, date, time, awardee, region, type FROM `Awards`"))){
