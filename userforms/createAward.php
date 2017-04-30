@@ -199,7 +199,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			WHERE PE.id = '$eid'
 			ORDER BY A.date, A.time;"))){
                           echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
-                        }
+                        }         
                         if(!$stmt->execute()){
                           echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
                         }
@@ -218,6 +218,25 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	                }
                         $stmt->close();
                       }
+		      
+		      
+		      // if the user pressed the 'Create Award' button
+                      if(isset($_POST["add"])){
+
+			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, awardee, region, type, date, time) VALUES (?,?,?,?,CURDATE(),CURTIME())"))){
+			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+
+			if(!($stmt->bind_param("iiiiss",$_SESSION['employeeid'],$_POST['name'],$_POST['region'],$_POST['awardType'],$_POST['lastName'],$_POST['age']))){
+			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			      
+			echo "done";
+                      }    
+		      
+		      
+		      
+		      
                       ?>						
               </tbody>
             </table>
