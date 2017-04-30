@@ -115,7 +115,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         JOIN Employees PE ON PE.id=A.name
                         JOIN Employees AE ON AE.id=A.awardee
                         JOIN CertType CT ON CT.ctid=A.type
-                        JOIN Regions R ON R.rid=A.region;"))){
+                        JOIN Regions R ON R.rid=A.region
+			WHERE PE.firstname = $_SESSION['employeeFirstName'] AND PE.lastname = $_SESSION['employeeLastName']
+			ORDER BY A.date, A.time;"))){
                           echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
                         }
                         if(!$stmt->execute()){
