@@ -39,9 +39,9 @@ if (!$stmt->execute()) {
     echo "Error: Failed execute: (" . $stmt->errno . ") " . $stmt->error;
 }
     
-$tabcustid = NULL;
+$tabusername = NULL;
     
-if (!$stmt->bind_result($tabcustid)) {
+if (!$stmt->bind_result($tabusername)) {
     echo "Error: Failed bind_result: (" . $stmt->errno . ") " . $stmt->error;
 }
           
