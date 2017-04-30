@@ -140,7 +140,7 @@ SELECT	A.id, A.date, A.time,
 		AE.lastname AS AwardeeLastName,
 		CT.type AS CertificateType,
 		R.sector AS Region,
-		A.signature
+		HEX(A.signature) AS Signature
 FROM Awards A
 JOIN Employees PE ON PE.id=A.name
 JOIN Employees AE ON AE.id=A.awardee
@@ -170,7 +170,7 @@ SELECT	A.id, A.date, A.time,
 		AE.lastname AS AwardeeLastName,
 		CT.type AS CertificateType,
 		R.sector AS Region,
-		A.signature
+		HEX(A.signature) AS Signature
 FROM Awards A
 JOIN Employees PE ON PE.id=A.name
 JOIN Employees AE ON AE.id=A.awardee
