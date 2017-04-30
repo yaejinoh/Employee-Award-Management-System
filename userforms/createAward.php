@@ -101,6 +101,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       </tr>
                       
                       <?php
+		      $employeefname = $_SESSION['employeeFirstName'];
+		      $employeelname = $_SESSION['employeeLastName'];
                       // shows all award attributes with view button
                       if(isset($_POST["view"])){
                         if(! ($stmt = $mysqli->prepare( //SIMPLER TEST QUERY "SELECT id, name, date, time, awardee, region, type FROM `Awards`"))){
@@ -116,7 +118,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         JOIN Employees AE ON AE.id=A.awardee
                         JOIN CertType CT ON CT.ctid=A.type
                         JOIN Regions R ON R.rid=A.region
-			WHERE PE.firstname = $_SESSION['employeeFirstName'] AND PE.lastname = $_SESSION['employeeLastName']
+			WHERE PE.firstname = $employeefname AND PE.lastname = $employeelname
 			ORDER BY A.date, A.time;"))){
                           echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
                         }
