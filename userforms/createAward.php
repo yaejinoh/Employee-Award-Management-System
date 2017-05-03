@@ -67,6 +67,80 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             <h1>Award Creation</h1>
             </br>
             </br>
+
+        <!-- --------------------------------- Award Creation Form --------------------------------- -->
+	    <form method="post" action="createAward.php"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Create an Award Certificate </legend>
+                    <p>Name: 
+                        <select name="name"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, firstname, lastname, emailaddress FROM `Employees`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $firstname, $lastname, $emailaddress)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $firstname . ", " . $lastname . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> </p>
+                    <p>Award Type: 
+                        <select name="awardType"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT ctid, type FROM `CertType`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($ctid, $type)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $ctid . ' "> ' . $type . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>Region: 
+                        <select name="region"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT rid, sector FROM `Regions`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($rid, $sector)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $rid . ' "> ' . $sector . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>
+                        <input type="submit" name="add" value="Create Award">
+                        <input type="submit" name="view" value="View All Awards">
+                    </p>
+                </fieldset>
+            </form>
+
+
+
+        <!-- --------------------------------- Awards table view --------------------------------- -->
             <table>
               <h4>Awards:</h4>
               <tbody>
@@ -125,7 +199,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			WHERE PE.id = '$eid'
 			ORDER BY A.date, A.time;"))){
                           echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
-                        }
+                        }         
                         if(!$stmt->execute()){
                           echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
                         }
@@ -144,6 +218,55 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	                }
                         $stmt->close();
                       }
+		      
+		      
+		      // if the user pressed the 'Create Award' button
+                      if(isset($_POST["add"])){
+
+			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, awardee, region, type, `date`, `time`) VALUES (?,?,?,?,CURDATE(),CURTIME())"))){
+			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+
+			if(!($stmt->bind_param("iiii",$eid,$_POST['name'],$_POST['region'],$_POST['awardType']))){
+			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+			}
+			      
+			echo "Award has been created.";      
+			      
+                        if(! ($stmt = $mysqli->prepare( 
+                        "SELECT	A.id, A.date, A.time,
+                            PE.firstname AS PresenterFirstName, 
+                            PE.lastname AS PresenterLastName,  
+                            AE.firstname AS AwardeeFirstName, 
+                            AE.lastname AS AwardeeLastName,
+                            CT.type AS CertificateType,
+                            R.sector AS Region,
+			    HEX(A.signature) AS Signature
+                        FROM Awards A
+                        JOIN Employees PE ON PE.id=A.name
+                        JOIN Employees AE ON AE.id=A.awardee
+                        JOIN CertType CT ON CT.ctid=A.type
+                        JOIN Regions R ON R.rid=A.region
+			WHERE PE.id = '$eid'
+			ORDER BY A.date, A.time;"))){
+                          echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
+                        }         
+                        if(!$stmt->execute()){
+                          echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                        }
+			if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
+                          echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                        }
+                        while($stmt->fetch()){
+                          echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n" . $Signature . "\n</td>\n</tr>";
+	                }
+                        $stmt->close();
+                        
+                      }    
+		      
+		      
+		      
+		      
                       ?>						
               </tbody>
             </table>

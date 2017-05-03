@@ -69,12 +69,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             <h1>Award Creation</h1>
             </br>
             </br>
-            <?php
-            echo " Stub for Awards";
-            ?>
 
 
-        <!--testing -->
+        <!-- --------------------------------- Award Creation Form --------------------------------- -->
             <form method="post" action="createAward.php"> <!-- post to page handling form-->    
                 <fieldset>
                     <legend> Create an Award Certificate </legend>
