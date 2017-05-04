@@ -149,7 +149,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           ID
                           </td>
                           <td>
-                              Date and Time
+                              Date
                           </td>
                           <td>
                               Time
@@ -217,7 +217,20 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      
 		      // if the user pressed the 'Create Award' button
                       if(isset($_POST["add"])){
-
+			      
+			if(! ($stmt = $mysqli->prepare( 
+                        "SELECT signature FROM Employees WHERE id = '$eid';"))){
+                          echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
+                        }         
+                        if(!$stmt->execute()){
+                          echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                        }
+			if(!$stmt->bind_result($signature)){
+                          echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                        }
+			      
+			      
+			echo '<img src="data:image/jpeg;base64,'.base64_encode($signature).'"/>';
 			$cur_date = date("y-m-d");
 			$cur_time = date("h:i:s");
 		      
