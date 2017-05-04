@@ -225,9 +225,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
 			$cur_date = date("y-m-d");
 			$cur_time = date("h:i:sa");
-			echo $_POST['name'];
-			echo $_POST['region'];
-			echo $_POST['awardType'];
 		      
 			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type) VALUES (?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
