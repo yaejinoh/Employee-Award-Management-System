@@ -194,7 +194,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         JOIN CertType CT ON CT.ctid=A.type
                         JOIN Regions R ON R.rid=A.region
 			WHERE PE.id = '$eid'
-			ORDER BY A.date, A.time;"))){
+			ORDER BY A.datetimestamp;"))){
                           echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
                         }         
                         if(!$stmt->execute()){
