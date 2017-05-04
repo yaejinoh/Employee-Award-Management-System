@@ -228,19 +228,16 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			if(!$stmt->bind_result($signature)){
                           echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
                         }
-			      
-			      
-			echo '<img src="data:image/jpeg;base64,'.base64_encode($signature).'"/>';
 			$stmt->close();      
 			    
 			$cur_date = date("y-m-d");
 			$cur_time = date("h:i:s");
 		      
-			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type) VALUES (?,?,?,?,?,?)"))){
+			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type, signature) VALUES (?,?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 
-			if(!($stmt->bind_param("issiii",$eid,$cur_date,$cur_time,$_POST['name'],$_POST['region'],$_POST['awardType']))){
+			if(!($stmt->bind_param("issiii",$eid,$cur_date,$cur_time,$_POST['name'],$_POST['region'],$_POST['awardType'],$signature))){
 			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			    
