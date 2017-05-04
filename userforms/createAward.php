@@ -225,15 +225,12 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
 			$date = date("y-m-d");
 			$time = date("h:i:sa");
-			      echo $date;
-			      string gettype(mixed $var);
-			      
-			      
-			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, awardee, region, type, `date`, `time`) VALUES (?,?,?,?,CURDATE(),CURTIME())"))){
+		      
+			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, awardee, region, type, date, time) VALUES (?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 
-			if(!($stmt->bind_param("iiii",$eid,$_POST['name'],$_POST['region'],$_POST['awardType']))){
+			if(!($stmt->bind_param("iiiiss",$eid,$_POST['name'],$_POST['region'],$_POST['awardType'],$date,$time))){
 			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			      
