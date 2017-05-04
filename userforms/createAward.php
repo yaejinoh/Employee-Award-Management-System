@@ -226,18 +226,18 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			$cur_date = string date("y-m-d");
 			$cur_time = string date("h:i:sa");
 		      
-			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, awardee, region, type, date, time) VALUES (?,?,?,?,?,?)"))){
+			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type) VALUES (?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 
-			if(!($stmt->bind_param("iiiiss",$eid,$_POST['name'],$_POST['region'],$_POST['awardType'],$cur_date,$cur_time))){
+			if(!($stmt->bind_param("issiii",$eid,$cur_date,$cur_time,$_POST['name'],$_POST['region'],$_POST['awardType']))){
 			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			      
 			echo "Award has been created.";      
 			      
                         if(! ($stmt = $mysqli->prepare( 
-                        "SELECT	A.id, A.date, A.time,
+                        "SELECT	A.id, A.date AS date, A.time AS time,
                             PE.firstname AS PresenterFirstName, 
                             PE.lastname AS PresenterLastName,  
                             AE.firstname AS AwardeeFirstName, 
