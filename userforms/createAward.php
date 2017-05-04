@@ -223,9 +223,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      // if the user pressed the 'Create Award' button
                       if(isset($_POST["add"])){
 
-			$date = date("m/d/y");
+			$date = date("y-m-d");
 			$time = date("h:i:sa");
 			      echo $date;
+			      string gettype(mixed $var);
 			      
 			      
 			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, awardee, region, type, `date`, `time`) VALUES (?,?,?,?,CURDATE(),CURTIME())"))){
