@@ -152,6 +152,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                               Date and Time
                           </td>
                           <td>
+                              Time
+                          </td>
+                          <td>
                               Presenter First Name
                           </td>
                           <td>
@@ -180,7 +183,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       // shows all award attributes with view button
                       if(isset($_POST["view"])){
                         if(! ($stmt = $mysqli->prepare( //SIMPLER TEST QUERY "SELECT id, name, date, time, awardee, region, type FROM `Awards`"))){
-                        "SELECT	A.id, A.datetimestamp AS datetime,
+                        "SELECT	A.id, A.date, A.time,
                             PE.firstname AS PresenterFirstName, 
                             PE.lastname AS PresenterLastName,  
                             AE.firstname AS AwardeeFirstName, 
@@ -193,7 +196,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         JOIN Employees AE ON AE.id=A.awardee
                         JOIN CertType CT ON CT.ctid=A.type
                         JOIN Regions R ON R.rid=A.region
-			WHERE PE.id = '$eid';"))){
+			WHERE PE.id = '$eid'
+			ORDER BY A.date, A.time;"))){
                           echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
                         }         
                         if(!$stmt->execute()){
@@ -206,11 +210,11 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         while($stmt->fetch()){
                           echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $name . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $awardee . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n" . $type . "\n</td>\n</tr>";
 	                }*/
-			if(!$stmt->bind_result($id, $datetime, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
+			if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
                           echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
                         }
                         while($stmt->fetch()){
-                          echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $datetime . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n" . $Signature . "\n</td>\n</tr>";
+                          echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n" . $Signature . "\n</td>\n</tr>";
 	                }
                         $stmt->close();
                       }
@@ -219,18 +223,17 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      // if the user pressed the 'Create Award' button
                       if(isset($_POST["add"])){
 
-			$cur_date = date("Y-m-d");
-			$cur_time = date("H:i:s");
-			$cur_datetime = date("Y-m-d H:i:s");
+			$cur_date = date("y-m-d");
+			$cur_time = date("h:i:s");
 		      
-			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, datetimestamp, awardee, region, type) VALUES (?,?,?,?,?)"))){
+			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type) VALUES (?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 
-			if(!($stmt->bind_param("isiii",$eid,$cur_datetime,$_POST['name'],$_POST['region'],$_POST['awardType']))){
+			if(!($stmt->bind_param("issiii",$eid,$cur_date,$cur_time,$_POST['name'],$_POST['region'],$_POST['awardType']))){
 			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
-			      
+			    
 			if(!$stmt->execute()){
                           echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
                         }
@@ -238,7 +241,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			echo "Award has been created.";      
 			      
                         if(! ($stmt = $mysqli->prepare( 
-                        "SELECT	A.id, A.datetimestamp AS datetime,
+                        "SELECT	A.id, A.date AS date, A.time AS time,
                             PE.firstname AS PresenterFirstName, 
                             PE.lastname AS PresenterLastName,  
                             AE.firstname AS AwardeeFirstName, 
@@ -251,17 +254,18 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         JOIN Employees AE ON AE.id=A.awardee
                         JOIN CertType CT ON CT.ctid=A.type
                         JOIN Regions R ON R.rid=A.region
-			WHERE PE.id = '$eid';"))){
+			WHERE PE.id = '$eid'
+			ORDER BY A.date, A.time;"))){
                           echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
                         }         
                         if(!$stmt->execute()){
                           echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
                         }
-			if(!$stmt->bind_result($id, $datetime, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
+			if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
                           echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
                         }
                         while($stmt->fetch()){
-                          echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $datetime . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n" . $Signature . "\n</td>\n</tr>";
+                          echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n" . $Signature . "\n</td>\n</tr>";
 	                }
                         $stmt->close();
                         
