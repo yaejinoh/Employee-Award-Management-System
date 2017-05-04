@@ -31,7 +31,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="style.css">
         <script src="../js/jquery.min.js"></script>
         <script src="../js/functions.js"></script>
 
@@ -183,7 +182,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      
                       // shows all award attributes with view button
                       if(isset($_POST["view"])){
-                        if(! ($stmt = $mysqli->prepare( //SIMPLER TEST QUERY "SELECT id, name, date, time, awardee, region, type FROM `Awards`"))){
+                        if(! ($stmt = $mysqli->prepare( 
                         "SELECT	A.id, A.date, A.time,
                             PE.firstname AS PresenterFirstName, 
                             PE.lastname AS PresenterLastName,  
@@ -191,7 +190,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                             AE.lastname AS AwardeeLastName,
                             CT.type AS CertificateType,
                             R.sector AS Region,
-			    HEX(A.signature) AS Signature
+			    A.signature AS Signature
                         FROM Awards A
                         JOIN Employees PE ON PE.id=A.name
                         JOIN Employees AE ON AE.id=A.awardee
@@ -204,19 +203,14 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         if(!$stmt->execute()){
                           echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
                         }
-/* SIMPLER TEST QUERY BIND/FETCH
-			if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type)){
-                          echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
-                        }
-                        while($stmt->fetch()){
-                          echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $name . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $awardee . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n" . $type . "\n</td>\n</tr>";
-	                }*/
+
 			if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
                           echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
                         }
+		      
                         while($stmt->fetch()){
                           echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n" . $Signature . "\n</td>\n</tr>";
-	                }
+	                } 
                         $stmt->close();
                       }
 		      
@@ -249,7 +243,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                             AE.lastname AS AwardeeLastName,
                             CT.type AS CertificateType,
                             R.sector AS Region,
-			    HEX(A.signature) AS Signature
+			    A.signature AS Signature
                         FROM Awards A
                         JOIN Employees PE ON PE.id=A.name
                         JOIN Employees AE ON AE.id=A.awardee
