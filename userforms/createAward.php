@@ -230,7 +230,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 
-			if(!($stmt->bind_param("issiii",$eid,$cur_date,$cur_time,$_POST['name'],$_POST['region'],$_POST['awardType']))){
+			if(!($stmt->bind_param("iiiiii",$eid,$cur_date,$cur_time,$_POST['name'],$_POST['region'],$_POST['awardType']))){
 			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			      
