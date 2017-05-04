@@ -181,11 +181,11 @@ if (!empty($_POST)) {
             </div>
         </div>
 
-        <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
+        <!-- --------------------------------- Admin Registration Form --------------------------------- -->
         <div class="container" >
             <h1>User Registration</h1>
-         <!--   <form method="POST" id="registration" enctype="multipart/form-data" action="userRegist.php"> -->
-                <form method="POST" id="registration" enctype="multipart/form-data"  onsubmit="userEdit(); return false;">
+                <form method="POST" id="registration" enctype="multipart/form-data" action="userRegist.php">  
+               <!-- <form method="POST" id="registration" enctype="multipart/form-data"  onsubmit="userEdit(); return false;"> -->
                 <label for="emailaddr" class="control-label">Username</label>
                 <input name="emailaddr" type="text" class="form-control" id="emailaddr" placeholder="Username(Email Address)" value="<?PHP if(isset($_POST['emailaddr'])) echo htmlspecialchars($_POST['emailaddr']); ?>" required>
                 <label for="firstname" class="control-label">First Name</label>
