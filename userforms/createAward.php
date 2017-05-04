@@ -31,6 +31,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
         <script src="../js/jquery.min.js"></script>
         <script src="../js/functions.js"></script>
 
