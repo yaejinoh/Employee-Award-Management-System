@@ -226,7 +226,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			$cur_date = date("Y-m-d");
 			$cur_time = date("H:i:s");
 		      
-			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type) VALUES (?,CURDATE(),CURTIME(),?,?,?)"))){
+			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, awardee, region, type, date, time, ) VALUES (?,?,?,?,CURDATE(),CURTIME())"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 
