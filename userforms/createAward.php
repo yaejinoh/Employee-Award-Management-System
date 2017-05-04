@@ -226,11 +226,11 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			$cur_date = date("Y-m-d");
 			$cur_time = date("H:i:s");
 		      
-			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type) VALUES (?,?,?,?,?,?)"))){
+			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type) VALUES (?,CURDATE(),CURTIME(),?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 
-			if(!($stmt->bind_param("iiiiii",$eid,$cur_date,$cur_time,$_POST['name'],$_POST['region'],$_POST['awardType']))){
+			if(!($stmt->bind_param("iiii",$eid,$_POST['name'],$_POST['region'],$_POST['awardType']))){
 			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			      
