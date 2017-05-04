@@ -223,8 +223,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      // if the user pressed the 'Create Award' button
                       if(isset($_POST["add"])){
 
-			$cur_date = string date("y-m-d");
-			$cur_time = string date("h:i:sa");
+			$cur_date = date("y-m-d");
+			$cur_time = date("h:i:sa");
 		      
 			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type) VALUES (?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
