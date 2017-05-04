@@ -245,7 +245,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
                         }
 			      
-			echo "Award has been created.";      
+			echo "Award has been created.";     
 			      
                         if(! ($stmt = $mysqli->prepare( 
                         "SELECT	A.id, A.date AS date, A.time AS time,
