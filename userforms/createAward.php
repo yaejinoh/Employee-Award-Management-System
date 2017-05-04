@@ -221,7 +221,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
 			$cur_date = date("Y-m-d");
 			$cur_time = date("H:i:s");
-			$cur_datetime = date("Y-m-d H:i:s")
+			$cur_datetime = date("Y-m-d H:i:s");
 		      
 			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, datetimestamp, awardee, region, type) VALUES (?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
