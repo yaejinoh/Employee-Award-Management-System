@@ -223,14 +223,14 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      // if the user pressed the 'Create Award' button
                       if(isset($_POST["add"])){
 
-			$date = date("y-m-d");
-			$time = date("h:i:sa");
+			$cur_date = string date("y-m-d");
+			$cur_time = string date("h:i:sa");
 		      
 			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, awardee, region, type, date, time) VALUES (?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 
-			if(!($stmt->bind_param("iiiiss",$eid,$_POST['name'],$_POST['region'],$_POST['awardType'],$date,$time))){
+			if(!($stmt->bind_param("iiiiss",$eid,$_POST['name'],$_POST['region'],$_POST['awardType'],$cur_date,$cur_time))){
 			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			      
