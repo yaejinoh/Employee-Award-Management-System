@@ -231,6 +231,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			      
+			if(!$stmt->execute()){
+                          echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                        }
+			      
 			echo "Award has been created.";      
 			      
                         if(! ($stmt = $mysqli->prepare( 
