@@ -1,3 +1,8 @@
+<?php
+if (!empty($_POST)) {
+    header("Location: adminMenu.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,25 +29,33 @@
         <div class="blog-masthead">
             <div class="container">
                 <nav class="blog-nav">
-                    <h1><a class="navbar-brand " href="../index.php"> Employee Recognition Awards</a></h1>                   
+                    <h2><a class="navbar-brand" href="../index.php"> Employee Recognition Awards</a></h2>                   
                 </nav>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             </div>
         </div>
-
+        <div class="container">
+            <div class="row"> 
+                <br/>
+                <div class="col-sm-4"></div> 
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4" style="color:#FF0000" id="login_message"></div>
+                </br>
+            </div>     
+        </div>  
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
             <h1>Admin Sign In</h1>
-            <form method="POST" onsubmit="adminLogin(); return false;">
-                <label for="adminname" class="control-label">Admin Name</label>
-                <input name="adminname" type="text" class="form-control" id="adminnamer" placeholder="Admin Name(Email Address)" required>
+            <form method="POST" onsubmit="editdata();
+                    return false;">
+                <label for="username" class="control-label">Username</label>
+                <input name="username" type="text" class="form-control" id="usernamer" placeholder="Username(Email Address)" required>
                 <label for="password" class="control-label">Password</label>
-                <input name="password" type="password" class="form-control" id="password2r" placeholder="Password" required>
+                <input name="password" type="password" class="form-control" id="passwordr" placeholder="Password" required>
                 </br>
-                <button type="submit" name="adminsignin" class="btn btn-sm btn-primary ">Submit</button> 
+                <button type="submit" name="adminsignin" class="btn btn-lg btn-primary btn-block ">Submit</button> 
+                <div class="col-sm-6" style="color:#FF0000" id="signin_message"></div>
             </form> 
-            </br>
-            <a href="../index.php">User Sign In</a>
             </br>
             <a href="restore.php">Forgot the password</a>
 
@@ -51,7 +64,7 @@
             <div class="row">   
                 <div class="col-sm-4"></div> 
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4" style="color:#FF0000" id="admin_message"></div>
+                <div class="col-sm-4" style="color:#006600" id="signed_message"></div>
                 </br>
                 </br>
                 </br>
