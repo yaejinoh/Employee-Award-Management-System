@@ -223,7 +223,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      // if the user pressed the 'Create Award' button
                       if(isset($_POST["add"])){
 
-			$date = date("Y/m/d");
+			$date = date("m/d/y");
 			$time = date("h:i:sa");
 			      echo $date;
 			      
