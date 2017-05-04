@@ -231,6 +231,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			      
 			      
 			echo '<img src="data:image/jpeg;base64,'.base64_encode($signature).'"/>';
+			$stmt->close();      
+			    
 			$cur_date = date("y-m-d");
 			$cur_time = date("h:i:s");
 		      
