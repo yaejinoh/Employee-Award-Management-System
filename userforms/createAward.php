@@ -180,7 +180,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       // shows all award attributes with view button
                       if(isset($_POST["view"])){
                         if(! ($stmt = $mysqli->prepare( //SIMPLER TEST QUERY "SELECT id, name, date, time, awardee, region, type FROM `Awards`"))){
-                        "SELECT	A.id, A.datetimestamp,
+                        "SELECT	A.id, A.datetimestamp AS datetime,
                             PE.firstname AS PresenterFirstName, 
                             PE.lastname AS PresenterLastName,  
                             AE.firstname AS AwardeeFirstName, 
@@ -206,7 +206,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         while($stmt->fetch()){
                           echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $name . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $awardee . "\n</td>\n<td>\n" . $region . "\n</td>\n<td>\n" . $type . "\n</td>\n</tr>";
 	                }*/
-			if(!$stmt->bind_result($id, $datetimestamp, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
+			if(!$stmt->bind_result($id, $datetime, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
                           echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
                         }
                         while($stmt->fetch()){
