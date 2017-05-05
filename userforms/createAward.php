@@ -229,7 +229,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         }
 			if(!$stmt->bind_result($signature)){
                           echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
-                        }
+                        } 
+			while($stmt->fetch()){
+                          echo "signature: " . $signature . "   END.";
+	                } 
 			$stmt->close();      
 			echo $signature;
 			$cur_date = date("y-m-d");
