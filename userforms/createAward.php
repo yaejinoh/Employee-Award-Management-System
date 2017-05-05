@@ -143,7 +143,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
-            <table>
+            <table id="awards-table">
               <h4>Awards:</h4>
               <tbody>
                       <tr>
