@@ -6,9 +6,7 @@ error_reporting(E_ALL);
 ini_set("display_errors", "ON");
 //Start PHP Session
 session_start();
-
 include '../phpmysql/connect.php';
-
 #Test for valid Session
 if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'])) {
     $_SESSION = array();
@@ -33,6 +31,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
+	<link href="../css/award.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
         <script src="../js/functions.js"></script>
 
@@ -70,9 +69,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
             </br>
 
-
         <!-- --------------------------------- Award Creation Form --------------------------------- -->
-            <form method="post" action="createAward.php"> <!-- post to page handling form-->    
+	<div id="award-body">
+	    <form method="post" action="createAward.php" id="award-form"> <!-- post to page handling form-->    
                 <fieldset>
                     <legend> Create an Award Certificate </legend>
                     <p>Name: 
@@ -139,9 +138,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         <input type="submit" name="view" value="View All Awards">
                     </p>
                 </fieldset>
-            </form>
-        
-
+        </form>
+	</div>
 
 
 
@@ -183,4 +181,3 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
     </body>
 </html>
-
