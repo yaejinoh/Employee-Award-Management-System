@@ -182,7 +182,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       <?php
 		      $eid = $_SESSION['employeeid'];
 		      
-                      // shows all award attributes with view button
+                      // shows all award attributes with --VIEW-- button
                       if(isset($_POST["view"])){
                         if(! ($stmt = $mysqli->prepare( 
                         "SELECT	A.id, A.date, A.time,
@@ -217,7 +217,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       }
 		      
 		      
-		      // if the user pressed the 'Create Award' button
+		      // if the user pressed the --CREATE AWARD-- button
                       if(isset($_POST["add"])){
 			      
 			if(! ($stmt = $mysqli->prepare( 
@@ -231,11 +231,11 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
                         }
 			$stmt->close();      
-			    
+			echo $signature;
 			$cur_date = date("y-m-d");
 			$cur_time = date("h:i:s");
-		      
-			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type, signature) VALUES (?,?,?,?,?,?,?)"))){
+
+/*			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type, signature) VALUES (?,?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 
@@ -277,7 +277,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n" . $Signature . "\n</td>\n</tr>";
 	                }
                         $stmt->close();
-                        
+                        */
                       }    
 		      
 		      
