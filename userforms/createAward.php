@@ -233,7 +233,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			$stmt->close();      
 			$cur_date = date("y-m-d");
 			$cur_time = date("h:i:s");
-
+/*
 			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type, signature) VALUES (?,?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
