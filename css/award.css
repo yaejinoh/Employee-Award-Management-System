@@ -1,4 +1,4 @@
-#award-body > * {
+
     .awards-table {
         border-collapse: collapse;
         width: 50%
@@ -51,4 +51,4 @@
         border-radius: 4px;
         background-color: white;
     }
-}
+
