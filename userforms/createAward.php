@@ -231,7 +231,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
                         } 
 			while($stmt->fetch()){
-                          echo "signature: " . $signature . "   END.";
+			  echo '<img src="data:image/png;base64,'.base64_encode($signature).'">';
 	                } 
 			$stmt->close();      
 			echo $signature;
