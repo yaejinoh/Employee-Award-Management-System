@@ -231,6 +231,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
                         }   
 			echo var_dump($signature);
+			echo $signature;
 			$cur_date = date("y-m-d");
 			$cur_time = date("h:i:s");
 
