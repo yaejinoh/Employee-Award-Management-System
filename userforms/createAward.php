@@ -140,7 +140,35 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                 </fieldset>
             </form>
 
-
+        <!-- --------------------------------- Award PDF Creation Form --------------------------------- -->
+	    <form method="post" action="createAwardPDF.php" id="pdf-form"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Export an Award to PDF </legend>
+                    <p>Please select the ID of the award you wish to convert to PDF: 
+                        <select name="export"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> 
+		    </p>
+                    <p>
+                        <input type="submit" name="export" value="Export to PDF">
+                    </p>
+                </fieldset>
+            </form>
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
             <table id="awards-table">
