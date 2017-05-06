@@ -147,7 +147,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                 <fieldset>
                     <legend> Export an Award to PDF </legend>
                     <p>Please select the ID of the award you wish to convert to PDF: 
-                        <select name="export"> 
+                        <select name="awardID"> 
                             <?php
                             // creates option for origin
                             if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards`"))){
