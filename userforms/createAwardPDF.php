@@ -70,10 +70,10 @@ if(!empty($_POST['export'])) {
         $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 10, $PresenterFirstName . " " . $PresenterLastName . "    " . $date, 0, 1, "C");
 
-        $SignatureImage = "";
+        $SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
         
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 10, $pdf->Image($Signature), 0, 1, "C");
+        $pdf->Cell(0, 10, $pdf->Image($SignatureImage), 0, 1, "C");
     }
     
     $stmt->close();
