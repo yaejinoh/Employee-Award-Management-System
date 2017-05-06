@@ -28,7 +28,7 @@ if(!empty($_POST['export'])) {
     $pdf->Cell(0, 10, "Award Certificate", 0, 1, "C");
 
     $pdf->SetFont("Arial", "", "10");
-    $pdf->Cell(0, 10, "Congrats, " . $name . "yay award", 0, 1, "C");
+    $pdf->Cell(0, 10, "certificate for: , " . $awardID . ". yay award", 0, 1, "C");
 
     $pdf->Output();
 }
