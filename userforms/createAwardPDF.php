@@ -43,35 +43,36 @@ if(!empty($_POST['export'])) {
     if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
         echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
     }
-    
-    require("../fpdf/fpdf.php");
-    // Landscape, units in mm, page size A4
-    $pdf = new FPDF('L','mm','A4');
-    $pdf->addPage();
-    
-    $pdf->SetFont("Arial", "", "10");
-    $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "C");
-    
-    $pdf->SetFont("Arial", "B", "20");
-    $pdf->Cell(0, 10, "Employee of the " . $CertificateType, 0, 1, "C");
+    while($stmt->fetch()){
+        require("../fpdf/fpdf.php");
+        // Landscape, units in mm, page size A4
+        $pdf = new FPDF('L','mm','A4');
+        $pdf->addPage();
 
-    $pdf->SetFont("Arial", "", "10");
-    $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
+        $pdf->SetFont("Arial", "", "10");
+        $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "C");
 
-    $pdf->SetFont("Arial", "", "15");
-    $pdf->Cell(0, 10, $AwardeeFirstName . $AwardeeLastName, 0, 1, "C");
+        $pdf->SetFont("Arial", "B", "20");
+        $pdf->Cell(0, 10, "Employee of the " . $CertificateType, 0, 1, "C");
 
-    $pdf->SetFont("Arial", "", "10");
-    $pdf->Cell(0, 10, "In grateful recognition of your service and support at", 0, 1, "C");
+        $pdf->SetFont("Arial", "", "10");
+        $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
 
-    $pdf->SetFont("Arial", "", "15");
-    $pdf->Cell(0, 10, $Region, 0, 1, "C");
-    
-    $pdf->SetFont("Arial", "", "15");
-    $pdf->Cell(0, 10, $PresenterFirstName . $PresenterLastName . $date, 0, 1, "C");
-    
         $pdf->SetFont("Arial", "", "15");
-    $pdf->Cell(0, 10, "signature here", 0, 1, "C");
+        $pdf->Cell(0, 10, $AwardeeFirstName . $AwardeeLastName, 0, 1, "C");
+
+        $pdf->SetFont("Arial", "", "10");
+        $pdf->Cell(0, 10, "In grateful recognition of your service and support at", 0, 1, "C");
+
+        $pdf->SetFont("Arial", "", "15");
+        $pdf->Cell(0, 10, $Region, 0, 1, "C");
+
+        $pdf->SetFont("Arial", "", "15");
+        $pdf->Cell(0, 10, $PresenterFirstName . $PresenterLastName . $date, 0, 1, "C");
+
+            $pdf->SetFont("Arial", "", "15");
+        $pdf->Cell(0, 10, "signature here", 0, 1, "C");
+    }
     
     $stmt->close();
     $pdf->Output();
