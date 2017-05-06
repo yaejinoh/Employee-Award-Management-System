@@ -72,10 +72,10 @@ if(!empty($_POST['export'])) {
 
         //$SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
         //$SignatureImage = data:image/png;base64,'.base64_encode($Signature).';
-        $info = getimagesize($SignatureImage);
+        //$info = getimagesize($SignatureImage);
         
-        $pdf->SetFont("Arial", "", "15");
-        $pdf->Image($SignatureImage, 10, 30, $info[0], $info[1], 'png');
+        //$pdf->SetFont("Arial", "", "15");
+        //$pdf->Image($SignatureImage, 10, 30, $info[0], $info[1], 'png');
     }
     
     $stmt->close();
