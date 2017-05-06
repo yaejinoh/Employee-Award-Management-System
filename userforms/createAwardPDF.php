@@ -19,17 +19,61 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
 
 if(!empty($_POST['export'])) {
-    $awardID = $_POST['export'];
+    $awardID = $_POST['awardID'];
+    
+    if(! ($stmt = $mysqli->prepare( 
+    "SELECT	A.id, A.date, A.time,
+        PE.firstname AS PresenterFirstName, 
+        PE.lastname AS PresenterLastName,  
+        AE.firstname AS AwardeeFirstName, 
+        AE.lastname AS AwardeeLastName,
+        CT.type AS CertificateType,
+        R.sector AS Region,
+        A.signature AS Signature
+    FROM Awards A
+    JOIN Employees PE ON PE.id=A.name
+    JOIN Employees AE ON AE.id=A.awardee
+    JOIN CertType CT ON CT.ctid=A.type
+    JOIN Regions R ON R.rid=A.region
+	WHERE A.id = '$awardID'
+	ORDER BY A.date, A.time;"))){
+        echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
+    } 
+    if(!$stmt->execute()){
+        echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+    }
+    if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
+        echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+    }
+    
     require("../fpdf/fpdf.php");
-    $pdf = new FPDF();
-
+    // Landscape, units in mm, page size A4
+    $pdf = new FPDF('L','mm','A4');
     $pdf->addPage();
+    
     $pdf->SetFont("Arial", "B", "20");
-    $pdf->Cell(0, 10, "Award Certificate", 0, 1, "C");
+    $pdf->Cell(0, 10, "Employee of the " . $CertificateType, 0, 1, "C");
 
     $pdf->SetFont("Arial", "", "10");
-    $pdf->Cell(0, 10, "certificate for: , " . $awardID . ". yay award", 0, 1, "C");
+    $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
 
+    $pdf->SetFont("Arial", "", "15");
+    $pdf->Cell(0, 10, $AwardeeFirstName . $AwardeeLastName, 0, 1, "C");
+
+    $pdf->SetFont("Arial", "", "10");
+    $pdf->Cell(0, 10, "In grateful recognition of your service and support at", 0, 1, "C");
+
+    $pdf->SetFont("Arial", "", "15");
+    $pdf->Cell(0, 10, $Region, 0, 1, "C");
+    
+    $pdf->SetFont("Arial", "", "15");
+    $pdf->Cell(0, 10, $PresenterFirstName . $PresenterLastName . $date, 0, 1, "C");
+    
+        $pdf->SetFont("Arial", "", "15");
+    $pdf->Cell(0, 10, "signature here", 0, 1, "C");
+    
+    $stmt->close();
+    
     $pdf->Output();
 }
 ?>
