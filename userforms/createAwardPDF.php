@@ -17,7 +17,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 }
 
 
-
 if(!empty($_POST['export'])) {
     $awardID = $_POST['awardID'];
     
@@ -51,6 +50,9 @@ if(!empty($_POST['export'])) {
     $pdf = new FPDF('L','mm','A4');
     $pdf->addPage();
     
+    $pdf->SetFont("Arial", "", "10");
+    $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "C");
+    
     $pdf->SetFont("Arial", "B", "20");
     $pdf->Cell(0, 10, "Employee of the " . $CertificateType, 0, 1, "C");
 
@@ -73,7 +75,6 @@ if(!empty($_POST['export'])) {
     $pdf->Cell(0, 10, "signature here", 0, 1, "C");
     
     $stmt->close();
-    
     $pdf->Output();
 }
 ?>
