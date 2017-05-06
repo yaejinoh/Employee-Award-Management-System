@@ -71,9 +71,10 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 10, $PresenterFirstName . " " . $PresenterLastName . "    " . $date, 0, 1, "C");
 
         $SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
+        $info = getimagesize($SignatureImage);
         
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 10, $pdf->Image($SignatureImage), 0, 1, "C");
+        $pdf->Image($SignatureImage, 10, 30, $info[0], $info[1], 'png');
     }
     
     $stmt->close();
