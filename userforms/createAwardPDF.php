@@ -34,8 +34,7 @@ if(!empty($_POST['export'])) {
     JOIN Employees AE ON AE.id=A.awardee
     JOIN CertType CT ON CT.ctid=A.type
     JOIN Regions R ON R.rid=A.region
-	WHERE A.id = '$awardID'
-	ORDER BY A.date, A.time;"))){
+    WHERE A.id = '$awardID';"))){
         echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
     } 
     if(!$stmt->execute()){
