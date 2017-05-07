@@ -43,7 +43,7 @@ if(!empty($_POST['export'])) {
         echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
     }
     while($stmt->fetch()){
-        require("../fpdf/fpdf.php");
+//        require("../fpdf/fpdf.php");
         require("../fpdf/alphapdf.php");
         
         // Landscape, units in mm, page size A4
