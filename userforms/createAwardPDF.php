@@ -59,7 +59,7 @@ if(!empty($_POST['export'])) {
         $pdf->SetFont("Arial", "B", "40");
         $pdf->Cell(0, 40, $CertificateType, 0, 1, "C");
         
-        $pdf->Line(50, 55, 250, 55);
+        $pdf->Line(50, 53, 250, 53);
 
         $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
@@ -100,7 +100,7 @@ if(!empty($_POST['export'])) {
                 // Open new PDF document and print image
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
                 $pdf->SetFont("Arial", "", "15");
-                $pdf->Image('../img/temp.png', 100, 150, $infosmaller[0], $infosmaller[1], 'png');
+                $pdf->Image('../img/temp.png', 80, 150, $infosmaller[0], $infosmaller[1], 'png');
             }
         }
         
