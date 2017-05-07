@@ -54,10 +54,12 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "L");
 
         $pdf->SetFont("Arial", "B", "30");
-        $pdf->Cell(0, 30, "", 0, 1, "C");
+        $pdf->Cell(0, 15, "", 0, 1, "C");
         
         $pdf->SetFont("Arial", "B", "40");
         $pdf->Cell(0, 40, $CertificateType, 0, 1, "C");
+        
+        $pdf->Line(10, 70, 400, 70);
 
         $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
