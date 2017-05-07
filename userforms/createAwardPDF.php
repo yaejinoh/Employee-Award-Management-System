@@ -89,13 +89,13 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 20, "", 0, 1, "C");
         
         $pdf->SetFont("Arial", "", "10");
-        $pdf->Cell(0, 10, "Presented by                         ", 0, 1, "R");
+        $pdf->Cell(0, 10, "Presented by                                   ", 0, 1, "R");
         
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 20, "                    " . $date, 0, 1, "L");
+        $pdf->Cell(0, 20, "                              " . $date, 0, 1, "L");
         
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 20, $PresenterFirstName . " " . $PresenterLastName . "                    ", 0, 0, "R");
+        $pdf->Cell(0, 10, $PresenterFirstName . " " . $PresenterLastName . "                              ", 0, 0, "R");
         
         //$SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
         //$SignatureImage = data:image/png;base64,'.base64_encode($Signature).';
