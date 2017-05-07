@@ -53,19 +53,19 @@ if(!empty($_POST['export'])) {
         // USAGE: (width, height, "text", border, pos after cell, alignment)
         $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "L");
 
-        $pdf->SetFont("Arial", "B", "26");
-        $pdf->Cell(0, 30, "Employee of the " . $CertificateType, 0, 1, "C");
+        $pdf->SetFont("Arial", "B", "30");
+        $pdf->Cell(0, 10, "Employee of the " . $CertificateType, 0, 1, "C");
 
-        $pdf->SetFont("Arial", "", "10");
+        $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
 
-        $pdf->SetFont("Arial", "", "15");
+        $pdf->SetFont("Arial", "", "20");
         $pdf->Cell(0, 10, $AwardeeFirstName . " " . $AwardeeLastName, 0, 1, "C");
 
-        $pdf->SetFont("Arial", "", "10");
+        $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 10, "In grateful recognition of your service and support at", 0, 1, "C");
 
-        $pdf->SetFont("Arial", "", "15");
+        $pdf->SetFont("Arial", "", "18");
         $pdf->Cell(0, 10, $Region, 0, 1, "C");
 
         $pdf->SetFont("Arial", "", "15");
