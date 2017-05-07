@@ -53,8 +53,14 @@ if(!empty($_POST['export'])) {
         // USAGE: (width, height, "text", border, pos after cell, alignment)
         $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "L");
 
+    //    $pdf->SetFont("Arial", "B", "30");
+     //   $pdf->Cell(0, 10, "", 0, 1, "C");
+        
+     //   $pdf->SetFont("Arial", "B", "30");
+     //   $pdf->Cell(0, 10, "", 0, 1, "C");
+        
         $pdf->SetFont("Arial", "B", "30");
-        $pdf->Cell(0, 10, $CertificateType, 0, 1, "C");
+        $pdf->Cell(0, 40, $CertificateType, 0, 1, "C");
 
         $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
@@ -69,11 +75,7 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 10, $Region, 0, 1, "C");
 
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(50, 10, $PresenterFirstName . " " . $PresenterLastName, 0, 0, "L");
-
-        $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(50, 10, $date, 0, 1, "L");
-
+        $pdf->Cell(50, 10, $PresenterFirstName . " " . $PresenterLastName . "          " . $date, 0, 0, "C");
         
         //$SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
         //$SignatureImage = data:image/png;base64,'.base64_encode($Signature).';
