@@ -80,9 +80,9 @@ if(!empty($_POST['export'])) {
         
         if( $Signature!==false ) {
                 //  Save image to a temporary location
-                if( file_put_contents(../img,$Signature)!==false ) {
+                if( file_put_contents('../img',$Signature)!==false ) {
                     //  Open new PDF document and print image
-                    $pdf->Image(../img);
+                    $pdf->Image('../img');
                 }
          }
         
