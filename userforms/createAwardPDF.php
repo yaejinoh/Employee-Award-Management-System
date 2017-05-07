@@ -59,7 +59,7 @@ if(!empty($_POST['export'])) {
         $pdf->SetFont("Arial", "B", "40");
         $pdf->Cell(0, 40, $CertificateType, 0, 1, "C");
         
-        $pdf->Line(50, 65, 300, 65);
+        $pdf->Line(50, 65, 250, 65);
 
         $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
@@ -73,8 +73,11 @@ if(!empty($_POST['export'])) {
         $pdf->SetFont("Arial", "", "18");
         $pdf->Cell(0, 10, $Region, 0, 1, "C");
 
+        $pdf->SetFont("Arial", "", "10");
+        $pdf->Cell(0, 30, "Given by", 0, 1, "C");
+        
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 10, $PresenterFirstName . " " . $PresenterLastName . "          " . $date, 0, 0, "C");
+        $pdf->Cell(0, 10, $PresenterFirstName . " " . $PresenterLastName . "               " . $date, 0, 0, "C");
         
         //$SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
         //$SignatureImage = data:image/png;base64,'.base64_encode($Signature).';
