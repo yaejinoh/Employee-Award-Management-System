@@ -56,7 +56,7 @@ if(!empty($_POST['export'])) {
         $pdf->SetAlpha(1);
         // draw jpeg image
         $border_info = getimagesize('../img/certificate-border.jpg');
-        $pdf->Image('../img/certificate-border.jpg', 0, 0, 290, "jpg");
+        $pdf->Image('../img/certificate-border.jpg', 0, 0, 297, "jpg");
        
         // restore full opacity
         $pdf->SetAlpha(1);
@@ -112,7 +112,7 @@ if(!empty($_POST['export'])) {
                 // Open new PDF document and print image
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
                 $pdf->SetFont("Arial", "", "15");
-                $pdf->Image('../img/temp.png', 80, 150, $infosmaller[0], $infosmaller[1], 'png');
+                $pdf->Image('../img/temp.png', 80, 150, 0, $infosmaller[1], 'png');
             }
         }
         
