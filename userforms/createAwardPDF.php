@@ -83,9 +83,11 @@ if(!empty($_POST['export'])) {
             //  Save image to a temporary location
             if(file_put_contents('../img/temp.png',$Signature)!==false) {
                 $info = getimagesize('../img/temp.png');
+                $infosmaller[0] = $info[0] / 4;
+                $infosmaller[1] = $info[1] / 4;
                 // Open new PDF document and print image
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
-                $pdf->Image('../img/temp.png', 10, 50, 50, 50, 'png');
+                $pdf->Image('../img/temp.png', 10, 50, $infosmaller[0], $infosmaller[1], 'png');
             }
         }
         
