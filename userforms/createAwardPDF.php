@@ -117,7 +117,7 @@ if(!empty($_POST['export'])) {
         $stamp_info = getimagesize('../img/certstamp.png');
         $stamp_infosmaller[0] =  $stamp_info[0] / 7;
         $stamp_infosmaller[1] =  $stamp_info[1] / 7;
-        $pdf->Image('../img/certstamp.png', 115, 120, $stamp_infosmaller[0], $stamp_infosmaller[1], 'png');
+        $pdf->Image('../img/certstamp.png', 120, 120, $stamp_infosmaller[0], $stamp_infosmaller[1], 'png');
     }
     
     
