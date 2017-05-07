@@ -54,7 +54,7 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "L");
 
         $pdf->SetFont("Arial", "B", "30");
-        $pdf->Cell(0, 10, "Employee of the " . $CertificateType, 0, 1, "C");
+        $pdf->Cell(0, 10, $CertificateType, 0, 1, "C");
 
         $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
@@ -69,10 +69,10 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 10, $Region, 0, 1, "C");
 
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 10, $PresenterFirstName . " " . $PresenterLastName, 0, 0, "C");
+        $pdf->Cell(50, 10, $PresenterFirstName . " " . $PresenterLastName, 0, 0, "L");
 
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 10, $date, 0, 1, "C");
+        $pdf->Cell(50, 10, $date, 0, 1, "L");
 
         
         //$SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
@@ -93,8 +93,7 @@ if(!empty($_POST['export'])) {
                 // Open new PDF document and print image
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
                 $pdf->SetFont("Arial", "", "15");
-                $pdf->Cell(0, 10, $pdf->Image('../img/temp.png', 10, 50, $infosmaller[0], $infosmaller[1], 'png'), 0, 1, "C");
-                //$pdf->Image('../img/temp.png', 10, 50, $infosmaller[0], $infosmaller[1], 'png');
+                $pdf->Image('../img/temp.png', 10, 50, $infosmaller[0], $infosmaller[1], 'png');
             }
         }
         
