@@ -52,7 +52,7 @@ if(!empty($_POST['export'])) {
         $pdf->addPage();
         
         // set alpha to semi-transparency
-        $pdf->SetAlpha(0.0);
+        $pdf->SetAlpha(0.5);
 
         // draw jpeg image
         $border_info = getimagesize('../img/certificate-border.jpg');
