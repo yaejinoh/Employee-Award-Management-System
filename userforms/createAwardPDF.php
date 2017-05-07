@@ -63,7 +63,7 @@ if(!empty($_POST['export'])) {
         
         $pdf->SetFont("Arial", "", "8");
         // USAGE: (width, height, "text", border, pos after cell, alignment)
-        $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "L");
+        $pdf->Cell(0, 10, "                                               ID No. " . $awardID, 0, 1, "L");
 
       //  $pdf->SetFont("Arial", "B", "30");
       //  $pdf->Cell(0, 10, "", 0, 1, "C");
@@ -109,7 +109,7 @@ if(!empty($_POST['export'])) {
             }
         }
         
-        $pdf->Line(200, 160, 255, 160);
+        $pdf->Line(150, 160, 255, 160);
         
         $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 15, $PresenterFirstName . " " . $PresenterLastName . "                              ", 0, 0, "R");
