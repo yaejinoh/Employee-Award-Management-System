@@ -1,4 +1,3 @@
-
 <?php
 #awards.php - CS467, Emmalee Jones, Yae Jin Oh 
 #Create Award PDFs
@@ -45,10 +44,23 @@ if(!empty($_POST['export'])) {
     }
     while($stmt->fetch()){
         require("../fpdf/fpdf.php");
+        require("../fpdf/alphapdf.php");
+        
         // Landscape, units in mm, page size A4
-        $pdf = new FPDF('L','mm','A4');
+//        $pdf = new FPDF('L','mm','A4');       // commented out, experimenting with transparency add-on
+        $pdf = new AlphaPDF('L','mm','A4');
         $pdf->addPage();
+        
+        // set alpha to semi-transparency
+        $pdf->SetAlpha(0.0);
 
+        // draw jpeg image
+        $border_info = getimagesize('../img/certificate-border.jpg');
+        $pdf->Image('../img/certificate-border.jpg', 0, 0, $border_info[0], $border_info[1], "jpg");
+       
+        // restore full opacity
+        $pdf->SetAlpha(1);
+        
         $pdf->SetFont("Arial", "", "8");
         // USAGE: (width, height, "text", border, pos after cell, alignment)
         $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "L");
