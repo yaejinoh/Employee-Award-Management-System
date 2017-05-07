@@ -85,7 +85,7 @@ if(!empty($_POST['export'])) {
                 $info = getimagesize('../img/temp.png');
                 // Open new PDF document and print image
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
-                $pdf->Image('../img/temp.png', 10, 50, $info[0], $info[1], 'png');
+                $pdf->Image('../img/temp.png', 10, 50, 50, 50, 'png');
             }
         }
         
