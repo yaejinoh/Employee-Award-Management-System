@@ -115,8 +115,8 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 15, $PresenterFirstName . " " . $PresenterLastName . "                              ", 0, 0, "R");
         
         $stamp_info = getimagesize('../img/certstamp.png');
-        $stamp_infosmaller[0] =  $stamp_info[0] / 5;
-        $stamp_infosmaller[1] =  $stamp_info[1] / 5;
+        $stamp_infosmaller[0] =  $stamp_info[0] / 20;
+        $stamp_infosmaller[1] =  $stamp_info[1] / 20;
         $pdf->Image('../img/certstamp.png', 130, 130, $stamp_info[0], $stamp_info[1], 'png');
     }
     
