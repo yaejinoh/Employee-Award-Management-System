@@ -56,7 +56,7 @@ if(!empty($_POST['export'])) {
 
         // draw jpeg image
         $border_info = getimagesize('../img/certificate-border.jpg');
-        $pdf->Image('../img/certificate-border.jpg', 0, 0, 162, 114, "jpg");
+        $pdf->Image('../img/certificate-border.jpg', 0, 0, 842, 595, "jpg");
        
         // restore full opacity
         $pdf->SetAlpha(1);
