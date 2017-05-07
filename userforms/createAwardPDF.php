@@ -49,11 +49,12 @@ if(!empty($_POST['export'])) {
         $pdf = new FPDF('L','mm','A4');
         $pdf->addPage();
 
-        $pdf->SetFont("Arial", "", "10");
-        $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "C");
+        $pdf->SetFont("Arial", "", "8");
+        // USAGE: (width, height, "text", border, pos after cell, alignment)
+        $pdf->Cell(0, 10, "ID No. " . $awardID, 0, 1, "L");
 
-        $pdf->SetFont("Arial", "B", "20");
-        $pdf->Cell(0, 10, "Employee of the " . $CertificateType, 0, 1, "C");
+        $pdf->SetFont("Arial", "B", "26");
+        $pdf->Cell(0, 30, "Employee of the " . $CertificateType, 0, 1, "C");
 
         $pdf->SetFont("Arial", "", "10");
         $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
@@ -83,8 +84,8 @@ if(!empty($_POST['export'])) {
             //  Save image to a temporary location
             if(file_put_contents('../img/temp.png',$Signature)!==false) {
                 $info = getimagesize('../img/temp.png');
-                $infosmaller[0] = $info[0] / 4;
-                $infosmaller[1] = $info[1] / 4;
+                $infosmaller[0] = $info[0] / 5;
+                $infosmaller[1] = $info[1] / 5;
                 // Open new PDF document and print image
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
                 $pdf->Image('../img/temp.png', 10, 50, $infosmaller[0], $infosmaller[1], 'png');
