@@ -109,7 +109,7 @@ if(!empty($_POST['export'])) {
             }
         }
         
-        $pdf->Line(175, 160, 255, 160);
+        $pdf->Line(175, 160, 260, 160);
         
         $pdf->SetFont("Arial", "", "15");
         $pdf->Cell(0, 15, $PresenterFirstName . " " . $PresenterLastName . "                              ", 0, 0, "R");
@@ -117,7 +117,7 @@ if(!empty($_POST['export'])) {
         $stamp_info = getimagesize('../img/certstamp.png');
         $stamp_infosmaller[0] =  $stamp_info[0] / 7;
         $stamp_infosmaller[1] =  $stamp_info[1] / 7;
-        $pdf->Image('../img/certstamp.png', 130, 125, $stamp_infosmaller[0], $stamp_infosmaller[1], 'png');
+        $pdf->Image('../img/certstamp.png', 125, 125, $stamp_infosmaller[0], $stamp_infosmaller[1], 'png');
     }
     
     
