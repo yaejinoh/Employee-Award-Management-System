@@ -99,8 +99,8 @@ if(!empty($_POST['export'])) {
             //  Save image to a temporary location
             if(file_put_contents('../img/temp.png',$Signature)!==false) {
                 $info = getimagesize('../img/temp.png');
-                $infosmaller[0] = $info[0] / 5;
-                $infosmaller[1] = $info[1] / 5;
+                $infosmaller[0] = $info[0] / 3;
+                $infosmaller[1] = $info[1] / 3;
                 // Open new PDF document and print image
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
                 $pdf->SetFont("Arial", "", "15");
