@@ -92,7 +92,10 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 10, "Given by", 0, 1, "C");
         
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 10, $PresenterFirstName . " " . $PresenterLastName . "                      " . $date, 0, 0, "C");
+        $pdf->Cell(0, 10, $date, 0, 1, "L");
+        
+        $pdf->SetFont("Arial", "", "15");
+        $pdf->Cell(0, 20, $PresenterFirstName . " " . $PresenterLastName, 0, 0, "R");
         
         //$SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
         //$SignatureImage = data:image/png;base64,'.base64_encode($Signature).';
@@ -113,7 +116,7 @@ if(!empty($_POST['export'])) {
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
                 $pdf->SetFont("Arial", "", "15");
 //                $pdf->Image('../img/temp.png', 80, 150, 0, $infosmaller[1], 'png');
-                $pdf->Image('../img/temp.png', 90, 150, 0, 20, 'png');
+                $pdf->Image('../img/temp.png', 90, 150, 0, 25, 'png');
             }
         }
         
