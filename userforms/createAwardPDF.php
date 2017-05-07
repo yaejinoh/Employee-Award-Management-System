@@ -113,7 +113,7 @@ if(!empty($_POST['export'])) {
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
                 $pdf->SetFont("Arial", "", "15");
 //                $pdf->Image('../img/temp.png', 80, 150, 0, $infosmaller[1], 'png');
-                $pdf->Image('../img/temp.png', 80, 150, 0, 15, 'png');
+                $pdf->Image('../img/temp.png', 90, 150, 0, 20, 'png');
             }
         }
         
