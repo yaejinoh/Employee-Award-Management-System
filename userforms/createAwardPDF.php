@@ -79,10 +79,10 @@ if(!empty($_POST['export'])) {
         
         
         if($Signature!==false) {
-            $info = getimagesize($Signature);
             $filename = 'temp.png';
             //  Save image to a temporary location
             if(file_put_contents('../img/temp.png',$Signature)!==false) {
+                $info = getimagesize('../img/temp.png');
                 //  Open new PDF document and print image
                 $pdf->Image('../img/temp.png', 10, 30, $info[0], $info[1], 'png');
             }
