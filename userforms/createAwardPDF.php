@@ -76,9 +76,21 @@ if(!empty($_POST['export'])) {
         
         //$pdf->SetFont("Arial", "", "15");
         //$pdf->Image($SignatureImage, 10, 30, $info[0], $info[1], 'png');
+        
+        
+        if( $Signature!==false ) {
+                //  Save image to a temporary location
+                if( file_put_contents(../img,$Signature)!==false ) {
+                    //  Open new PDF document and print image
+                    $pdf->Image(../img);
+                }
+         }
+        
     }
     
     $stmt->close();
     $pdf->Output();
+    //  Delete image from server
+    unlink(TEMPIMGLOC);
 }
 ?>
