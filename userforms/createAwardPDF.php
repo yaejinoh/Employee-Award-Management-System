@@ -69,8 +69,12 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 10, $Region, 0, 1, "C");
 
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 10, $PresenterFirstName . " " . $PresenterLastName . "    " . $date, 0, 1, "C");
+        $pdf->Cell(0, 10, $PresenterFirstName . " " . $PresenterLastName, 0, 0, "C");
 
+        $pdf->SetFont("Arial", "", "15");
+        $pdf->Cell(0, 10, $date, 0, 1, "C");
+
+        
         //$SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
         //$SignatureImage = data:image/png;base64,'.base64_encode($Signature).';
         //$info = getimagesize($SignatureImage);
@@ -88,7 +92,9 @@ if(!empty($_POST['export'])) {
                 $infosmaller[1] = $info[1] / 5;
                 // Open new PDF document and print image
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
-                $pdf->Image('../img/temp.png', 10, 50, $infosmaller[0], $infosmaller[1], 'png');
+                $pdf->SetFont("Arial", "", "15");
+                $pdf->Cell(0, 10, $pdf->Image('../img/temp.png', 10, 50, $infosmaller[0], $infosmaller[1], 'png'), 0, 1, "C");
+                //$pdf->Image('../img/temp.png', 10, 50, $infosmaller[0], $infosmaller[1], 'png');
             }
         }
         
