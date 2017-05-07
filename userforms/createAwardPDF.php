@@ -74,7 +74,7 @@ if(!empty($_POST['export'])) {
         $pdf->Line(50, 53, 250, 53);
 
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 10, "This certificate is presented to", 0, 1, "C");
+        $pdf->Cell(0, 10, "This certificate is awarded to", 0, 1, "C");
 
         $pdf->SetFont("Arial", "", "26");
         $pdf->Cell(0, 20, $AwardeeFirstName . " " . $AwardeeLastName, 0, 1, "C");
@@ -89,13 +89,13 @@ if(!empty($_POST['export'])) {
         $pdf->Cell(0, 20, "", 0, 1, "C");
         
         $pdf->SetFont("Arial", "", "10");
-        $pdf->Cell(0, 10, "Given by", 0, 1, "C");
+        $pdf->Cell(0, 10, "Presented by                         ", 0, 1, "R");
         
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 20, "          " . $date, 0, 1, "L");
+        $pdf->Cell(0, 20, "                    " . $date, 0, 1, "L");
         
         $pdf->SetFont("Arial", "", "15");
-        $pdf->Cell(0, 20, $PresenterFirstName . " " . $PresenterLastName . "          ", 0, 0, "R");
+        $pdf->Cell(0, 20, $PresenterFirstName . " " . $PresenterLastName . "                    ", 0, 0, "R");
         
         //$SignatureImage = 'data://text/plain;base64,' . base64_encode($Signature);
         //$SignatureImage = data:image/png;base64,'.base64_encode($Signature).';
@@ -116,7 +116,7 @@ if(!empty($_POST['export'])) {
                 // USAGE: Image(string file [, float x [, float y [, float w [, float h [, string type [, mixed link]]]]]])
                 $pdf->SetFont("Arial", "", "15");
 //                $pdf->Image('../img/temp.png', 80, 150, 0, $infosmaller[1], 'png');
-                $pdf->Image('../img/temp.png', 175, 140, 0, 25, 'png');
+                $pdf->Image('../img/temp.png', 180, 140, 0, 25, 'png');
             }
         }
         
