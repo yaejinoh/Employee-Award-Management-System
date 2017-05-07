@@ -79,7 +79,7 @@ if(!empty($_POST['export'])) {
         
         
         if($Signature!==false) {
-            $info = getimagesize($SignatureImage);
+            $info = getimagesize($Signature);
             $filename = 'temp.png';
             //  Save image to a temporary location
             if(file_put_contents('../img/temp.png',$Signature)!==false) {
