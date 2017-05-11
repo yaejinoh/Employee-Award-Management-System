@@ -24,8 +24,8 @@ tr:hover {
     width: 600px;
 }
 
-.menu-buttons {
-    float: center;
+.menu-button {
+    float: left;
 }
 
 input[type=submit] {
