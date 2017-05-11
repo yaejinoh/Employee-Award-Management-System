@@ -108,7 +108,7 @@ if(!empty($_POST['export-mail'])) {
 //    $pdf->Output();
     
     // If able to save pdf to github dir
-    $dir = '../userforms/tempfile.pdf';
+    $dir = 'tempfile.pdf';
     if($pdf->Output($dir,'F')!==false) {
         require '../PHPMailer/PHPMailerAutoload.php';
         
@@ -126,7 +126,7 @@ if(!empty($_POST['export-mail'])) {
         
         $mail->setFrom('delphinusstate@gmail.com', 'Employee Recognition');
         $mail->addAddress('ohya@oregonstate.edu', 'Jin O');     // Add a recipient
-        $mail->addAttachment('../userforms/tempfile.pdf', 'Award.php');         // Add attachments
+        $mail->addAttachment('tempfile.pdf');         // Add attachments
         $mail->isHTML(true);                                  // Set email format to HTML
         
         $mail->Subject = 'Congratulations! You have been selected for an award by Delphinus';
@@ -143,7 +143,7 @@ if(!empty($_POST['export-mail'])) {
     else {
         echo "error attaching pdf";
     }
-    unlink('../userforms/tempfile.pdf');
+    unlink('tempfile.pdf');
     $stmt->close();
     $mysqli->close();
     echo "email sent";
