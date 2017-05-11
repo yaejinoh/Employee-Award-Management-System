@@ -105,7 +105,6 @@ if(!empty($_POST['export-mail'])) {
     }
     //  Delete image from server
     unlink('../img/temp.png');
-    $stmt->close();
 //    $pdf->Output();
     
     // If able to save pdf to github dir
@@ -140,8 +139,12 @@ if(!empty($_POST['export-mail'])) {
             echo 'Message has been sent';
         }
     }
+    else {
+        echo "error attaching pdf";
+    }
     unlink('../userforms/tempfile.pdf');
+    $stmt->close();
+    $mysqli->close();
     echo "email sent";
-
 }
 ?>
