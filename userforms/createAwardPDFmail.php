@@ -111,7 +111,7 @@ if(!empty($_POST['export-mail'])) {
     $filename="tempfile.pdf";
     $dir = '../userforms/tempfile.pdf';
     if($pdf->Output($dir.$filename,'F')!==false) {
-        include '../phpmysql/connect.php';
+        require '../PHPMailerAutoload.php';
         
         // SOURCE: PHPMailer github library - https://github.com/PHPMailer/PHPMailer 
         $mail = new PHPMailer;
