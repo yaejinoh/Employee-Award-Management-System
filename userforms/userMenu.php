@@ -70,22 +70,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
             </br>
             <form action="awards.php" class="menu-button">
-                <input type="submit" value="View All Awards" />
-            </form>
-            <form action="awards.php" class="menu-button">
-                <input type="submit" value="Create Award" />
-            </form>
-            <form action="awards.php" class="menu-button">
-                <input type="submit" value="Edit Awards" />
+                <input type="submit" value="Awards" />
             </form>
             <form action="delAwards.php" class="menu-button">
                 <input type="submit" value="Delete Awards" />
-            </form>
-            <form action="awards.php" class="menu-button">
-                <input type="submit" value="Export Award as PDF" />
-            </form>
-            <form action="awards.php" class="menu-button">
-                <input type="submit" value="Send Award to Recipient" />
             </form>
             <form action="userMod.php" class="menu-button">
                 <input type="submit" value="Modify Profile" />
