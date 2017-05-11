@@ -106,7 +106,6 @@ if(!empty($_POST['export-mail'])) {
     }
     //  Delete image from server
     unlink('../img/temp.png');
-//    $pdf->Output();
     
     // If able to save pdf to github dir
     $dir = 'tempfile.pdf';
@@ -115,20 +114,20 @@ if(!empty($_POST['export-mail'])) {
         
         // SOURCE: PHPMailer github library - https://github.com/PHPMailer/PHPMailer 
         $mail = new PHPMailer;
-        $mail->SMTPDebug = 3;                                   // Enable verbose debug output
-        $mail->Debugoutput = 'html';
-        $mail->isSMTP();                                        // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';                         // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = "delphinusstate@gmail.com";                 // SMTP username
-        $mail->Password = "test123$";                         // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;                                    // TCP port to connect to
+        $mail->SMTPDebug = 0;                                                       // Enable debug output (0 for none, otherwise 3 for ouput)
+        $mail->Debugoutput = 'html';                                                // Output debugging as html
+        $mail->isSMTP();                                                            // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';                                             // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                                                     // Enable SMTP authentication
+        $mail->Username = "delphinusstate@gmail.com";                               // SMTP username
+        $mail->Password = "test123$";                                               // SMTP password
+        $mail->SMTPSecure = 'tls';                                                  // Enable TLS encryption
+        $mail->Port = 587;                                                          // TCP por
         
         $mail->setFrom('delphinusstate@gmail.com', 'Employee Recognition');
-        $mail->addAddress($Email, $AwardeeFirstName . " " . $AwardeeLastName);     // Add a recipient
-        $mail->addAttachment('tempfile.pdf');         // Add attachments
-        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->addAddress($Email, $AwardeeFirstName . " " . $AwardeeLastName);      // Send to awardee's email
+        $mail->addAttachment('tempfile.pdf');                                       // Add award PDF attachment
+        $mail->isHTML(true);                                                        // Set email format to HTML
         
         $mail->Subject = 'Congratulations! You have been selected for an award by Delphinus';
         $mail->Body    = 'Congrats! After careful consideration, your contribution to Delphinus has been recognized and you have been selected for an award. Please see the attached file.';
