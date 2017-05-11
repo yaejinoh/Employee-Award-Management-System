@@ -103,11 +103,44 @@ if(!empty($_POST['export-mail'])) {
         $stamp_infosmaller[1] =  $stamp_info[1] / 7;
         $pdf->Image('../img/certstamp.png', 130, 125, $stamp_infosmaller[0], $stamp_infosmaller[1], 'png');
     }
-    $stmt->close();
-    $pdf->Output();
     //  Delete image from server
     unlink('../img/temp.png');
+    $stmt->close();
+//    $pdf->Output();
     
-    include '../phpmysql/connect.php';
+    // If able to save pdf to github dir
+    if(file_put_contents('../userforms/tempfile.pdf', $pdf)!==false) {
+        include '../phpmysql/connect.php';
+        
+        // SOURCE: PHPMailer github library - https://github.com/PHPMailer/PHPMailer 
+        $mail = new PHPMailer;
+        $mail->SMTPDebug = 3;                                   // Enable verbose debug output
+        $mail->isSMTP();                                        // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';                         // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = "delphinusstate@gmail.com";                 // SMTP username
+        $mail->Password = "test123$";                         // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
+        
+        $mail->setFrom('delphinusstate@gmail.com', 'Employee Recognition');
+        $mail->addAddress('ohya@oregonstate.edu', 'Jin O');     // Add a recipient
+        $mail->addAttachment('../userforms/tempfile.pdf', 'Award.php');         // Add attachments
+        $mail->isHTML(true);                                  // Set email format to HTML
+        
+        $mail->Subject = 'Congratulations! You have been selected for an award by Delphinus';
+        $mail->Body    = 'Congrats! After careful consideration, your contribution to Delphinus has been recognized and you have been selected for an award. Please see the attached file.';
+        $mail->AltBody = 'Congrats! After careful consideration, your contribution to Delphinus has been recognized and you have been selected for an award. Please see the attached file.';
+   
+        if(!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            echo 'Message has been sent';
+        }
+    }
+    unlink('../userforms/tempfile.pdf');
+    echo "email sent";
+
 }
 ?>
