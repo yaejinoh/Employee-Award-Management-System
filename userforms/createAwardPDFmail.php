@@ -108,9 +108,8 @@ if(!empty($_POST['export-mail'])) {
 //    $pdf->Output();
     
     // If able to save pdf to github dir
-    $filename="tempfile.pdf";
     $dir = '../userforms/tempfile.pdf';
-    if($pdf->Output($dir.$filename,'F')!==false) {
+    if($pdf->Output($dir,'F')!==false) {
         require '../PHPMailer/PHPMailerAutoload.php';
         
         // SOURCE: PHPMailer github library - https://github.com/PHPMailer/PHPMailer 
