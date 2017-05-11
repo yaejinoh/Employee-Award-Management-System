@@ -142,6 +142,42 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		</br>
 		</br>
 
+
+        <!-- --------------------------------- Delete Award Form --------------------------------- -->
+	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Delete an Award </legend>
+                    <p>Please select the ID of the award you wish to delete: 
+                        <select name="awardID"> 
+                            <?php
+			    $eid = $_SESSION['employeeid'];
+				
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> 
+		    </p>
+                    <p>
+                        <input type="submit" name="delete" value="Delete">
+                    </p>
+                </fieldset>
+            </form>
+            </br>
+            </br>
+
+
         <!-- --------------------------------- Award PDF Creation Form --------------------------------- -->
 	    <form method="post" action="createAwardPDF.php" id="pdf-form"> <!-- post to page handling form-->    
                 <fieldset>
