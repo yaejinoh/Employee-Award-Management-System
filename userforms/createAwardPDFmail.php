@@ -21,6 +21,7 @@ if(!empty($_POST['export-mail'])) {
     "SELECT	A.id, A.date, A.time,
         PE.firstname AS PresenterFirstName, 
         PE.lastname AS PresenterLastName,  
+        PE.emailaddress AS Email,
         AE.firstname AS AwardeeFirstName, 
         AE.lastname AS AwardeeLastName,
         CT.type AS CertificateType,
@@ -37,7 +38,7 @@ if(!empty($_POST['export-mail'])) {
     if(!$stmt->execute()){
         echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
     }
-    if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
+    if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $Email, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
         echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
     }
     while($stmt->fetch()){
@@ -125,7 +126,7 @@ if(!empty($_POST['export-mail'])) {
         $mail->Port = 587;                                    // TCP port to connect to
         
         $mail->setFrom('delphinusstate@gmail.com', 'Employee Recognition');
-        $mail->addAddress('ohya@oregonstate.edu', 'Jin O');     // Add a recipient
+        $mail->addAddress($Email, $AwardeeFirstName . " " . $AwardeeLastName);     // Add a recipient
         $mail->addAttachment('tempfile.pdf');         // Add attachments
         $mail->isHTML(true);                                  // Set email format to HTML
         
