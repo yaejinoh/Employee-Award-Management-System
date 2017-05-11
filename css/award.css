@@ -24,6 +24,10 @@ tr:hover {
     width: 600px;
 }
 
+.menu-buttons {
+    float: left;
+}
+
 input[type=submit] {
     background-color: white;
     color: black;
