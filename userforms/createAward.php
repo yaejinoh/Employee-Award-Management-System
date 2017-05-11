@@ -185,7 +185,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         <select name="awardmailID"> 
                             <?php
                             // creates option for origin
-                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards`"))){
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
                                 echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
                             }
                             if(!$stmt->execute()){
