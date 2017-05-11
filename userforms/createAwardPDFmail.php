@@ -21,7 +21,7 @@ if(!empty($_POST['export-mail'])) {
     "SELECT	A.id, A.date, A.time,
         PE.firstname AS PresenterFirstName, 
         PE.lastname AS PresenterLastName,  
-        PE.emailaddress AS Email,
+        AE.emailaddress AS Email,
         AE.firstname AS AwardeeFirstName, 
         AE.lastname AS AwardeeLastName,
         CT.type AS CertificateType,
