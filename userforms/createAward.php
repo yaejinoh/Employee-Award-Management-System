@@ -178,7 +178,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <!-- --------------------------------- Award PDF and Email Form --------------------------------- -->
 	    <form method="post" action="createAwardPDFmail.php" id="pdf-mail-form"> <!-- post to page handling form-->    
                 <fieldset>
-                    <legend> Export an Award to PDF </legend>
+                    <legend> Export an Award to PDF and Mail </legend>
                     <p>Please select the ID of the award you wish to export as PDF and send directly to the recipient: 
                         <select name="awardmailID"> 
                             <?php
