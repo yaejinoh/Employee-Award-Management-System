@@ -178,7 +178,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
 
         <!-- --------------------------------- Award PDF and Email Form --------------------------------- --> 
-<!--
 	    <form method="post" action="createAwardPDFmail.php" id="pdf-mail-form">  
                 <fieldset>
                     <legend> Export an Award to PDF and Mail </legend>
@@ -186,7 +185,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         <select name="awardmailID"> 
                             <?php
                             // creates option for origin
-/*
                             if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards`"))){
                                 echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
                             }
@@ -200,7 +198,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                                 echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
                             }
                             $stmt->close(); 
-*/
                             ?>
                         </select> 
 		    </p>
@@ -211,7 +208,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </form>
             </br>
             </br>
---> 
 
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
