@@ -108,7 +108,9 @@ if(!empty($_POST['export-mail'])) {
 //    $pdf->Output();
     
     // If able to save pdf to github dir
-    if(file_put_contents('../userforms/tempfile.pdf', $pdf)!==false) {
+    $filename="tempfile.pdf";
+    $dir = '../userforms/tempfile.pdf';
+    if($pdf->Output($dir.$filename,'F')!==false) {
         include '../phpmysql/connect.php';
         
         // SOURCE: PHPMailer github library - https://github.com/PHPMailer/PHPMailer 
