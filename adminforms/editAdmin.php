@@ -1,6 +1,6 @@
 <?php
-#userMenu.php - CS467, Emmalee Jones, Yae Jin Oh 
-#User Menu  
+#editAdmin.php - CS467, Emmalee Jones, Yae Jin Oh 
+#Edit/Delete Admin Users  
 #Error Reporting Settings
 error_reporting(E_ALL);
 ini_set("display_errors", "ON");
@@ -14,7 +14,36 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
     header("Location:../index.php");
     die();
 }
+
+include "../phpmysql/connect.php";
+
+#Delete one row of videos from video_store ***********************************************************
+function delRow($id, $mysqli) {
+    if (!($mysqli->query("DELETE FROM admins WHERE id=\"{$id}\""))) {
+        echo "Error: id Field Not Found on Delete: " . $mysqli->errno . " - " . $mysqli->error;
+    }
+}
+
+//Check for changes to Post
+if (!empty($_POST)) {
+    
+    #Test for deleting Admin User
+    if (isset($_POST['delete'])) {
+        $id = $_POST ['delete'];
+        delRow($id, $mysqli);
+      $signed_msg = "User is deleted.";  
+    }
+        
+    #Test for editing Admin User
+    if (isset($_POST['edit'])) {
+        $id = $_POST ['edit'];
+        $_SESSION["editid"] = $id;
+        header("Location:editAdmin2.php");
+    }
+}
+ 
 ?>
+ 
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -67,13 +96,83 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
             <h1>Edit Admin</h1>
             </br>
             </br>
-            <?php
-            echo " Stub for Admin Edit";
-            ?>
+  <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'ON');
+                
+    #Build admin user list
+    
+    
+    $tableList = "SELECT id, password, datetimestamp, emailaddress FROM admins order by id";
+
+        if (!($stmt = $mysqli->prepare($tableList))) {
+            echo "Error: Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+                }
+
+            if (!$stmt->execute()) {
+                echo "Error: Execute failed: (" . $mysqli->errno . ") " . $mysqli->error;
+           }
+                $tabid = NULL;
+                $tabpassword = NULL;
+                $tabdatetimestamp = NULL;
+                $tabemailaddr = NULL;
+
+                if (!$stmt->bind_result($tabid, $tabpassword, $tabdatetimestamp, $tabemailaddr)) {
+                    echo "Error: Binding failed: (" . $stmt->errno . ") " 
+                       . $stmt->error;
+              }
+ ?>
+              
+        <form action="editAdmin.php" method="POST" name="printForm">
+            <br/>
+                 <h3>Admin User List</h3>
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <th>Admin User Id</th>
+                        <th>Email Address</th>
+                    </tr>
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'ON');
+
+// Populate the table rows with movie data.
+while ($stmt->fetch()) {  
+   # if ($tabShare === 1) {
+   #     $tabShare = "Yes";
+   # }
+   # else {
+   #     $tabShare = "No";
+   # }
+    printf("<tr>\n" . "\t<td>%s</td>\n" . "\t<td>%s</td>\n"  
+                . "\t<td><button type=\"submit\" name=\"edit\"" 
+        . " value=\"{$tabid}\">Edit</button></td>\n" 
+         . "\t<td><button type=\"submit\" name=\"delete\"" 
+        . " value=\"{$tabid}\">Delete</button></td>\n" 
+        . "</tr>\n", $tabid, $tabemailaddr);
+}
+#Close fetch of $stmt
+$stmt->close();
+
+?> 
+            
+            
+                            </tbody>
+            </table>
+        </form> 
 
             </br> 
              <a href="adminMenu.php">Admin Menu</a>
             </br>
+                           <div class="col-sm-6" style="color:#FF0000"</div>
+
+<?php
+if (isset($signed_msg)) {
+            echo $signed_msg . "<br/>";
+}
+?>  
+
+                </div>     
         </div>
         <div class="container">
             <div class="row">   

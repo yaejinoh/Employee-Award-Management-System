@@ -29,6 +29,7 @@ if (!empty($_POST)) {
     $password = $_POST["password"];
     $confirmpassword = $_POST["confirmpassword"];
     $signature = $_FILES["signature"];
+    $adminid = $_SESSION["employeeid"];
 
 #echo $emailaddr . "  " . "emailaddr" . "</br>";
 #echo $firstname . "  " . "firstname" . "</br>";
@@ -43,7 +44,7 @@ if (!empty($_POST)) {
 #echo $passedEdits . "  " . "valid email";
     }
     /* Test for Duplicate username */
-    if (!($stmt = $mysqli->prepare("SELECT emailaddress FROM employees WHERE emailaddress=? "))) {
+    if (!($stmt = $mysqli->prepare("SELECT emailaddress, id FROM employees WHERE emailaddress=? "))) {
         $error_msg[] = "Error: Failed prepare: (" . $mysqli->errno . ") " . $mysqli->error;
         $passedEdits = FALSE;
     }
@@ -60,18 +61,22 @@ if (!empty($_POST)) {
     }
 
     $tabemailaddr = NULL;
+    $tabtestid = NULL;
 
-    if (!$stmt->bind_result($tabemailaddr)) {
+    if (!$stmt->bind_result($tabemailaddr, $tabtestid)) {
         $error_msg[] = "Error: Failed bind_result: (" . $stmt->errno . ") " . $stmt->error;
         $passedEdits = FALSE;
     }
 
     if (!$stmt->fetch()) {
         
+        } elseif ($adminid == $tabtestid) {
+        
     } else {
         $error_msg[] = "User name already used, please try again.";
         $passedEdits = FALSE;
     }
+
 
     $stmt->close();
 
@@ -106,13 +111,13 @@ if (!empty($_POST)) {
         #echo $data . "  " . "data img2" . "</br>";
         $sigfile = UPLOAD_DIR . uniqid() . ".png";
 
-        if (!($stmt = $mysqli->prepare("INSERT INTO employees (password, firstname, lastname, emailaddress, datetimestamp, signature) VALUES (?, ?, ?, ?, ?, ?)"))) {
+        if (!($stmt = $mysqli->prepare("UPDATE employees SET password=?, firstname=?, lastname=?, emailaddress=?, datetimestamp=?, signature=? WHERE id=?"))) {
             $error_msg[] = "Error: Prepare failed: (" . $mysqli->errno . ") "
                     . $mysqli->error;
             $passedEdits = FALSE;
         }
 
-        if (!$stmt->bind_param("ssssss", $password, $firstname, $lastname, $emailaddr, $datetimestamp, $data)) {
+        if (!$stmt->bind_param("ssssssi", $password, $firstname, $lastname, $emailaddr, $datetimestamp, $data, $adminid)) {
             $error_msg[] = "Error: Binding parameters failed: (" . $stmt->errno
                     . ") " . $stmt->error;
             $passedEdits = FALSE;
@@ -124,7 +129,7 @@ if (!empty($_POST)) {
             $passedEdits = FALSE;
         } else {
             /* Valid New User */
-            $error_msg[] = "User is registered.";
+            $error_msg[] = "User is modified.";
         }
         $stmt->close();
     }

@@ -70,19 +70,13 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
             <a href="userRegist.php">User Registration</a>
             </br>  
             </br>
-            <a href="editUser.php">Edit Users</a>
+            <a href="editUser.php">Edit/Delete Users</a>
             </br> 
-            </br>
-            <a href="delUser.php">Delete Users</a>
-             </br>
             </br>
             <a href="adminRegist.php">Admin Registration</a>
             </br>  
             </br>
-            <a href="editAdmin.php">Edit Admin Users</a>
-            </br> 
-            </br>
-            <a href="delAdmin.php">Delete Admin Users</a>
+            <a href="editAdmin.php">Edit/Delete Admin Users</a>
         </div>
         <div class="container">
             <div class="row">   
