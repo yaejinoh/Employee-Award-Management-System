@@ -115,6 +115,7 @@ if(!empty($_POST['export-mail'])) {
         // SOURCE: PHPMailer github library - https://github.com/PHPMailer/PHPMailer 
         $mail = new PHPMailer;
         $mail->SMTPDebug = 3;                                   // Enable verbose debug output
+        $mail->Debugoutput = 'html';
         $mail->isSMTP();                                        // Set mailer to use SMTP
         $mail->Host = 'smtp.gmail.com';                         // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
