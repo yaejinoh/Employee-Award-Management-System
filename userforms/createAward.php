@@ -152,7 +152,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			    $eid = $_SESSION['employeeid'];
 				
                             // creates option for origin
-                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE id = '$eid'"))){
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
                                 echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
                             }
                             if(!$stmt->execute()){
