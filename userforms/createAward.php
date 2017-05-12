@@ -70,6 +70,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
 
         <!-- --------------------------------- Award Creation Form --------------------------------- -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-8">
 	<div id="award-body">
 	    <form method="post" action="createAward.php" id="award-form"> <!-- post to page handling form-->    
                 <fieldset>
@@ -139,11 +142,15 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
+			</div>
+		</div>
 		</br>
 		</br>
 
 
         <!-- --------------------------------- Delete Award Form --------------------------------- -->
+		<div class="row">
+			<div class="col-lg-6">
 	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
                 <fieldset>
                     <legend> Delete an Award </legend>
@@ -174,10 +181,11 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
+			</div>
+		</div>
             </br>
             </br>
 
-	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-6">
         <!-- --------------------------------- Award PDF Creation Form --------------------------------- -->
