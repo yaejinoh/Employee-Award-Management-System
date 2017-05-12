@@ -369,7 +369,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
                         }
 			// Feedback to the user
-			echo "Award has been created.";     
+			echo "<div align='center' style='font:15px; color:#ff0000; font-weight:bold'>Award has been created.</div>";  
 			      
 			// Display all the awards that exist made by session user     
                         if(! ($stmt = $mysqli->prepare( 
