@@ -26,10 +26,12 @@ tr:hover {
 
 .pdf-mail-form-1 {
     float: left;
+    width: 300px;
 }
 
 .pdf-mail-form-2 {
     float: left;
+    width: 300px;
 }
 
 input[type=submit] {
