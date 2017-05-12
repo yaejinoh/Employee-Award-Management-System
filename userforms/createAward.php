@@ -72,7 +72,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <!-- --------------------------------- Award Creation Form --------------------------------- -->
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-3">
+			</div>
+			<div class="col-lg-6">
 	<div id="award-body">
 	    <form method="post" action="createAward.php" id="award-form"> <!-- post to page handling form-->    
                 <fieldset>
