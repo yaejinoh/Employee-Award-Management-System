@@ -31,6 +31,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
+        <link href="../css/award.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
         <script src="../js/functions.js"></script>
 
@@ -68,13 +69,16 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             <h1>User Menu</h1>
             </br>
             </br>
-            <a href="awards.php">Award Creation</a>
-            </br>  
-            </br>
-            <a href="userMod.php">Modify Profile</a>
-            </br> 
-            </br>
-            <a href="delAwards.php">Delete Awards</a>
+            <form action="awards.php" class="menu-button">
+                <input type="submit" value="Awards" />
+            </form>
+            <form action="delAwards.php" class="menu-button">
+                <input type="submit" value="Delete Awards" />
+            </form>
+            <form action="userMod.php" class="menu-button">
+                <input type="submit" value="Modify Profile" />
+            </form>
+
         </div>
         <div class="container">
             <div class="row">   

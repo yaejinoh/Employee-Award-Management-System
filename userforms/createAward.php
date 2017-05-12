@@ -70,6 +70,11 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
 
         <!-- --------------------------------- Award Creation Form --------------------------------- -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-3">
+			</div>
+			<div class="col-lg-6">
 	<div id="award-body">
 	    <form method="post" action="createAward.php" id="award-form"> <!-- post to page handling form-->    
                 <fieldset>
@@ -139,9 +144,52 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
+			</div>
+		</div>
 		</br>
 		</br>
 
+
+        <!-- --------------------------------- Delete Award Form --------------------------------- -->
+		<div class="row">
+			<div class="col-lg-6">
+	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Delete an Award </legend>
+                    <p>Please select the ID of the award you wish to delete: 
+                        <select name="awardID"> 
+                            <?php
+			    $eid = $_SESSION['employeeid'];
+				
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> 
+		    </p>
+                    <p>
+                        <input type="submit" name="delete" value="Delete">
+                    </p>
+                </fieldset>
+            </form>
+			</div>
+		</div>
+            </br>
+            </br>
+
+		<div class="row">
+			<div class="col-lg-6">
         <!-- --------------------------------- Award PDF Creation Form --------------------------------- -->
 	    <form method="post" action="createAwardPDF.php" id="pdf-form"> <!-- post to page handling form-->    
                 <fieldset>
@@ -149,8 +197,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     <p>Please select the ID of the award you wish to convert to PDF: 
                         <select name="awardID"> 
                             <?php
+			    $eid = $_SESSION['employeeid'];
+				
                             // creates option for origin
-                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards`"))){
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
                                 echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
                             }
                             if(!$stmt->execute()){
@@ -171,19 +221,18 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
-            </br>
-            </br>
+			</div>
 
-
-        <!-- --------------------------------- Award PDF and Email Form --------------------------------- -->
-	    <form method="post" action="createAwardPDFmail.php" id="pdf-mail-form"> <!-- post to page handling form-->    
+			<div class="col-lg-6">
+        <!-- --------------------------------- Award PDF and Email Form --------------------------------- --> 
+	    <form method="post" action="createAwardPDFmail.php" id="pdf-mail-form">  
                 <fieldset>
-                    <legend> Export an Award to PDF </legend>
+                    <legend> Export an Award to PDF and Mail </legend>
                     <p>Please select the ID of the award you wish to export as PDF and send directly to the recipient: 
                         <select name="awardmailID"> 
                             <?php
                             // creates option for origin
-                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards`"))){
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
                                 echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
                             }
                             if(!$stmt->execute()){
@@ -195,7 +244,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                             while($stmt->fetch()){
                                 echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
                             }
-                            $stmt->close();
+                            $stmt->close(); 
                             ?>
                         </select> 
 		    </p>
@@ -204,6 +253,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
+			</div>
+		</div>
+	</div>
             </br>
             </br>
 

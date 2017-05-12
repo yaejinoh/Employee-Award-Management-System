@@ -1,12 +1,13 @@
+
 <?php
-#delAwards.php - CS467, Emmalee Jones, Yae Jin Oh 
-#Delete Awards 
+#awards.php - CS467, Emmalee Jones, Yae Jin Oh 
+#Create Awards 
 #Error Reporting Settings
 error_reporting(E_ALL);
 ini_set("display_errors", "ON");
 //Start PHP Session
 session_start();
-
+include '../phpmysql/connect.php';
 #Test for valid Session
 if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'])) {
     $_SESSION = array();
@@ -31,6 +32,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
+	<link href="../css/award.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
         <script src="../js/functions.js"></script>
 
@@ -64,12 +66,297 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
-            <h1>Delete Awards</h1>
+            <h1>Award Creation</h1>
             </br>
             </br>
-            <?php
-            echo " Stub for Delete Awards";
-            ?>
+
+        <!-- --------------------------------- Award Creation Form --------------------------------- -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-3">
+			</div>
+			<div class="col-lg-6">
+	<div id="award-body">
+	    <form method="post" action="createAward.php" id="award-form"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Create an Award Certificate </legend>
+                    <p>Name: 
+                        <select name="name"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, firstname, lastname, emailaddress FROM `Employees`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $firstname, $lastname, $emailaddress)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $firstname . ", " . $lastname . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> </p>
+                    <p>Award Type: 
+                        <select name="awardType"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT ctid, type FROM `CertType`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($ctid, $type)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $ctid . ' "> ' . $type . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>Region: 
+                        <select name="region"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT rid, sector FROM `Regions`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($rid, $sector)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $rid . ' "> ' . $sector . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>
+                        <input type="submit" name="add" value="Create Award">
+                        <input type="submit" name="view" value="View All Awards">
+                    </p>
+                </fieldset>
+            </form>
+			</div>
+		</div>
+		</br>
+		</br>
+
+
+        <!-- --------------------------------- Delete Award Form --------------------------------- -->
+		<div class="row">
+			<div class="col-lg-6">
+	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Delete an Award </legend>
+                    <p>Please select the ID of the award you wish to delete: 
+                        <select name="awardID"> 
+                            <?php
+			    $eid = $_SESSION['employeeid'];
+				
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> 
+		    </p>
+                    <p>
+                        <input type="submit" name="delete" value="Delete">
+                    </p>
+                </fieldset>
+            </form>
+			</div>
+		</div>
+            </br>
+            </br>
+
+		<div class="row">
+			<div class="col-lg-6">
+        <!-- --------------------------------- Award PDF Creation Form --------------------------------- -->
+	    <form method="post" action="createAwardPDF.php" id="pdf-form"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Export an Award to PDF </legend>
+                    <p>Please select the ID of the award you wish to convert to PDF: 
+                        <select name="awardID"> 
+                            <?php
+			    $eid = $_SESSION['employeeid'];
+				
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> 
+		    </p>
+                    <p>
+                        <input type="submit" name="export" value="Export to PDF">
+                    </p>
+                </fieldset>
+            </form>
+			</div>
+
+			<div class="col-lg-6">
+        <!-- --------------------------------- Award PDF and Email Form --------------------------------- --> 
+	    <form method="post" action="createAwardPDFmail.php" id="pdf-mail-form">  
+                <fieldset>
+                    <legend> Export an Award to PDF and Mail </legend>
+                    <p>Please select the ID of the award you wish to export as PDF and send directly to the recipient: 
+                        <select name="awardmailID"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
+                            }
+                            $stmt->close(); 
+                            ?>
+                        </select> 
+		    </p>
+                    <p>
+                        <input type="submit" name="export-mail" value="Export to PDF and Mail to Recipient">
+                    </p>
+                </fieldset>
+            </form>
+			</div>
+		</div>
+	</div>
+            </br>
+            </br>
+
+
+        <!-- --------------------------------- Awards table view --------------------------------- -->
+            <table id="awards-table">
+              <h4>Awards:</h4>
+              <tbody>
+                      <tr>
+                          <td>
+                          ID
+                          </td>
+                          <td>
+                              Date
+                          </td>
+                          <td>
+                              Time
+                          </td>
+                          <td>
+                              Presenter First Name
+                          </td>
+                          <td>
+                              Presenter Last Name
+                          </td>
+                          <td>
+                              Awardee First Name
+                          </td>
+                          <td>
+                              Awardee Last Name
+                          </td>
+                          <td>
+                              Certificate Type
+                          </td>
+                          <td>
+                              Region
+                          </td>
+			  <td>
+                              Signature
+                          </td>
+                      </tr>
+                      
+                      <?php
+		    // Retrieve employee ID number of session user
+		    $eid = $_SESSION['employeeid'];
+            // Retrieve Award ID selected
+            $awardID = $_POST['awardID'];
+		      
+		      /* ---------- If the user pressed the --DELETE AWARD-- button ---------- */
+            if(isset($_POST["delete"])){
+			// Query to store signature in session employee's account
+			if(! ($stmt = $mysqli->prepare( 
+                        "DELETE FROM Awards WHERE id = '$awardID';"))){
+              echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
+            }         
+            if(!$stmt->execute()){
+              echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+            }
+			// Feedback to the user
+			echo "Award has been deleted.";     
+			      
+			// Display all the awards that exist made by session user     
+            if(! ($stmt = $mysqli->prepare( 
+                "SELECT	A.id, A.date AS date, A.time AS time,
+                            PE.firstname AS PresenterFirstName, 
+                            PE.lastname AS PresenterLastName,  
+                            AE.firstname AS AwardeeFirstName, 
+                            AE.lastname AS AwardeeLastName,
+                            CT.type AS CertificateType,
+                            R.sector AS Region,
+			    A.signature AS Signature
+                        FROM Awards A
+                        JOIN Employees PE ON PE.id=A.name
+                        JOIN Employees AE ON AE.id=A.awardee
+                        JOIN CertType CT ON CT.ctid=A.type
+                        JOIN Regions R ON R.rid=A.region
+			WHERE PE.id = '$eid'
+			ORDER BY A.date, A.time;"))){
+                          echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
+                        }         
+                        if(!$stmt->execute()){
+                          echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                        }
+			if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
+                          echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                        }
+                        while($stmt->fetch()){
+                          echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n";
+			  echo '<img src="data:image/png;base64,'.base64_encode($Signature).'">';
+			  echo "\n</td>\n</tr>";
+	                } 
+                        $stmt->close();
+                      }    
+                      ?>						
+              </tbody>
+            </table>
+            <br>
+            <br>
+	</div>
+
+
 
             </br> 
             <a href="userMenu.php">User Menu</a>
@@ -109,4 +396,3 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
     </body>
 </html>
-

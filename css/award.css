@@ -24,6 +24,16 @@ tr:hover {
     width: 600px;
 }
 
+#pdf-mail-form-1 {
+    width: 50%;
+    float: left;
+}
+
+#pdf-mail-form-2 {
+    width: 50%;
+    float: left;
+}
+
 input[type=submit] {
     background-color: white;
     color: black;
@@ -44,7 +54,7 @@ input[type=text] {
 }
 
 select {
-    width: 100%;
+    width: 50%;
     padding: 5px 10px;
     border: 2px solid gray;
     border-radius: 4px;
