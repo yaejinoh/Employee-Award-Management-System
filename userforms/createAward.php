@@ -177,7 +177,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
             </br>
 
-	<div id="pdf-mail-form-1">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-6">
         <!-- --------------------------------- Award PDF Creation Form --------------------------------- -->
 	    <form method="post" action="createAwardPDF.php" id="pdf-form"> <!-- post to page handling form-->    
                 <fieldset>
@@ -209,9 +211,13 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
+			</div>
+		</div>
 	</div>
 
-	<div id="pdf-mail-form-2">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-6">
         <!-- --------------------------------- Award PDF and Email Form --------------------------------- --> 
 	    <form method="post" action="createAwardPDFmail.php" id="pdf-mail-form">  
                 <fieldset>
@@ -241,6 +247,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
+			</div>
+		</div>
 	</div>
             </br>
             </br>
