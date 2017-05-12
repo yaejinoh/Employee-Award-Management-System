@@ -140,7 +140,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                     <p>
                         <input type="submit" name="add" value="Create Award">
-                        <input type="submit" name="view" value="View All Awards">
+                        <input type="submit" name="view" value="Refresh the Page">
                     </p>
                 </fieldset>
             </form>
@@ -184,6 +184,103 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                 </fieldset>
             </form>
 			</div>
+			
+			
+        <!-- --------------------------------- Edit Award Form --------------------------------- -->
+			<div class="col-lg-6">
+	    <form method="post" action="editAwards.php" id="edit-form"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Edit an Award Certificate </legend>
+		    <p>Please select the ID of the award you wish to edit: 
+                        <select name="awardID"> 
+                            <?php
+			    $eid = $_SESSION['employeeid'];
+				
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> 
+                    <p>Name: 
+                        <select name="name"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, firstname, lastname, emailaddress FROM `Employees`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $firstname, $lastname, $emailaddress)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $firstname . ", " . $lastname . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> </p>
+                    <p>Award Type: 
+                        <select name="awardType"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT ctid, type FROM `CertType`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($ctid, $type)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $ctid . ' "> ' . $type . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>Region: 
+                        <select name="region"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT rid, sector FROM `Regions`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($rid, $sector)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $rid . ' "> ' . $sector . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>
+                        <input type="submit" name="edit" value="Edit Award">
+                    </p>
+                </fieldset>
+            </form>
+			</div>
+			
+			
+			
+			
 		</div>
             </br>
             </br>
