@@ -213,9 +213,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </form>
 			</div>
 		</div>
-	</div>
 
-	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-6">
         <!-- --------------------------------- Award PDF and Email Form --------------------------------- --> 
