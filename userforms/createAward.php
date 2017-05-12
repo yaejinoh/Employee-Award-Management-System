@@ -241,9 +241,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
-            </br>
-            </br>
 	</div>
+            </br>
+            </br>
+
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
             <table id="awards-table">
