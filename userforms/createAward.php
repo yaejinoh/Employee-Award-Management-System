@@ -209,8 +209,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
-            </br>
-            </br>
 	</div>
 
 	<div class="pdf-mail-form-2">
