@@ -315,7 +315,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 					echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
 				}
 				// Feedback to the user
-				echo "<font size="4"><font color="red"><b>Award has been deleted.</b></font></font>";     
+				echo "<div style ='font:11px/21px;color:#ff0000'>Award has been deleted.</div>";     
 
 				// Display all the awards that exist made by session user     
 				if(! ($stmt = $mysqli->prepare( 
