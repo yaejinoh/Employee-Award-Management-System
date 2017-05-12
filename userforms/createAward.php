@@ -177,7 +177,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
             </br>
 
-
+	<div id="pdf-mail-forms">
         <!-- --------------------------------- Award PDF Creation Form --------------------------------- -->
 	    <form method="post" action="createAwardPDF.php" id="pdf-form"> <!-- post to page handling form-->    
                 <fieldset>
@@ -244,7 +244,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </form>
             </br>
             </br>
-
+	</div>
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
             <table id="awards-table">
