@@ -25,10 +25,12 @@ tr:hover {
 }
 
 #pdf-mail-form-1 {
+    width: 50%;
     float: left;
 }
 
 #pdf-mail-form-2 {
+    width: 50%;
     float: left;
 }
 
