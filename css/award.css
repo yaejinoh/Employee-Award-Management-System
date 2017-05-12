@@ -24,12 +24,8 @@ tr:hover {
     width: 600px;
 }
 
-.pdf-form {
+.pdf-mail-forms {
     float: left;
-}
-
-.pdf-mail-form {
-    float: right;
 }
 
 input[type=submit] {
