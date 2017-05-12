@@ -17,7 +17,7 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
 
 include "../phpmysql/connect.php";
 
-#Delete one row of videos from video_store ***********************************************************
+#Delete one row of Admin User
 function delRow($id, $mysqli) {
     if (!($mysqli->query("DELETE FROM admins WHERE id=\"{$id}\""))) {
         echo "Error: id Field Not Found on Delete: " . $mysqli->errno . " - " . $mysqli->error;
@@ -138,12 +138,6 @@ ini_set('display_errors', 'ON');
 
 // Populate the table rows with movie data.
 while ($stmt->fetch()) {  
-   # if ($tabShare === 1) {
-   #     $tabShare = "Yes";
-   # }
-   # else {
-   #     $tabShare = "No";
-   # }
     printf("<tr>\n" . "\t<td>%s</td>\n" . "\t<td>%s</td>\n"  
                 . "\t<td><button type=\"submit\" name=\"edit\"" 
         . " value=\"{$tabid}\">Edit</button></td>\n" 
