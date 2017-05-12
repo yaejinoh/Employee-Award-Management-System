@@ -26,6 +26,7 @@ tr:hover {
 
 .pdf-mail-forms {
     float: left;
+    display: inline-block;
 }
 
 input[type=submit] {
