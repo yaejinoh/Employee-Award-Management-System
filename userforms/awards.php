@@ -145,7 +145,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                 </fieldset>
         </form>
 	</div>
-			</div>
 		</div>
 	</div>
 
