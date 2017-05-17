@@ -64,21 +64,26 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
-            <h1>Admin Registration</h1>
-            <form method="POST" onsubmit="adminEdit(); return false;">
-                <label for="username" class="control-label">Username</label>
-                <input name="username" type="text" class="form-control" id="adminname2r" placeholder="Username(Email Address)" required>
-                <label for="password" class="control-label">Password</label>
-                <input name="password" type="password" class="form-control" id="password4r" placeholder="Password" required>
-                <span class="help-block">Minimum of 8 characters</span>
-                <label for="confirmpassword" class="control-label">Confirm Password</label>
-                <input name="confirmpassword" type="password" class="form-control" id="confirmpassword2r" placeholder="Confirm Password" required>
-                </br>
-                <button type="submit" name="adminedit" class="btn btn-sm btn-primary">Submit</button> 
+            <div class="row">
+                <div class="col-sm-8" >  
+                    <h1>Admin Registration</h1>
+                    <form method="POST" onsubmit="adminEdit();
+                    return false;">
+                        <label for="username" class="control-label">Username</label>
+                        <input name="username" type="text" class="form-control" id="adminname2r" placeholder="Username(Email Address)" required>
+                        <label for="password" class="control-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="password4r" placeholder="Password" required>
+                        <span class="help-block">Minimum of 8 characters</span>
+                        <label for="confirmpassword" class="control-label">Confirm Password</label>
+                        <input name="confirmpassword" type="password" class="form-control" id="confirmpassword2r" placeholder="Confirm Password" required>
+                        </br>
+                        <button type="submit" name="adminedit" class="btn btn-sm btn-primary">Submit</button> 
 
-            </form> 
-            </br>
-            <a href="adminMenu.php">Admin Menu</a>
+                    </form> 
+                    </br>
+                    <a href="adminMenu.php">Admin Menu</a>
+                </div>
+            </div>
         </div>
         <div class="container">
             <div class="row">   
