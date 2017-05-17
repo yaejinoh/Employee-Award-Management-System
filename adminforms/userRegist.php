@@ -208,14 +208,15 @@ if (!empty($_POST)) {
                         </div>
 
                         </br>
-                        <div class="col-sm-6"> <button type="submit" name="register" class="btn btn-sm btn-primary">Submit</button> 
+                        <div class="col-sm-6">  <button type="submit" name="register" class="btn btn-sm btn-primary">Submit</button> </div>
+
                     </form>
                     </br>
                     </br>
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-6"> <a href="adminMenu.php">Admin Menu</a>   
-                                  <div class="col-sm-6" style="color:#FF0000">
+                            <div class="col-sm-8> <a href="adminMenu.php">Admin Menu</div>   
+                                <div class="col-sm-8" style="color:#FF0000">
                                     </br>
                                     <?php
                                     if (isset($error_msg)) {
@@ -231,44 +232,43 @@ if (!empty($_POST)) {
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
+        <div class="container">
+            <div class="row">
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+            </div>
         </div>
-    </div>
-    <!-- --------------------------------- Footer --------------------------------- -->
-    <footer class="blog-footer">
-        <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
-    </footer>
-    <script src="../js/bootstrap.min.js"></script>
+        <!-- --------------------------------- Footer --------------------------------- -->
+        <footer class="blog-footer">
+            <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
+        </footer>
+        <script src="../js/bootstrap.min.js"></script>
 
-    <script>
-        $(function () {
-            $('.image-editor').cropit();
-            $('form').submit(function () {
-                var imageData = $('.image-editor').cropit('export');
-                $('.hidden-image-data').val(imageData);
+        <script>
+            $(function () {
+                $('.image-editor').cropit();
+                $('form').submit(function () {
+                    var imageData = $('.image-editor').cropit('export');
+                    $('.hidden-image-data').val(imageData);
+                });
             });
-        });
-    </script>       
-</body>
+        </script>       
+    </body>
 </html>

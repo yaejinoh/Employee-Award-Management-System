@@ -232,6 +232,8 @@ $mysqli->close();
 
         <!-- --------------------------------- User Mod Form --------------------------------- -->
         <div class="container" >
+                        <div class="row">
+                <div class="col-sm-8" > 
             <h1>User Modification</h1>
             <form method="POST" id="modification" enctype="multipart/form-data" action="userMod.php">  
                 <!--  <form method="POST" id="registration" enctype="multipart/form-data"  onsubmit="userEdit(); return false;"> -->
@@ -274,7 +276,8 @@ $mysqli->close();
                         }
                     }
                     ?>  
-
+                </div>
+                </div>
                 </div>
             </div>
             </div>

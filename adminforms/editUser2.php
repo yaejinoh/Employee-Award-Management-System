@@ -268,7 +268,6 @@ $mysqli->close();
                                     </br>
                                     <a href="editUser.php">Edit/Delete User</a>
                                     </br>
-                                    </br>
                                     <a href="adminMenu.php">Admin Menu</a> 
 
                                     <div style="color:#FF0000">
