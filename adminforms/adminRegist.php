@@ -87,7 +87,7 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
         </div> 
         <div class="container">
             <div class="row">   
-                <div class="col-sm-4" style="color:#FF0000" id="error_message"></div>
+                <div class="col-sm-4" style="color:#FF0000" id="error_message1"></div>
                 <div class="col-sm-4"></div> 
                 <div class="col-sm-4"></div>
                 </br>
