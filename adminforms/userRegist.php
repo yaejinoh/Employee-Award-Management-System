@@ -208,15 +208,15 @@ if (!empty($_POST)) {
                         </div>
 
                         </br>
-                        <div class="col-sm-4"> <button type="submit" name="register" class="btn btn-sm btn-primary">Submit</button> 
+                        <div class="col-sm-6"> <button type="submit" name="register" class="btn btn-sm btn-primary">Submit</button> 
                     </form>
                     </br>
                     </br>
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-4"> <a href="adminMenu.php">Admin Menu</a>   
+                            <div class="col-sm-6"> <a href="adminMenu.php">Admin Menu</a>   
                                 </br>
-                                <div class="col-sm-4" style="color:#FF0000">
+                                <div class="col-sm-6" style="color:#FF0000">
                                     </br>
                                     <?php
                                     if (isset($error_msg)) {
