@@ -14,11 +14,12 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
     header("Location:../index.php");
     die();
 }
- 
+
 
 include "../phpmysql/connect.php";
 
 #Delete one row of User and associated awards
+
 function delRow($id, $mysqli) {
     if (!($mysqli->query("DELETE FROM awards WHERE name=\"{$id}\""))) {
         echo "Error: name Field Not Found on Delete: " . $mysqli->errno . " - " . $mysqli->error;
@@ -31,14 +32,14 @@ function delRow($id, $mysqli) {
 
 //Check for changes to Post
 if (!empty($_POST)) {
-    
+
     #Test for deleting User
     if (isset($_POST['delete'])) {
         $id = $_POST ['delete'];
         delRow($id, $mysqli);
-      $signed_msg = "User and associated awards are deleted.";  
+        $signed_msg = "User and associated awards are deleted.";
     }
-        
+
     #Test for editing User
     if (isset($_POST['edit'])) {
         $id = $_POST ['edit'];
@@ -46,7 +47,6 @@ if (!empty($_POST)) {
         header("Location:editUser2.php");
     }
 }
- 
 ?>
 
 <!DOCTYPE html>
@@ -98,91 +98,98 @@ if (!empty($_POST)) {
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
-            <h1>Edit/Delete User</h1>
-            </br>
-            </br>
-<?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 'ON');
-                
-    #Build admin user list
-    
-    
-    $tableList = "SELECT id, firstname, lastname, password, datetimestamp, emailaddress, signature FROM employees order by id";
+            <div class="row">
+                <div class="col-sm-8" > 
+                    <h1>Edit/Delete User</h1>
+                    </br>
+                    </br>
+                    <?php
+                    error_reporting(E_ALL);
+                    ini_set('display_errors', 'ON');
 
-        if (!($stmt = $mysqli->prepare($tableList))) {
-            echo "Error: Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
-                }
+                    #Build admin user list
 
-            if (!$stmt->execute()) {
-                echo "Error: Execute failed: (" . $mysqli->errno . ") " . $mysqli->error;
-           }
-                $tabid = NULL;
-                $tabfirstname = NULL;
-                $tablastname = NULL;
-                $tabpassword = NULL;
-                $tabdatetimestamp = NULL;
-                $tabemailaddr = NULL;
-                $tabsignature = NULL;
 
-                if (!$stmt->bind_result($tabid, $tabfirstname, $tablastname, $tabpassword, $tabdatetimestamp, $tabemailaddr, $tabsignature)) {
-                    echo "Error: Binding failed: (" . $stmt->errno . ") " 
-                       . $stmt->error;
-              }
-?>
-              
-        <form action="editUser.php" method="POST" name="printForm">
-            <br/>
-                 <h3>User List</h3>
-            <table border="1">
-                <tbody>
-                    <tr>
-                        <th>User Id</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email Address</th>
-                        <th>Signature</th>
-                    </tr>
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'ON');
+                    $tableList = "SELECT id, firstname, lastname, password, datetimestamp, emailaddress, signature FROM employees order by id";
+
+                    if (!($stmt = $mysqli->prepare($tableList))) {
+                        echo "Error: Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+                    }
+
+                    if (!$stmt->execute()) {
+                        echo "Error: Execute failed: (" . $mysqli->errno . ") " . $mysqli->error;
+                    }
+                    $tabid = NULL;
+                    $tabfirstname = NULL;
+                    $tablastname = NULL;
+                    $tabpassword = NULL;
+                    $tabdatetimestamp = NULL;
+                    $tabemailaddr = NULL;
+                    $tabsignature = NULL;
+
+                    if (!$stmt->bind_result($tabid, $tabfirstname, $tablastname, $tabpassword, $tabdatetimestamp, $tabemailaddr, $tabsignature)) {
+                        echo "Error: Binding failed: (" . $stmt->errno . ") "
+                        . $stmt->error;
+                    }
+                    ?>
+
+                    <form action="editUser.php" method="POST" name="printForm">
+                        <br/>
+                        <h3>User List</h3>
+                        <table border="1">
+                            <tbody>
+                                <tr>
+                                    <th>User Id</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email Address</th>
+                                    <th>Signature</th>
+                                </tr>
+                                <?php
+                                error_reporting(E_ALL);
+                                ini_set('display_errors', 'ON');
 
 // Populate the table rows with movie data.
-while ($stmt->fetch()) {  
-    printf("<tr>\n" . "\t<td>%s</td>\n" . "\t<td>%s</td>\n" .  "\t<td>%s</td>\n" . "\t<td>%s</td>\n" . "\t<td>%s</td>\n"  
-                . "\t<td><button type=\"submit\" name=\"edit\"" 
-        . " value=\"{$tabid}\">Edit</button></td>\n" 
-         . "\t<td><button type=\"submit\" name=\"delete\"" 
-        . " value=\"{$tabid}\">Delete</button></td>\n" 
-        . "</tr>\n", $tabid, $tabfirstname, $tablastname, $tabemailaddr, '<img src="data:image/png;base64,'.base64_encode($tabsignature).'"/>');
-}
+                                while ($stmt->fetch()) {
+                                    printf("<tr>\n" . "\t<td>%s</td>\n" . "\t<td>%s</td>\n" . "\t<td>%s</td>\n" . "\t<td>%s</td>\n" . "\t<td>%s</td>\n"
+                                            . "\t<td><button type=\"submit\" name=\"edit\""
+                                            . " value=\"{$tabid}\">Edit</button></td>\n"
+                                            . "\t<td><button type=\"submit\" name=\"delete\""
+                                            . " value=\"{$tabid}\">Delete</button></td>\n"
+                                            . "</tr>\n", $tabid, $tabfirstname, $tablastname, $tabemailaddr, '<img src="data:image/png;base64,' . base64_encode($tabsignature) . '"/>');
+                                }
 #Close fetch of $stmt
-$stmt->close();
+                                $stmt->close();
+                                ?> 
 
-?> 
-            
-            
+
                             </tbody>
-            </table>
-        </form> 
+                        </table>
+                    </form> 
 
-            </br> 
-             <a href="adminMenu.php">Admin Menu</a>
-            </br>
-                           <div class="col-sm-6" style="color:#FF0000"</div>
+                    </br> 
+                    <a href="adminMenu.php">Admin Menu</a>
+                    <div class="container">
+                        <div class="row">
+                            <div style="color:#FF0000">
+                                </br>
+                                <?php
+                                if (isset($signed_msg)) {
+                                    echo $signed_msg . "<br/>";
+                                }
+                                ?>  
+                            </div>
+                        </div>   
+                    </div>   
+                </div> 
+            </div> 
+        </div> 
 
-<?php
-if (isset($signed_msg)) {
-            echo $signed_msg . "<br/>";
-}
-?>  
-
-                </div>     
         <div class="container">
             <div class="row">   
+                <div class="col-sm-4" style="color:#FF0000" id="signed_message"></div>
                 <div class="col-sm-4"></div> 
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4" style="color:#006600" id="signed_message"></div>
                 </br>
                 </br>
                 </br>

@@ -1,6 +1,6 @@
 <?php
-#userMenu.php - CS467, Emmalee Jones, Yae Jin Oh 
-#User Menu  
+#adminRegist.php - CS467, Emmalee Jones, Yae Jin Oh 
+#Admin Regist  
 #Error Reporting Settings
 error_reporting(E_ALL);
 ini_set("display_errors", "ON");
@@ -62,31 +62,34 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
             </div>     
         </div>  
 
-        <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
-        <div class="container" >
-            <h1>Admin Registration</h1>
-            <form method="POST" onsubmit="adminEdit(); return false;">
-                <label for="username" class="control-label">Username</label>
-                <input name="username" type="text" class="form-control" id="adminname2r" placeholder="Username(Email Address)" required>
-                <label for="password" class="control-label">Password</label>
-                <input name="password" type="password" class="form-control" id="password4r" placeholder="Password" required>
-                <span class="help-block">Minimum of 8 characters</span>
-                <label for="confirmpassword" class="control-label">Confirm Password</label>
-                <input name="confirmpassword" type="password" class="form-control" id="confirmpassword2r" placeholder="Confirm Password" required>
-                </br>
-                <button type="submit" name="adminedit" class="btn btn-sm btn-primary">Submit</button> 
 
-            </form> 
-            </br>
-            <a href="adminMenu.php">Admin Menu</a>
-        </div>
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-8" >   
+                    <h1>Admin Registration</h1>
+                    <form method="POST" onsubmit="adminEdit();
+                            return false;">
+                        <label for="username" class="control-label">Username</label>
+                        <input name="username" type="text" class="form-control" id="adminname2r" placeholder="Username(Email Address)" required>
+                        <label for="password" class="control-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="password4r" placeholder="Password" required>
+                        <span class="help-block">Minimum of 8 characters</span>
+                        <label for="confirmpassword" class="control-label">Confirm Password</label>
+                        <input name="confirmpassword" type="password" class="form-control" id="confirmpassword2r" placeholder="Confirm Password" required>
+                        </br>
+                        <button type="submit" name="adminedit" class="btn btn-sm btn-primary">Submit</button> 
+
+                    </form> 
+                    </br>
+                    <a href="adminMenu.php">Admin Menu</a>
+                </div>
+            </div>
+        </div> 
         <div class="container">
             <div class="row">   
+                <div class="col-sm-4" style="color:#FF0000" id="error_message"></div>
                 <div class="col-sm-4"></div> 
                 <div class="col-sm-4"></div>
-                <div class="col-sm-6" style="color:#FF0000" id="error1_message"></div>
-                <div class="col-sm-6" style="color:#FF0000" id="error2_message"></div>
-                <div class="col-sm-6" style="color:#006600" id="error3_message"></div>
                 </br>
                 </br>
                 </br>

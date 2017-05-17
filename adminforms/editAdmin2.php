@@ -211,76 +211,79 @@ $mysqli->close();
                 </br>
             </div>     
         </div>  
-        
-           <!-- --------------------------------- Admin Modification Form --------------------------------- -->     
+
+        <!-- --------------------------------- Admin Modification Form --------------------------------- -->     
 
         <div class="container" >
-            <h1>Admin Modification</h1>
-            <form method="POST" id="modification" action="editAdmin2.php">
-                <label for="emailaddr" class="control-label">Username</label>
-                <input name="emailaddr" type="text" class="form-control" id="emailaddr" placeholder="Username(Email Address)" value="<?PHP if (isset($_POST['emailaddr'])) echo htmlspecialchars($_POST['emailaddr']); ?>" required>
-                <label for="password" class="control-label">Password</label>
-                <input name="password" type="password" class="form-control" id="password" placeholder="Password" value="<?PHP if (isset($_POST['password'])) echo htmlspecialchars($_POST['password']); ?>" required>
-                <span class="help-block">Minimum of 8 characters</span>
-                <label for="confirmpassword" class="control-label">Confirm Password</label>
-                <input name="confirmpassword" type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password" value="<?PHP if (isset($_POST['confirmpassword'])) echo htmlspecialchars($_POST['confirmpassword']); ?>" required>
-                </br>
-                <button type="submit" name="adminedit" class="btn btn-sm btn-primary">Submit</button> 
-
-            </form> 
-            </br>
-            <a href="editAdmin.php">Edit/Delete Admin</a>
-            </br>
-            <a href="adminMenu.php">Admin Menu</a>
-        </div>
-        </br>
-        <div class="container">
             <div class="row">
-                <div class="col-sm-6" style="color:#FF0000"</div>
+                <div class="col-sm-8" >  
+                    <h1>Admin Modification</h1>
+                    <form method="POST" id="modification" action="editAdmin2.php">
+                        <label for="emailaddr" class="control-label">Username</label>
+                        <input name="emailaddr" type="text" class="form-control" id="emailaddr" placeholder="Username(Email Address)" value="<?PHP if (isset($_POST['emailaddr'])) echo htmlspecialchars($_POST['emailaddr']); ?>" required>
+                        <label for="password" class="control-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="password" placeholder="Password" value="<?PHP if (isset($_POST['password'])) echo htmlspecialchars($_POST['password']); ?>" required>
+                        <span class="help-block">Minimum of 8 characters</span>
+                        <label for="confirmpassword" class="control-label">Confirm Password</label>
+                        <input name="confirmpassword" type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password" value="<?PHP if (isset($_POST['confirmpassword'])) echo htmlspecialchars($_POST['confirmpassword']); ?>" required>
+                        </br>
+                        <button type="submit" name="adminedit" class="btn btn-sm btn-primary">Submit</button> 
 
-                <?php
-                if (isset($error_msg)) {
-                    foreach ($error_msg as $message) {
-                        echo $message . "<br/>";
-                    }
-                }
-                ?>  
+                    </form> 
+                    </br>
+                    <a href="editAdmin.php">Edit/Delete Admin</a>
+                    </br>
+                    <a href="adminMenu.php">Admin Menu</a>
+                </div>
+                </br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6" style="color:#FF0000"</div>
 
+                        <?php
+                        if (isset($error_msg)) {
+                            foreach ($error_msg as $message) {
+                                echo $message . "<br/>";
+                            }
+                        }
+                        ?>  
+                    </div>
+                </div>
             </div>
-            <div class="container">
-                <div class="row">   
-                    <div class="col-sm-4"></div> 
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-6" style="color:#FF0000" id="error1_message"></div>
-                    <div class="col-sm-6" style="color:#FF0000" id="error2_message"></div>
-                    <div class="col-sm-6" style="color:#006600" id="error3_message"></div>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                </div>     
-            </div>
-            <!-- --------------------------------- Footer --------------------------------- -->
-            <footer class="blog-footer">
-                <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
-            </footer>
-            <script src="../js/bootstrap.min.js"></script>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">   
+            <div class="col-sm-6" style="color:#FF0000" id="error_message"></div>
+            <div class="col-sm-4"></div> 
+            <div class="col-sm-4"></div>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+        </div>     
+    </div>
+    <!-- --------------------------------- Footer --------------------------------- -->
+    <footer class="blog-footer">
+        <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
+    </footer>
+    <script src="../js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 </html>
 

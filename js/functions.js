@@ -109,24 +109,19 @@ function userEdit()
     var password = document.getElementById("password3r").value;
     var matchpassword = document.getElementById("confirmpassword3r").value;
     var signature = document.getElementById("signaturer").value;
-  
-   
-    var error4_message = document.getElementById("error4_message");
-    var error5_message = document.getElementById("error5_message");
-    var error6_message = document.getElementById("error6_message");
+
+    var error_message = document.getElementById("error_message");
     var userXML;
 
     /*Clear out messages*/
-    error4_message.innerHTML = "";
-    error5_message.innerHTML = "";
-    error6_message.innerHTML = "";
-
+    error_message.innerHTML = "";
+ 
     if (password !== matchpassword) {
-        error5_message.innerHTML = "Passwords do not match, please try again.";
+        error_message.innerHTML = "Passwords do not match, please try again.";
         return false;
     }
     if (password.length < 8) {
-        error5_message.innerHTML = "Password must be as least 8 characters, please try again.";
+        error_message.innerHTML = "Password must be as least 8 characters, please try again.";
         return false;
     }
     
@@ -145,14 +140,14 @@ function userEdit()
             //alert (testresponse);
             if (testresponse === "ok") {
                 //window.location.href="index.php";
-                error6_message.innerHTML = "User is registered.";
+                error_message.innerHTML = "User is registered.";
             }
             else if (testresponse === "Bademail") {
-                error5_message.innerHTML = "Invalid email format, please try again.";
+                error_message.innerHTML = "Invalid email format, please try again.";
                 return false;
             }
             else {
-                error5_message.innerHTML = "User name already used, please try again.";
+                error_message.innerHTML = "User name already used, please try again.";
                 return false;
             }
         }
@@ -173,22 +168,18 @@ function adminEdit()
     var password = document.getElementById("password4r").value;
     var matchpassword = document.getElementById("confirmpassword2r").value;
 
-    var error1_message = document.getElementById("error1_message");
-    var error2_message = document.getElementById("error2_message");
-    var error3_message = document.getElementById("error3_message");
+    var error_message = document.getElementById("error_message");
     var adminXML;
 
     /*Clear out messages*/
-    error1_message.innerHTML = "";
-    error2_message.innerHTML = "";
-    error3_message.innerHTML = "";
+    error_message.innerHTML = "";
 
     if (password !== matchpassword) {
-        error1_message.innerHTML = "Passwords do not match, please try again.";
+        error_message.innerHTML = "Passwords do not match, please try again.";
         return false;
     }
     if (password.length < 8) {
-        error1_message.innerHTML = "Password must be as least 8 characters, please try again.";
+        error_message.innerHTML = "Password must be as least 8 characters, please try again.";
         return false;
     }
     var adminXML = new XMLHttpRequest();
@@ -206,14 +197,14 @@ function adminEdit()
             //alert (testresponse);
             if (testresponse === "ok") {
                 //window.location.href="index.php";
-                error3_message.innerHTML = "User is registered.";
+                error_message.innerHTML = "User is registered.";
             }
             else if (testresponse === "Bademail") {
-                error2_message.innerHTML = "Invalid email format, please try again.";
+                error_message.innerHTML = "Invalid email format, please try again.";
                 return false;
             }
             else {
-                error1_message.innerHTML = "User name already used, please try again.";
+                error_message.innerHTML = "User name already used, please try again.";
                 return false;
             }
         }
@@ -227,27 +218,3 @@ function adminEdit()
 
 }
 
-//userRegist display image
-     function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#signaturerb')
-                        .attr('src', e.target.result)
-                        .width(100)
-                        .height(120);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-function encodeImageFileAsURL(element) {
-  var file = element.files[0];
-  var reader = new FileReader();
-  reader.onloadend = function() {
-    console.log('RESULT', reader.result);
-  };
-  reader.readAsDataURL(file);
-}

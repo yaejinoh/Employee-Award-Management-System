@@ -19,9 +19,9 @@ include '../phpmysql/connect.php';
 
 //Load the form first time
 if (!empty($_POST)) {
-    
-     //   echo "post submit" . "</br>";
-    
+
+    //   echo "post submit" . "</br>";
+
     $passedEdits = TRUE;
     $emailaddr = $_POST["emailaddr"];
     $firstname = $_POST["firstname"];
@@ -70,7 +70,7 @@ if (!empty($_POST)) {
 
     if (!$stmt->fetch()) {
         
-        } elseif ($adminid == $tabtestid) {
+    } elseif ($adminid == $tabtestid) {
         
     } else {
         $error_msg[] = "User name already used, please try again.";
@@ -135,9 +135,9 @@ if (!empty($_POST)) {
     }
 } else {
     /* Username and Password */
-    
+
     //echo $_SESSION["employeeid"] . "  " . "employee id" . "</br>";
-    
+
     $employeeid = $_SESSION["employeeid"];
 
     if (!($stmt = $mysqli->prepare("SELECT firstname, lastname, password, "
@@ -175,10 +175,9 @@ if (!empty($_POST)) {
         $_POST["confirmpassword"] = $tabPassword;
     }
     $stmt->close();
-   
 }
 
- //echo  "mysqli close" . "</br>";
+//echo  "mysqli close" . "</br>";
 
 $mysqli->close();
 ?>
@@ -258,7 +257,7 @@ $mysqli->close();
                 </div>
 
                 </br>
-                <div class="col-sm-6"> <button type="submit" name="modification" class="btn btn-sm btn-primary">Submit</button>
+                <div class="col-sm-6"> <button type="submit" name="modification" class="btn btn-sm btn-primary">Submit</button></div>
             </form>
             </br>
             </br>
@@ -268,15 +267,17 @@ $mysqli->close();
                 <div class="row">
                     <div class="col-sm-6" style="color:#FF0000"</div>
 
-<?php
-if (isset($error_msg)) {
-    foreach ($error_msg as $message) {
-        echo $message . "<br/>";
-    }
-}
-?>  
+                    <?php
+                    if (isset($error_msg)) {
+                        foreach ($error_msg as $message) {
+                            echo $message . "<br/>";
+                        }
+                    }
+                    ?>  
 
                 </div>
+            </div>
+            </div>
                 <div class="container">
                     <div class="row">   
                         <div class="col-sm-4"></div> 
@@ -303,10 +304,12 @@ if (isset($error_msg)) {
                         </br>
                     </div>     
                 </div>
+        </div>
                 <!-- --------------------------------- Footer --------------------------------- -->
                 <footer class="blog-footer">
                     <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
                 </footer>
+   
                 <script src="../js/bootstrap.min.js"></script>
 
                 <script>

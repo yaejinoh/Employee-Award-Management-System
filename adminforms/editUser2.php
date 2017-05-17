@@ -1,6 +1,6 @@
 <?php
-#editUser.php - CS467, Emmalee Jones, Yae Jin Oh 
-#Edit User from Admin Screen
+#editUser2.php - CS467, Emmalee Jones, Yae Jin Oh 
+#Edit User2 from Admin Screen
 #Error Reporting Settings
 error_reporting(E_ALL);
 ini_set("display_errors", "ON");
@@ -224,102 +224,112 @@ $mysqli->close();
         <div class="container">
             <div class="row"> 
                 <br/>
+                <div class="col-sm-4" style="color:#FF0000" id="login_message"></div>
                 <div class="col-sm-4"></div> 
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4" style="color:#FF0000" id="login_message"></div>
                 </br>
             </div>     
         </div>  
 
         <!-- --------------------------------- User Mod Form --------------------------------- -->
         <div class="container" >
-            <h1>Edit User</h1>
-            <form method="POST" id="modification" enctype="multipart/form-data" action="editUser2.php">  
-                <!--  <form method="POST" id="registration" enctype="multipart/form-data"  onsubmit="userEdit(); return false;"> -->
-                <label for="emailaddr" class="control-label">Username</label>
-                <input name="emailaddr" type="text" class="form-control" id="emailaddr" placeholder="Username(Email Address)" value="<?PHP if (isset($_POST['emailaddr'])) echo htmlspecialchars($_POST['emailaddr']); ?>" required>
-                <label for="firstname" class="control-label">First Name</label>
-                <input name="firstname" type="text" class="form-control" id="firstname" placeholder="First Name" value="<?PHP if (isset($_POST['firstname'])) echo htmlspecialchars($_POST['firstname']); ?>" required>
-                <label for="lastname" class="control-label">Last Name</label>
-                <input name="lastname" type="text" class="form-control" id="lastname" placeholder="Last Name" value="<?PHP if (isset($_POST['lastname'])) echo htmlspecialchars($_POST['lastname']); ?>" required>
-                <label for="password" class="control-label">Password</label>
-                <input name="password" type="password" class="form-control" id="password" placeholder="Password" value="<?PHP if (isset($_POST['password'])) echo htmlspecialchars($_POST['password']); ?>" required>
-                <span class="help-block">Minimum of 8 characters</span>
-                <label for="confirmpassword" class="control-label">Confirm Password</label>
-                <input name="confirmpassword" type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password" value="<?PHP if (isset($_POST['confirmpassword'])) echo htmlspecialchars($_POST['confirmpassword']); ?>" required>
-                <div class="image-editor">
-                    <label>Upload Signature</label><input type="file" class="cropit-image-input" name="signature" accept="image/*" required />
-                    <div class="cropit-preview img-responsive"></div>
-                    <div class="image-size-label">
-                        Resize image
-                    </div>
-                    <input type="range" class="cropit-image-zoom-input">
-                    <input type="hidden" name="image-data" class="hidden-image-data" />
-                </div>
+            <div class="row">
+                <div class="col-sm-8" >  
+                    <h1>Edit User</h1>
+                    <form method="POST" id="modification" enctype="multipart/form-data" action="editUser2.php">  
+                        <!--  <form method="POST" id="registration" enctype="multipart/form-data"  onsubmit="userEdit(); return false;"> -->
+                        <label for="emailaddr" class="control-label">Username</label>
+                        <input name="emailaddr" type="text" class="form-control" id="emailaddr" placeholder="Username(Email Address)" value="<?PHP if (isset($_POST['emailaddr'])) echo htmlspecialchars($_POST['emailaddr']); ?>" required>
+                        <label for="firstname" class="control-label">First Name</label>
+                        <input name="firstname" type="text" class="form-control" id="firstname" placeholder="First Name" value="<?PHP if (isset($_POST['firstname'])) echo htmlspecialchars($_POST['firstname']); ?>" required>
+                        <label for="lastname" class="control-label">Last Name</label>
+                        <input name="lastname" type="text" class="form-control" id="lastname" placeholder="Last Name" value="<?PHP if (isset($_POST['lastname'])) echo htmlspecialchars($_POST['lastname']); ?>" required>
+                        <label for="password" class="control-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="password" placeholder="Password" value="<?PHP if (isset($_POST['password'])) echo htmlspecialchars($_POST['password']); ?>" required>
+                        <span class="help-block">Minimum of 8 characters</span>
+                        <label for="confirmpassword" class="control-label">Confirm Password</label>
+                        <input name="confirmpassword" type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password" value="<?PHP if (isset($_POST['confirmpassword'])) echo htmlspecialchars($_POST['confirmpassword']); ?>" required>
+                        <div class="image-editor">
+                            <label>Upload Signature</label><input type="file" class="cropit-image-input" name="signature" accept="image/*" required />
+                            <div class="cropit-preview img-responsive"></div>
+                            <div class="image-size-label">
+                                Resize image
+                            </div>
+                            <input type="range" class="cropit-image-zoom-input">
+                            <input type="hidden" name="image-data" class="hidden-image-data" />
+                        </div>
 
+                        </br>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-4"> <button type="submit" name="modification" class="btn btn-sm btn-primary">Submit</button>
+                                    </form>
+                                    </br> 
+                                    </br>
+                                    <a href="editUser.php">Edit/Delete User</a>
+                                    </br>
+                                    </br>
+                                    <a href="adminMenu.php">Admin Menu</a> 
+
+                                    <div style="color:#FF0000">
+                                        </br>
+
+                                        <?php
+                                        if (isset($error_msg)) {
+                                            foreach ($error_msg as $message) {
+                                                echo $message . "<br/>";
+                                            }
+                                        }
+                                        ?>  
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">   
+                <div class="col-sm-4" style="color:#006600" id="signed_message"></div>
+                <div class="col-sm-4"></div> 
+                <div class="col-sm-4"></div>
                 </br>
-                <div class="col-sm-6"> <button type="submit" name="modification" class="btn btn-sm btn-primary">Submit</button>
-            </form>
-            </br> 
-            </br>
-            <a href="editUser.php">Edit/Delete User</a>
-            </br>
-            </br>
-            <a href="adminMenu.php">Admin Menu</a> 
-            <div class="container">
-                <div class="row">
-                    <div style="color:#FF0000"</div>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+            </div>     
+        </div>
+        <!-- --------------------------------- Footer --------------------------------- -->
+        <footer class="blog-footer">
+            <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
+        </footer>
+        <script src="../js/bootstrap.min.js"></script>
 
-                    <?php
-                    if (isset($error_msg)) {
-                        foreach ($error_msg as $message) {
-                            echo $message . "<br/>";
-                        }
-                    }
-                    ?>  
-
-                </div>
-                <div class="container">
-                    <div class="row">   
-                        <div class="col-sm-4"></div> 
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4" style="color:#006600" id="signed_message"></div>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                    </div>     
-                </div>
-                <!-- --------------------------------- Footer --------------------------------- -->
-                <footer class="blog-footer">
-                    <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
-                </footer>
-                <script src="../js/bootstrap.min.js"></script>
-
-                <script>
-                    $(function () {
-                        $('.image-editor').cropit();
-                        $('form').submit(function () {
-                            var imageData = $('.image-editor').cropit('export');
-                            $('.hidden-image-data').val(imageData);
-                        });
-                    });
-                </script>   
-                </body>
-                </html>
+        <script>
+            $(function () {
+                $('.image-editor').cropit();
+                $('form').submit(function () {
+                    var imageData = $('.image-editor').cropit('export');
+                    $('.hidden-image-data').val(imageData);
+                });
+            });
+        </script>   
+    </body>
+</html>
 

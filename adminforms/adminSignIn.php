@@ -1,3 +1,8 @@
+<?php
+#adminMenu.php - CS467, Emmalee Jones, Yae Jin Oh 
+#Admin Menu  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,10 +37,14 @@
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
+            <div class="row">
+                <div class="col-sm-8" >   
             <h1>Admin Sign In</h1>
             <form method="POST" onsubmit="adminLogin(); return false;">
+                <span class="glyphicon glyphicon-user"></span>
                 <label for="adminname" class="control-label">Admin Name</label>
                 <input name="adminname" type="text" class="form-control" id="adminnamer" placeholder="Admin Name(Email Address)" required>
+                <span class="glyphicon glyphicon-lock"></span>
                 <label for="password" class="control-label">Password</label>
                 <input name="password" type="password" class="form-control" id="password2r" placeholder="Password" required>
                 </br>
@@ -43,13 +52,16 @@
             </form> 
             </br>
             <a href="../index.php">User Sign In</a>
+            </br>
 
         </div>
+          </div>
+            </div>
         <div class="container">
             <div class="row">   
+                <div class="col-sm-4" style="color:#FF0000" id="admin_message"></div>
                 <div class="col-sm-4"></div> 
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4" style="color:#FF0000" id="admin_message"></div>
                 </br>
                 </br>
                 </br>

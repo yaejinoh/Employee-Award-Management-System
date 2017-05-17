@@ -1,6 +1,6 @@
 <?php
-#userMenu.php - CS467, Emmalee Jones, Yae Jin Oh 
-#User Menu  
+#adminMenu.php - CS467, Emmalee Jones, Yae Jin Oh 
+#Admin Menu  
 #Error Reporting Settings
 error_reporting(E_ALL);
 ini_set("display_errors", "ON");
