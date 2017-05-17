@@ -215,7 +215,7 @@ if (!empty($_POST)) {
                     </br>
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-8> <a href="adminMenu.php">Admin Menu</div>   
+                            <div class="col-sm-8> <a href="adminMenu.php">Admin Menu</a></div>   
                                 <div class="col-sm-8" style="color:#FF0000">
                                     </br>
                                     <?php
