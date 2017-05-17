@@ -100,67 +100,7 @@ function adminLogin()
 
 }
 
-//userRegist
-function userEdit()
-{
-    var username = document.getElementById("username2r").value;
-    var firstname = document.getElementById("firstnamer").value;
-    var lastname = document.getElementById("lastnamer").value;
-    var password = document.getElementById("password3r").value;
-    var matchpassword = document.getElementById("confirmpassword3r").value;
-    var signature = document.getElementById("signaturer").value;
 
-    var error_message = document.getElementById("error_message");
-    var userXML;
-
-    /*Clear out messages*/
-    error_message.innerHTML = "";
- 
-    if (password !== matchpassword) {
-        error_message.innerHTML = "Passwords do not match, please try again.";
-        return false;
-    }
-    if (password.length < 8) {
-        error_message.innerHTML = "Password must be as least 8 characters, please try again.";
-        return false;
-    }
-    
-    var userXML = new XMLHttpRequest();
-
-    if (!userXML) {
-        throw "Unable to create HttpRequest.";
-    }
-
-    userXML.onreadystatechange = function () {
-        if ((this.readyState === 4) && (this.status === 200)) {
-
-            var testresponse = this.responseText;
-            testresponse = testresponse.trim();
-            //alert ("Response text");
-            //alert (testresponse);
-            if (testresponse === "ok") {
-                //window.location.href="index.php";
-                error_message.innerHTML = "User is registered.";
-            }
-            else if (testresponse === "Bademail") {
-                error_message.innerHTML = "Invalid email format, please try again.";
-                return false;
-            }
-            else {
-                error_message.innerHTML = "User name already used, please try again.";
-                return false;
-            }
-        }
-    };
-
-    /* Send Request*/
-    var table = "&username=" + username + "&password=" + password + "&firstname=" + firstname + "&lastname=" + lastname + "&signature=" + signature + "&login=1";
-    //var table = "&username=" + username + "&password=" + password + "&firstname=" + firstname + "&lastname=" + lastname + "&login=1";
-    userXML.open("POST", "userregistration.php");
-    userXML.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    userXML.send(table);
-
-}
 //adminRegist Form
 function adminEdit()
 {
