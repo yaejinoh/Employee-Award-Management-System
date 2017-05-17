@@ -299,57 +299,57 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       </tr>
                       
                       <?php
-		    // Retrieve employee ID number of session user
-		    $eid = $_SESSION['employeeid'];
-            // Retrieve Award ID selected
-            $awardID = $_POST['awardID'];
-		      
-		      /* ---------- If the user pressed the --DELETE AWARD-- button ---------- */
-            if(isset($_POST["delete"])){
-			// Query to store signature in session employee's account
-			if(! ($stmt = $mysqli->prepare( 
-                        "DELETE FROM Awards WHERE id = '$awardID';"))){
-              echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
-            }         
-            if(!$stmt->execute()){
-              echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
-            }
-			// Feedback to the user
-			echo "Award has been deleted.";     
-			      
-			// Display all the awards that exist made by session user     
-            if(! ($stmt = $mysqli->prepare( 
-                "SELECT	A.id, A.date AS date, A.time AS time,
-                            PE.firstname AS PresenterFirstName, 
-                            PE.lastname AS PresenterLastName,  
-                            AE.firstname AS AwardeeFirstName, 
-                            AE.lastname AS AwardeeLastName,
-                            CT.type AS CertificateType,
-                            R.sector AS Region,
-			    A.signature AS Signature
-                        FROM Awards A
-                        JOIN Employees PE ON PE.id=A.name
-                        JOIN Employees AE ON AE.id=A.awardee
-                        JOIN CertType CT ON CT.ctid=A.type
-                        JOIN Regions R ON R.rid=A.region
-			WHERE PE.id = '$eid'
-			ORDER BY A.date, A.time;"))){
-                          echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
-                        }         
-                        if(!$stmt->execute()){
-                          echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
-                        }
-			if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
-                          echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
-                        }
-                        while($stmt->fetch()){
-                          echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n";
-			  echo '<img src="data:image/png;base64,'.base64_encode($Signature).'">';
-			  echo "\n</td>\n</tr>";
-	                } 
-                        $stmt->close();
-                      }    
-                      ?>						
+			    // Retrieve employee ID number of session user
+			    $eid = $_SESSION['employeeid'];
+			    // Retrieve Award ID selected
+			    $awardID = $_POST['awardID'];
+
+			    /* ---------- If the user pressed the --DELETE AWARD-- button ---------- */
+			    if(isset($_POST["delete"])){
+					// Query to store signature in session employee's account
+				if(! ($stmt = $mysqli->prepare( 
+					"DELETE FROM Awards WHERE id = '$awardID';"))){
+			      		echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
+			    	}         
+				if(!$stmt->execute()){
+					echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+				}
+				// Feedback to the user
+				echo "<div align='center' style='font:15px; color:#ff0000; font-weight:bold'>Award has been deleted.</div>";     
+
+				// Display all the awards that exist made by session user     
+				if(! ($stmt = $mysqli->prepare( 
+					"SELECT	A.id, A.date AS date, A.time AS time,
+						    PE.firstname AS PresenterFirstName, 
+						    PE.lastname AS PresenterLastName,  
+						    AE.firstname AS AwardeeFirstName, 
+						    AE.lastname AS AwardeeLastName,
+						    CT.type AS CertificateType,
+						    R.sector AS Region,
+						    A.signature AS Signature
+						FROM Awards A
+						JOIN Employees PE ON PE.id=A.name
+						JOIN Employees AE ON AE.id=A.awardee
+						JOIN CertType CT ON CT.ctid=A.type
+						JOIN Regions R ON R.rid=A.region
+						WHERE PE.id = '$eid'
+						ORDER BY A.date, A.time;"))){
+					echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
+				}         
+				if(!$stmt->execute()){
+					echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+				}
+				if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
+					echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+				}
+				while($stmt->fetch()){
+					echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n";
+					echo '<img src="data:image/png;base64,'.base64_encode($Signature).'">';
+					echo "\n</td>\n</tr>";
+				} 
+				$stmt->close();
+			    }    
+                      	?>						
               </tbody>
             </table>
             <br>
