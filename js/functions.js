@@ -101,25 +101,29 @@ function adminLogin()
 }
 
 
-//adminRegist Form
+//adminRegist
 function adminEdit()
 {
     var username = document.getElementById("adminname2r").value;
     var password = document.getElementById("password4r").value;
     var matchpassword = document.getElementById("confirmpassword2r").value;
 
-    var error_message = document.getElementById("error_message");
+    var error1_message = document.getElementById("error1_message");
+    var error2_message = document.getElementById("error2_message");
+    var error3_message = document.getElementById("error3_message");
     var adminXML;
 
     /*Clear out messages*/
-    error_message.innerHTML = "";
+    error1_message.innerHTML = "";
+    error2_message.innerHTML = "";
+    error3_message.innerHTML = "";
 
     if (password !== matchpassword) {
-        error_message.innerHTML = "Passwords do not match, please try again.";
+        error1_message.innerHTML = "Passwords do not match, please try again.";
         return false;
     }
     if (password.length < 8) {
-        error_message.innerHTML = "Password must be as least 8 characters, please try again.";
+        error1_message.innerHTML = "Password must be as least 8 characters, please try again.";
         return false;
     }
     var adminXML = new XMLHttpRequest();
@@ -137,14 +141,14 @@ function adminEdit()
             //alert (testresponse);
             if (testresponse === "ok") {
                 //window.location.href="index.php";
-                error_message.innerHTML = "User is registered.";
+                error3_message.innerHTML = "User is registered.";
             }
             else if (testresponse === "Bademail") {
-                error_message.innerHTML = "Invalid email format, please try again.";
+                error2_message.innerHTML = "Invalid email format, please try again.";
                 return false;
             }
             else {
-                error_message.innerHTML = "User name already used, please try again.";
+                error1_message.innerHTML = "User name already used, please try again.";
                 return false;
             }
         }
