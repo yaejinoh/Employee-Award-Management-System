@@ -108,18 +108,18 @@ function adminEdit()
     var password = document.getElementById("password4r").value;
     var matchpassword = document.getElementById("confirmpassword2r").value;
 
-    var error_message1 = document.getElementById("error_message1");
+    var error_message = document.getElementById("error_message");
     var adminXML;
 
     /*Clear out messages*/
-    error_message1.innerHTML = "";
+    error_message.innerHTML = "";
 
     if (password !== matchpassword) {
-        error_message1.innerHTML = "Passwords do not match, please try again.";
+        error_message.innerHTML = "Passwords do not match, please try again.";
         return false;
     }
     if (password.length < 8) {
-        error_message1.innerHTML = "Password must be as least 8 characters, please try again.";
+        error_message.innerHTML = "Password must be as least 8 characters, please try again.";
         return false;
     }
     var adminXML = new XMLHttpRequest();
@@ -137,14 +137,14 @@ function adminEdit()
             //alert (testresponse);
             if (testresponse === "ok") {
                 //window.location.href="index.php";
-                error_message1.innerHTML = "User is registered.";
+                error_message.innerHTML = "User is registered.";
             }
             else if (testresponse === "Bademail") {
-                error_message1.innerHTML = "Invalid email format, please try again.";
+                error_message.innerHTML = "Invalid email format, please try again.";
                 return false;
             }
             else {
-                error_message1.innerHTML = "User name already used, please try again.";
+                error_message.innerHTML = "User name already used, please try again.";
                 return false;
             }
         }
