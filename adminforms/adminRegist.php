@@ -45,7 +45,7 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
                     <form class="navbar-brand pull-right">
                         <a> <?php echo "Admin Email Address:" . " " . $_SESSION['adminEmailAddress']; ?> </a>
                     </form>
-                    <!-- --------------------------------- Registration Form --------------------------------- -->
+                    <!-- --------------------------------- Registration Form ---------------------------------- -->
                     <form class="navbar-form pull-right" method="POST" action="adminLogout.php">
                         <input type="submit" value = "Sign out" name="logout form)"> 
                     </form>

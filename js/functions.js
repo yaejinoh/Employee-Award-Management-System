@@ -161,7 +161,7 @@ function userEdit()
     userXML.send(table);
 
 }
-//adminRegist
+//adminRegist Form
 function adminEdit()
 {
     var username = document.getElementById("adminname2r").value;
