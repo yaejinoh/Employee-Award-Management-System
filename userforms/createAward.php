@@ -429,6 +429,13 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         while($stmt->fetch()){
                           echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n";
 			  echo '<img src="data:image/png;base64,'.base64_encode($Signature).'">';
+			  echo "\n</td>\n<td>\n";
+			  echo '<td class="award-delete">
+					<form action='delAwards.php?name="<?php echo $id; ?>"' method="post">
+						<input type="hidden" name="award-id" value="<?php echo $id; ?>">
+						<input type="submit" name="submit" value="Delete">
+					</form>
+				</td>';
 			  echo "\n</td>\n</tr>";
 	                } 
                         $stmt->close();
