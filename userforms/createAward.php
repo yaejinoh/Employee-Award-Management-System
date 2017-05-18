@@ -430,12 +430,12 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n";
 			  echo '<img src="data:image/png;base64,'.base64_encode($Signature).'">';
 			  echo "\n</td>\n<td>\n";
-			  echo '<td class="award-delete">
-					<form action='delAwards.php?name="<?php echo $id; ?>"' method="post">
-						<input type="hidden" name="award-id" value="<?php echo $id; ?>">
-						<input type="submit" name="submit" value="Delete">
-					</form>
-				</td>';
+			  echo '<td class="award-delete">;
+			  echo '<form action='delAwards.php?name="<?php echo $id; ?>"' method="post">';
+			  echo '<input type="hidden" name="award-id" value="<?php echo $id; ?>">';
+			  echo '<input type="submit" name="submit" value="Delete">';
+			  echo '</form>';
+			  echo '</td>';
 			  echo "\n</td>\n</tr>";
 	                } 
                         $stmt->close();
