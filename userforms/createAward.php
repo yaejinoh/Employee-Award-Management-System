@@ -180,6 +180,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		    </p>
                     <p>
                         <input type="submit" name="delete" value="Delete">
+			<input type="submit" name="deleteall" value="Delete All">
                     </p>
                 </fieldset>
             </form>
