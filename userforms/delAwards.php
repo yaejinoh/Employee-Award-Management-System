@@ -353,16 +353,14 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			    if(isset($_POST["deleteall"])){
 					// Query to store signature in session employee's account
 				if(! ($stmt = $mysqli->prepare( 
-					"SET SQL_SAFE_UPDATES = 0;
-					DELETE FROM Awards 
+					"DELETE FROM Awards 
 					WHERE id IN (
 						SELECT * FROM (
 							SELECT id
 							FROM Awards
 							WHERE name = '$eid'
 						) AS p
-					);
-					SET SQL_SAFE_UPDATES = 1;"))){
+					);"))){
 			      		echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
 			    	}         
 				if(!$stmt->execute()){
