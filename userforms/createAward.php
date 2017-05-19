@@ -250,73 +250,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
             </br>
 
-		<div class="row">
-			<div class="col-lg-6">
-        <!-- --------------------------------- Award PDF Creation Form --------------------------------- -->
-	    <form method="post" action="createAwardPDF.php" id="pdf-form"> <!-- post to page handling form-->    
-                <fieldset>
-                    <legend> Export an Award to PDF </legend>
-                    <p>Please select the ID of the award you wish to convert to PDF: 
-                        <select name="awardID"> 
-                            <?php
-			    $eid = $_SESSION['employeeid'];
-				
-                            // creates option for origin
-                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
-                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-                            }
-                            if(!$stmt->execute()){
-                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
-                            }
-                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
-                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
-                            }
-                            while($stmt->fetch()){
-                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
-                            }
-                            $stmt->close();
-                            ?>
-                        </select> 
-		    </p>
-                    <p>
-                        <input type="submit" name="export" value="Export to PDF">
-                    </p>
-                </fieldset>
-            </form>
-			</div>
-
-			<div class="col-lg-6">
-        <!-- --------------------------------- Award PDF and Email Form --------------------------------- --> 
-	    <form method="post" action="createAwardPDFmail.php" id="pdf-mail-form">  
-                <fieldset>
-                    <legend> Export an Award to PDF and Mail </legend>
-                    <p>Please select the ID of the award you wish to export as PDF and send directly to the recipient: 
-                        <select name="awardmailID"> 
-                            <?php
-                            // creates option for origin
-                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
-                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-                            }
-                            if(!$stmt->execute()){
-                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
-                            }
-                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
-                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
-                            }
-                            while($stmt->fetch()){
-                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
-                            }
-                            $stmt->close(); 
-                            ?>
-                        </select> 
-		    </p>
-                    <p>
-                        <input type="submit" name="export-mail" value="Export to PDF and Mail to Recipient">
-                    </p>
-                </fieldset>
-            </form>
-			</div>
-		</div>
 	</div>
             </br>
             </br>
@@ -394,17 +327,27 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n";
 			  echo '<img src="data:image/png;base64,'.base64_encode($Signature).'">';
 			  echo "\n</td>\n<td>\n";
-			  echo	'<td class="award-delete">
-					<form action=\'delAwards.php\' method="post">
-						<input type="hidden" name="awardID" value="' . $id . '">
-						<input type="submit" name="delete" value="Delete">
-					</form>
-				</td>';
-			  echo "\n</td>\n<td>\n";
+			/*-- --------------------------------- Award PDF Creation Form --------------------------------- */
 			  echo	'<td class="award-pdf">
 					<form action=\'createAwardPDF.php\' method="post">
 						<input type="hidden" name="awardID" value="' . $id . '">
 						<input type="submit" name="export" value="View as PDF">
+					</form>
+				</td>';
+			  echo "\n</td>\n<td>\n";
+			/*-- --------------------------------- Award PDF and Send Form --------------------------------- */
+			  echo	'<td class="award-pdf-mail">
+					<form action=\'createAwardPDFmail.php\' method="post">
+						<input type="hidden" name="awardID" value="' . $id . '">
+						<input type="submit" name="export-mail" value="Send to Recipient">
+					</form>
+				</td>';
+			  echo "\n</td>\n<td>\n";
+			/*-- --------------------------------- Award Delete Form --------------------------------- */
+			  echo	'<td class="award-delete">
+					<form action=\'delAwards.php\' method="post">
+						<input type="hidden" name="awardID" value="' . $id . '">
+						<input type="submit" name="delete" value="Delete">
 					</form>
 				</td>';
 			  echo "\n</td>\n</tr>";
@@ -476,6 +419,23 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                           echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n";
 			  echo '<img src="data:image/png;base64,'.base64_encode($Signature).'">';
 			  echo "\n</td>\n<td>\n";
+			/*-- --------------------------------- Award PDF Creation Form --------------------------------- */
+			  echo	'<td class="award-pdf">
+					<form action=\'createAwardPDF.php\' method="post">
+						<input type="hidden" name="awardID" value="' . $id . '">
+						<input type="submit" name="export" value="View as PDF">
+					</form>
+				</td>';
+			  echo "\n</td>\n<td>\n";
+			/*-- --------------------------------- Award PDF and Send Form --------------------------------- */
+			  echo	'<td class="award-pdf-mail">
+					<form action=\'createAwardPDFmail.php\' method="post">
+						<input type="hidden" name="awardID" value="' . $id . '">
+						<input type="submit" name="export-mail" value="Send to Recipient">
+					</form>
+				</td>';
+			  echo "\n</td>\n<td>\n";
+			/*-- --------------------------------- Award Delete Form --------------------------------- */
 			  echo	'<td class="award-delete">
 					<form action=\'delAwards.php\' method="post">
 						<input type="hidden" name="awardID" value="' . $id . '">
