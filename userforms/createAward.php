@@ -431,7 +431,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  echo '<img src="data:image/png;base64,'.base64_encode($Signature).'">';
 			  echo "\n</td>\n<td>\n";
 			  echo	'<td class="award-delete">
-					<form action=\'delAwards.php?name="<?php echo $id; ?>"\' method="post">
+					<form action=\'delAwards.php\' method="post">
 						<input type="hidden" name="awardID" value="<?php echo $id; ?>">
 						<input type="submit" name="submit" value="Delete">
 					</form>
