@@ -2,6 +2,8 @@ table {
     border-collapse: collapse;
     width: 50%;
     background-color:white;
+    margin: 0px auto;
+    float: none;
 }
 
 th {
