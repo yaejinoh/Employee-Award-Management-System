@@ -254,13 +254,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	</div>
             </br>
             </br>
-
+	</div>
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
-<!--	<div class="container-fluid">
-	<div class="row">
-	<div class="col-lg-12">-->
-		
             <table id="awards-table">
               <h4>Awards:</h4>
               <tbody>
@@ -454,9 +450,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       ?>						
               </tbody>
             </table>
-<!--	</div>
-	</div>
-	</div> -->
+
 
         <!-- --------------------------------- Delete All Awards --------------------------------- -->
 	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
@@ -469,7 +463,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
             <br>
             <br>
-	</div>
+
 
 
 
