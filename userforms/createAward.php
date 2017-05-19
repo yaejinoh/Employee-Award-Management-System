@@ -291,12 +291,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  <td>
                               Signature
                           </td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
                       </tr>
                       
                       <?php
