@@ -433,7 +433,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  echo	'<td class="award-delete">
 					<form action=\'delAwards.php\' method="post">
 						<input type="hidden" name="awardID" value="<?php echo $id; ?>">
-						<input type="submit" name="submit" value="Delete">
+						<input type="submit" name="delete" value="Delete">
 					</form>
 				</td>';
 			  echo "\n</td>\n</tr>";
