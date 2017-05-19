@@ -32,7 +32,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
 	<link href="../css/award.css" rel="stylesheet">
-<!--	<link href="../css/bootstrap-custom.css" rel="stylesheet"> -->
         <script src="../js/jquery.min.js"></script>
         <script src="../js/functions.js"></script>
 
@@ -258,6 +257,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	</div> <!-- extra div -->
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
+	<div class="container-fluid">
             <table id="awards-table">
               <h4>Awards:</h4>
               <tbody>
@@ -451,7 +451,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       ?>						
               </tbody>
             </table>
-
+	</div>
 
         <!-- --------------------------------- Delete All Awards --------------------------------- -->
 	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
