@@ -151,13 +151,13 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		</br>
 
 
-        <!-- --------------------------------- Delete Award Form --------------------------------- -->
+       <!-- --------------------------------- Edit Award Form --------------------------------- -->
 		<div class="row">
 			<div class="col-lg-6">
-	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
+	    <form method="post" action="editAwards.php" id="edit-form"> <!-- post to page handling form-->    
                 <fieldset>
-                    <legend> Delete an Award </legend>
-                    <p>Please select the ID of the award you wish to delete: 
+                    <legend> Edit an Award Certificate </legend>
+		    <p>Please select the ID of the award you wish to edit: 
                         <select name="awardID"> 
                             <?php
 			    $eid = $_SESSION['employeeid'];
@@ -178,19 +178,83 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                             $stmt->close();
                             ?>
                         </select> 
-		    </p>
+                    <p>Name: 
+                        <select name="name"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, firstname, lastname, emailaddress FROM `Employees`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $firstname, $lastname, $emailaddress)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $firstname . ", " . $lastname . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> </p>
+                    <p>Award Type: 
+                        <select name="awardType"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT ctid, type FROM `CertType`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($ctid, $type)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $ctid . ' "> ' . $type . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>Region: 
+                        <select name="region"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT rid, sector FROM `Regions`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($rid, $sector)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $rid . ' "> ' . $sector . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
                     <p>
-                        <input type="submit" name="delete" value="Delete">
+                        <input type="submit" name="edit" value="Edit Award">
                     </p>
                 </fieldset>
             </form>
 			</div>
+			
+			
+			
+			
 		</div>
             </br>
             </br>
 
 		<div class="row">
 			<div class="col-lg-6">
+				
+				
         <!-- --------------------------------- Award PDF Creation Form --------------------------------- -->
 	    <form method="post" action="createAwardPDF.php" id="pdf-form"> <!-- post to page handling form-->    
                 <fieldset>
@@ -302,8 +366,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			    // Retrieve employee ID number of session user
 			    $eid = $_SESSION['employeeid'];
 			    // Retrieve Award ID selected
-			    $awardID = $_POST['awardID'];
-			    echo $awardID;
+			    if ($_POST['awardID']) {
+			    	$awardID = $_POST['awardID'];
+			    }
 
 			    /* ---------- If the user pressed the --DELETE AWARD-- button ---------- */
 			    if(isset($_POST["delete"])){
@@ -405,6 +470,15 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       	?>						
               </tbody>
             </table>
+
+        <!-- --------------------------------- Delete All Awards --------------------------------- -->
+	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
+                <fieldset>
+                    <p>
+			<input type="submit" name="deleteall" value="Delete All">
+                    </p>
+                </fieldset>
+            </form>
             <br>
             <br>
 	</div>
