@@ -366,7 +366,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			    // Retrieve employee ID number of session user
 			    $eid = $_SESSION['employeeid'];
 			    // Retrieve Award ID selected
-			    if ($_POST['awardID']) {
+			    if (isset($_POST['awardID'])){
 			    	$awardID = $_POST['awardID'];
 			    }
 
