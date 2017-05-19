@@ -400,6 +400,13 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 						<input type="submit" name="delete" value="Delete">
 					</form>
 				</td>';
+			  echo "\n</td>\n<td>\n";
+			  echo	'<td class="award-pdf">
+					<form action=\'createAwardPDF.php\' method="post">
+						<input type="hidden" name="awardID" value="' . $id . '">
+						<input type="submit" name="export" value="View as PDF">
+					</form>
+				</td>';
 			  echo "\n</td>\n</tr>";
 	                } 
                         $stmt->close();
