@@ -258,7 +258,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <!-- --------------------------------- Awards table view --------------------------------- -->
 	<div class="container-fluid">
 	<div class="row">
-	<div class="col-lg-14">
+	<div class="col-lg-12">
 		
             <table id="awards-table">
               <h4>Awards:</h4>
