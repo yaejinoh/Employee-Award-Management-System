@@ -291,6 +291,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  <td>
                               Signature
                           </td>
+			  <td></td>
+			  <td></td>
+			  <td></td>
+			  <td></td>
                       </tr>
                       
                       <?php
@@ -332,7 +336,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  echo	'<td class="award-pdf">
 					<form action=\'createAwardPDF.php\' method="post">
 						<input type="hidden" name="awardID" value="' . $id . '">
-						<input type="submit" name="export" value="View as PDF">
+						<input type="submit" name="export" value="Export as PDF">
 					</form>
 				</td>';
 			  echo "\n</td>\n<td>\n";
@@ -344,6 +348,14 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 					</form>
 				</td>';
 			  echo "\n</td>\n<td>\n";
+			/*-- --------------------------------- Award Edit Form --------------------------------- */
+			  echo	'<td class="award-pdf-mail">
+					<form action=\'editAward.php\' method="post">
+						<input type="hidden" name="awardID" value="' . $id . '">
+						<input type="submit" name="edit" value="Edit">
+					</form>
+				</td>';
+			  echo "\n</td>\n<td>\n";
 			/*-- --------------------------------- Award Delete Form --------------------------------- */
 			  echo	'<td class="award-delete">
 					<form action=\'delAwards.php\' method="post">
@@ -352,7 +364,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 					</form>
 				</td>';
 			  echo "\n</td>\n</tr>";
-	                } 
+	                }
                         $stmt->close();
                       }
 		      
@@ -424,7 +436,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  echo	'<td class="award-pdf">
 					<form action=\'createAwardPDF.php\' method="post">
 						<input type="hidden" name="awardID" value="' . $id . '">
-						<input type="submit" name="export" value="View as PDF">
+						<input type="submit" name="export" value="Export as PDF">
 					</form>
 				</td>';
 			  echo "\n</td>\n<td>\n";
@@ -433,6 +445,14 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 					<form action=\'createAwardPDFmail.php\' method="post">
 						<input type="hidden" name="awardID" value="' . $id . '">
 						<input type="submit" name="export-mail" value="Send to Recipient">
+					</form>
+				</td>';
+			  echo "\n</td>\n<td>\n";
+			/*-- --------------------------------- Award Edit Form --------------------------------- */
+			  echo	'<td class="award-pdf-mail">
+					<form action=\'editAward.php\' method="post">
+						<input type="hidden" name="awardID" value="' . $id . '">
+						<input type="submit" name="edit" value="Edit">
 					</form>
 				</td>';
 			  echo "\n</td>\n<td>\n";
