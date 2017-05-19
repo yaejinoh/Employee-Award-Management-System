@@ -1,9 +1,9 @@
-table {
+table.awards-table {
     border-collapse: collapse;
     width: 50%;
     background-color:white;
-    margin: 0px auto;
-    float: none;
+    margin-left:auto; 
+    margin-right:auto;
 }
 
 th {
