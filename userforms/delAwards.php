@@ -303,6 +303,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			    $eid = $_SESSION['employeeid'];
 			    // Retrieve Award ID selected
 			    $awardID = $_POST['awardID'];
+			    echo $awardID;
 
 			    /* ---------- If the user pressed the --DELETE AWARD-- button ---------- */
 			    if(isset($_POST["delete"])){
