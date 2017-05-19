@@ -255,6 +255,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
             </br>
 	</div>
+	</div> <!-- extra div -->
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
             <table id="awards-table">
@@ -470,7 +471,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br> 
             <a href="userMenu.php">User Menu</a>
             </br>
-        </div>
+ <!--       </div> -->
         <div class="container">
             <div class="row">   
                 <div class="col-sm-4"></div> 
