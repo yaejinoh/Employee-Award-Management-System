@@ -2,10 +2,8 @@ table {
     border-collapse: collapse;
     width: 50%;
     background-color:white;
+    margin: 0px auto;
     float: none;
-    margin-right: auto;
-    margin-left: auto;
-    min-width: 1600px;
 }
 
 th {
