@@ -295,6 +295,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  <td></td>
 			  <td></td>
 			  <td></td>
+			  <td></td>
+			  <td></td>
                       </tr>
                       
                       <?php
@@ -471,6 +473,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
               </tbody>
             </table>
 	</div>
+	<br>
 
         <!-- --------------------------------- Delete All Awards --------------------------------- -->
 	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
