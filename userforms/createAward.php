@@ -258,7 +258,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
             <table class="awards-table">
-              <h4>Awards:</h4>
+	      <div class="table-title"><h4>Awards:</h4></div>
               <tbody>
                       <tr>
                           <td>
@@ -291,6 +291,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  <td>
                               Signature
                           </td>
+			  <td> </td>
+			  <td> </td>
 			  <td> </td>
 			  <td> </td>
 			  <td> </td>
