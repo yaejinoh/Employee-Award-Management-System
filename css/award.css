@@ -1,3 +1,8 @@
+.table-title {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
 table.awards-table {
     border-collapse: collapse;
     width: 50%;
