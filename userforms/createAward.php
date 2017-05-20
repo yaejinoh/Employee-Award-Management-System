@@ -474,12 +474,12 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	<br>
 
         <!-- --------------------------------- Delete All Awards --------------------------------- -->
+	<div class="container">
 	<div class="container-fluid">
 	<div class="row">
 	<div class="col-lg-8">
 	</div>
 	<div class="col-lg-1">
-
 	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
                 <fieldset>
                     <p>
@@ -487,6 +487,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     </p>
                 </fieldset>
             </form>
+	</div>
 	</div>
 	</div>
 	</div>
