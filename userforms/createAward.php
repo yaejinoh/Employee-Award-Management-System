@@ -477,9 +477,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	<div class="container">
 	<div class="container-fluid">
 	<div class="row">
-	<div class="col-lg-8">
+	<div class="col-lg-11">
 	</div>
-	<div class="col-lg-1">
+	<div class="col-s-1">
 	    <form method="post" action="delAwards.php" id="del-form"> <!-- post to page handling form-->    
                 <fieldset>
                     <p>
