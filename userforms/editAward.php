@@ -120,12 +120,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      if (isset($_POST['awardID'])){
 			$awardID = $_POST['awardID'];
 		      }
-		      echo "AWARD ID HERE:";
-		      echo $awardID;
 		      
-                      /* ---------- If the user pressed the --VIEW-- button ---------- */
+                      /* ---------- If the user pressed the --EDIT-- button ---------- */
 		      // Display award to be edited chosen by session user     
-                      if(isset($_POST["view"])){
+                      if(isset($_POST["edit"])){
                         if(! ($stmt = $mysqli->prepare( 
                         "SELECT	A.id, A.date, A.time,
                             PE.firstname AS PresenterFirstName, 
@@ -159,7 +157,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       ?>						
               </tbody>
             </table>
-
+	    </br></br></br></br>
 
 
  <!-- --------------------------------- Edit Award Form --------------------------------- -->
@@ -318,9 +316,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      // Retrieve employee ID number of session user
 		      $eid = $_SESSION['employeeid'];
 		      
-                      /* ---------- If the user pressed the --VIEW-- button ---------- */
+                      /* ---------- If the user pressed the --EDIT-- button ---------- */
 		      // Display all the awards that exist made by session user     
-                      if(isset($_POST["view"])){
+                      if(isset($_POST["edit"])){
                         if(! ($stmt = $mysqli->prepare( 
                         "SELECT	A.id, A.date, A.time,
                             PE.firstname AS PresenterFirstName, 
