@@ -65,7 +65,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
-            <h1>Award Creation</h1>
+            <h1>Award Edit</h1>
             </br>
             </br>
 	</div>
@@ -105,12 +105,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  <td>
                               Signature
                           </td>
-			  <td> </td>
-			  <td> </td>
-			  <td> </td>
-			  <td> </td>
-			  <td> </td>
-			  <td> </td>
                       </tr>
                       
                       <?php
@@ -170,28 +164,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	<div id="award-body">
 		    <form method="post" action="editAwards.php" id="edit-form"> <!-- post to page handling form-->    
                 <fieldset>
-                    <legend> Edit an Award Certificate </legend>
-		    <p>Please select the ID of the award you wish to edit: 
-                        <select name="awardID"> 
-                            <?php
-			    $eid = $_SESSION['employeeid'];
-				
-                            // creates option for origin
-                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
-                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-                            }
-                            if(!$stmt->execute()){
-                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
-                            }
-                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
-                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
-                            }
-                            while($stmt->fetch()){
-                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
-                            }
-                            $stmt->close();
-                            ?>
-                        </select> 
+                    <legend>  </legend>
                     <p>Name: 
                         <select name="name"> 
                             <?php
