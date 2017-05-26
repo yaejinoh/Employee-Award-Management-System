@@ -136,31 +136,34 @@ $mysqli->close();
 
         <!-- --------------------------------- Restore Form --------------------------------- -->
         <div class="container" >
-            <h1>Password Recovery</h1>
-            <form method="POST" action="restore.php">
-                <label for="emailaddr" class="control-label">Email Address</label>
-                <input name="emailaddr" type="text" class="form-control" id="emailaddr" placeholder="Username(Email Address)" required>
-                </br>
-                <button type="submit" name="recovery" class="btn btn-sm btn-primary ">Submit</button> 
-            </form> 
-            </br>
-            <a href="../index.php">User Sign In</a>
-            </br>
-
             <div class="row">
-                <div class="col-sm-6" style="color:#FF0000"</div>
+                <div class="col-sm-8" >   
+                    <h1>Password Recovery</h1>
+                    <form method="POST" action="restore.php">
+                        <label for="emailaddr" class="control-label">Email Address</label>
+                        <input name="emailaddr" type="text" class="form-control" id="emailaddr" placeholder="Username(Email Address)" required>
+                        </br>
+                        <button type="submit" name="recovery" class="btn btn-sm btn-primary ">Submit</button> 
+                    </form> 
+                    </br>
+                    <a href="../index.php">User Sign In</a>
+                    </br>
 
-                <?php
-                if (isset($error_msg)) {
-                    foreach ($error_msg as $message) {
-                        echo $message . "<br/>";
-                    }
-                }
-                ?>  
+                    <div class="row">
+                        <div class="col-sm-6" style="color:#FF0000"</div>
 
+                        <?php
+                        if (isset($error_msg)) {
+                            foreach ($error_msg as $message) {
+                                echo $message . "<br/>";
+                            }
+                        }
+                        ?>  
+
+                    </div>
+                </div>    
             </div>
-        </div>    
-
+        </div>
     </div>
     <div class="container">
         <div class="row">   
