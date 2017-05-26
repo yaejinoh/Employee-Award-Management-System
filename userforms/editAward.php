@@ -69,16 +69,37 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
             </br>
 
-        <!-- --------------------------------- Award Creation Form --------------------------------- -->
+ <!-- --------------------------------- Edit Award Form --------------------------------- -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-3">
 			</div>
 			<div class="col-lg-6">
 	<div id="award-body">
-	    <form method="post" action="createAward.php" id="award-form"> <!-- post to page handling form-->    
+	    <form method="post" action="editAwards.php" id="edit-form"> <!-- post to page handling form-->    
                 <fieldset>
-                    <legend> Create an Award Certificate </legend>
+                    <legend> Edit an Award Certificate </legend>
+		    <p>Please select the ID of the award you wish to edit: 
+                        <select name="awardID"> 
+                            <?php
+			    $eid = $_SESSION['employeeid'];
+				
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, name, date, time, awardee, region, type, signature FROM `Awards` WHERE name = '$eid'"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $name, $date, $time, $awardee, $region, $type, $signature)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $id . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> 
                     <p>Name: 
                         <select name="name"> 
                             <?php
@@ -139,8 +160,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         </select>
                     </p>
                     <p>
-                        <input type="submit" name="add" value="Create Award">
-                        <input type="submit" name="view" value="Refresh the Page">
+                        <input type="submit" name="edit" value="Edit Award">
                     </p>
                 </fieldset>
             </form>
@@ -155,6 +175,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         </br>
 	</div>
 	</div> <!-- extra div -->
+  
 
         <!-- --------------------------------- Awards table view --------------------------------- -->
             <table class="awards-table">
@@ -291,7 +312,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	                // Grab date and time in UTC, will be automatically entered when creating an award
 			$cur_date = date("y-m-d");
 			$cur_time = date("h:i:s");
-
 			// Create a row in Awards with the information from the form
 			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type, signature) VALUES (?,?,?,?,?,?,?)"))){
 			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -436,4 +456,5 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
         <script src="../js/bootstrap.min.js"></script>
 
     </body>
-</html>
+</html> 
+ 

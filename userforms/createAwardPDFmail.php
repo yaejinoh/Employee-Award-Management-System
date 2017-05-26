@@ -15,7 +15,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
     die();
 }
 if(!empty($_POST['export-mail'])) {
-    $awardID = $_POST['awardmailID'];
+    $awardID = $_POST['awardID'];
     
     if(! ($stmt = $mysqli->prepare( 
     "SELECT	A.id, A.date, A.time,
