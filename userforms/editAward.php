@@ -68,15 +68,107 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             <h1>Award Creation</h1>
             </br>
             </br>
+	</div>
+
+<!-- --------------------------------- Display Award to be Edited --------------------------------- -->
+	<table class="awards-table">
+	      <div class="table-title"><h4>Award to Edit:</h4></div>
+              <tbody>
+                      <tr>
+                          <td>
+                          ID
+                          </td>
+                          <td>
+                              Date
+                          </td>
+                          <td>
+                              Time
+                          </td>
+                          <td>
+                              Presenter First Name
+                          </td>
+                          <td>
+                              Presenter Last Name
+                          </td>
+                          <td>
+                              Awardee First Name
+                          </td>
+                          <td>
+                              Awardee Last Name
+                          </td>
+                          <td>
+                              Certificate Type
+                          </td>
+                          <td>
+                              Region
+                          </td>
+			  <td>
+                              Signature
+                          </td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
+                      </tr>
+                      
+                      <?php
+		      // Retrieve employee ID number of session user
+		      $eid = $_SESSION['employeeid'];
+		      
+		      if (isset($_POST['awardID'])){
+			$awardID = $_POST['awardID'];
+		      }
+		      
+                      /* ---------- If the user pressed the --VIEW-- button ---------- */
+		      // Display award to be edited chosen by session user     
+                      if(isset($_POST["view"])){
+                        if(! ($stmt = $mysqli->prepare( 
+                        "SELECT	A.id, A.date, A.time,
+                            PE.firstname AS PresenterFirstName, 
+                            PE.lastname AS PresenterLastName,  
+                            AE.firstname AS AwardeeFirstName, 
+                            AE.lastname AS AwardeeLastName,
+                            CT.type AS CertificateType,
+                            R.sector AS Region,
+			    A.signature AS Signature
+                        FROM Awards A
+                        JOIN Employees PE ON PE.id=A.name
+                        JOIN Employees AE ON AE.id=A.awardee
+                        JOIN CertType CT ON CT.ctid=A.type
+                        JOIN Regions R ON R.rid=A.region
+			WHERE A.id = '$awardID';"))){
+                          echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
+                        }         
+                        if(!$stmt->execute()){
+                          echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                        }
+			if(!$stmt->bind_result($id, $date, $time, $PresenterFirstName, $PresenterLastName, $AwardeeFirstName, $AwardeeLastName, $CertificateType, $Region, $Signature)){
+                          echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                        }
+                        while($stmt->fetch()){
+                          echo "<tr>\n<td>\n" . $id . "\n</td>\n<td>\n" . $date . "\n</td>\n<td>\n" . $time . "\n</td>\n<td>\n" . $PresenterFirstName . "\n</td>\n<td>\n" . $PresenterLastName  . "\n</td>\n<td>\n" . $AwardeeFirstName  . "\n</td>\n<td>\n" . $AwardeeLastName . "\n</td>\n<td>\n" . $CertificateType . "\n</td>\n<td>\n" . $Region . "\n</td>\n<td>\n";
+			  echo '<img src="data:image/png;base64,'.base64_encode($Signature).'">';
+			  echo "\n</td>\n</tr>";
+	                }
+                        $stmt->close();
+                      }
+                      ?>						
+              </tbody>
+            </table>
+
+
 
  <!-- --------------------------------- Edit Award Form --------------------------------- -->
+        <div class="container" >
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-3">
 			</div>
 			<div class="col-lg-6">
 	<div id="award-body">
-	    <form method="post" action="editAwards.php" id="edit-form"> <!-- post to page handling form-->    
+		    <form method="post" action="editAwards.php" id="edit-form"> <!-- post to page handling form-->    
                 <fieldset>
                     <legend> Edit an Award Certificate </legend>
 		    <p>Please select the ID of the award you wish to edit: 
