@@ -120,6 +120,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      if (isset($_POST['awardID'])){
 			$awardID = $_POST['awardID'];
 		      }
+		      echo "AWARD ID HERE:";
+		      echo $awardID;
 		      
                       /* ---------- If the user pressed the --VIEW-- button ---------- */
 		      // Display award to be edited chosen by session user     
