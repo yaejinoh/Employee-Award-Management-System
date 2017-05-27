@@ -370,7 +370,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      
 		      /* ---------- If the user submits the --EDIT-- form ---------- */
 		      if(isset($_POST["edit-award"])){
-			mysqli_query('SET foreign_key_checks = 0');
 			if(!($stmt = $mysqli->prepare(
 				"UPDATE `Awards` SET date=?, time=?, awardee=?, region=?, type=? WHERE id=?;"))){
 				echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -382,7 +381,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			$awardType = $_POST['awardType'];
 			$region = $_POST['region'];
 			$awardID = $_POST['awardID'];
-			echo "date: " . $date . "time: " . $time . "name: " . $name . "awardType: " . $awardType . "region: " . $region . "awardID: " . $awardID;
+			echo "...date: " . $date . "...time: " . $time . "...name: " . $name . "...awardType: " . $awardType . "...region: " . $region . "...awardID: " . $awardID;
 			
 			if(!($stmt->bind_param("ssiiii", $_POST['date'], $_POST['time'], $_POST['name'], $_POST['awardType'], $_POST['region'], $_POST['awardID']))){
 				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
@@ -395,7 +394,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 				echo "<div align='center' style='font:15px; color:#ff0000; font-weight:bold'> Updated " . $stmt->affected_rows . " row to awards table.</div>";
 				echo "<div align='center' style='font:15px; color:#ff0000; font-weight:bold'>Award has been edited.</div>";  
 			}
-			mysql_query('SET foreign_key_checks = 1');
 			$stmt->close();
 			      
                         if(!($stmt = $mysqli->prepare( 
