@@ -374,14 +374,16 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			$awardType = $_POST['awardType'];
 			$region = $_POST['region'];
 			
-			if(!($stmt->bind_param("ssiiii", $_POST['date'], $_POST['time'], $_POST['name'], $_POST['awardType'], $_POST['region'], $id))){
+			if(!($stmt->bind_param("ssiiii", $_POST['date'], $_POST['time'], $_POST['name'], $_POST['awardType'], $_POST['region'], $_POST['awardID']))){
 				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			      
 			if(!$stmt->execute()){
 				echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
 			} else{
-				echo "Updated " . $stmt->affected_rows . " row to awards table.";
+				// Feedback to the user
+				echo "<div align='center' style='font:15px; color:#ff0000; font-weight:bold'> Updated " . $stmt->affected_rows . " row to awards table.</div>";
+				echo "<div align='center' style='font:15px; color:#ff0000; font-weight:bold'>Award has been edited.</div>";  
 			}
 			      
 			$stmt->close();
