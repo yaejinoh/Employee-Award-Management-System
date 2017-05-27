@@ -166,7 +166,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                 <fieldset>
                     <legend>  </legend>
 		    <p>Date: 
-			    <input type=text name="date" value='yyyy/mm/dd'>
+			    <input type=text name="date" value='yyyy-mm-dd'>
 		    <p>Time:
 			    <input type=text name="time" value='hh:mm:ss'>
                     <p>Awardee Name: 
@@ -373,6 +373,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			$name = $_POST['name'];
 			$awardType = $_POST['awardType'];
 			$region = $_POST['region'];
+			echo $date . $time . $name . $awardType . $region .  $_POST['awardID'];
 			
 			if(!($stmt->bind_param("ssiiii", $_POST['date'], $_POST['time'], $_POST['name'], $_POST['awardType'], $_POST['region'], $_POST['awardID']))){
 				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
