@@ -65,7 +65,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
-            <h1>Award Edit</h1>
+            <h1>Edit Award</h1>
             </br>
             </br>
 	</div>
@@ -165,10 +165,14 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		    <form method="post" action="editAwards.php" id="edit-form"> <!-- post to page handling form-->    
                 <fieldset>
                     <legend>  </legend>
-                    <p>Name: 
+		    <p>Date: 
+			    <input type=text name="date" value='yyyy/mm/dd'>
+		    <p>Time:
+			    <input type=text name="time" value='hh:mm:ss'>
+                    <p>Awardee Name: 
                         <select name="name"> 
                             <?php
-                            // creates option for origin
+                            // creates option for name
                             if(!($stmt = $mysqli->prepare("SELECT id, firstname, lastname, emailaddress FROM `Employees`"))){
                                 echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
                             }
@@ -187,7 +191,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     <p>Award Type: 
                         <select name="awardType"> 
                             <?php
-                            // creates option for origin
+                            // creates option for award type
                             if(!($stmt = $mysqli->prepare("SELECT ctid, type FROM `CertType`"))){
                                 echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
                             }
@@ -207,7 +211,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     <p>Region: 
                         <select name="region"> 
                             <?php
-                            // creates option for origin
+                            // creates option for region
                             if(!($stmt = $mysqli->prepare("SELECT rid, sector FROM `Regions`"))){
                                 echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
                             }
