@@ -381,7 +381,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			$awardType = $_POST['awardType'];
 			$region = $_POST['region'];
 			$awardID = $_POST['awardID'];
-			echo "...date: " . $date . "...time: " . $time . "...name: " . $name . "...awardType: " . $awardType . "...region: " . $region . "...awardID: " . $awardID;
+			echo "date: " . $date . "          time: " . $time . "          name: " . $name . "          awardType: " . $awardType . "          region: " . $region . "          awardID: " . $awardID . "</br>";
 			
 			if(!($stmt->bind_param("ssiiii", $_POST['date'], $_POST['time'], $_POST['name'], $_POST['awardType'], $_POST['region'], $_POST['awardID']))){
 				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
