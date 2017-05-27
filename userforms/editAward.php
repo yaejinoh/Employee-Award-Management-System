@@ -70,7 +70,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             </br>
 	</div>
 
-<!-- --------------------------------- Display Award to be Edited --------------------------------- -->
+	<!-- --------------------------------- Display Award to be Edited --------------------------------- -->
 	<table class="awards-table">
 	      <div class="table-title"><h4>Award to Edit:</h4></div>
               <tbody>
@@ -154,7 +154,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	    </br></br></br></br>
 
 
- <!-- --------------------------------- Edit Award Form --------------------------------- -->
+ 	<!-- --------------------------------- Edit Award Form --------------------------------- -->
         <div class="container" >
 	<div class="container-fluid">
 		<div class="row">
@@ -162,7 +162,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			</div>
 			<div class="col-lg-6">
 	<div id="award-body">
-		    <form method="post" action="editAwards.php" id="edit-form"> <!-- post to page handling form-->    
+		<form method="post" action="editAward.php" id="edit-form"> <!-- post to page handling form-->    
                 <fieldset>
                     <legend>  </legend>
 		    <p>Date: 
@@ -229,7 +229,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                         </select>
                     </p>
                     <p>
-                        <input type="submit" name="edit" value="Edit Award">
+                        <input type="submit" name="edit-award" value="Submit">
                     </p>
                 </fieldset>
             </form>
@@ -361,42 +361,33 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                       }
 		      
 		      
-		      /* ---------- If the user pressed the --CREATE AWARD-- button ---------- */
-                      if(isset($_POST["add"])){
-			// Query to store signature in session employee's account
-			if(! ($stmt = $mysqli->prepare( 
-                        "SELECT signature FROM Employees WHERE id = '$eid';"))){
-                          echo "Prepare failed: " . $stmt->errno . " " . $stmt->error;
-                        }         
-                        if(!$stmt->execute()){
-                          echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
-                        }
-			// Save signature image as $signature 
-			if(!$stmt->bind_result($signature)){
-                          echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
-                        }   
-			while($stmt->fetch()){
-	                }
+		      /* ---------- If the user submits the --EDIT-- form ---------- */
+		      if(isset($_POST["edit-award"])){
 			      
-	                // Grab date and time in UTC, will be automatically entered when creating an award
-			$cur_date = date("y-m-d");
-			$cur_time = date("h:i:s");
-			// Create a row in Awards with the information from the form
-			if(!($stmt = $mysqli->prepare("INSERT INTO `Awards`(name, date, time, awardee, region, type, signature) VALUES (?,?,?,?,?,?,?)"))){
-			  echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+			if(!($stmt = $mysqli->prepare("UPDATE `Awards` SET date=?, time=?, awardee=?, region=?, type=? WHERE id=?"))){
+				echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
-			if(!($stmt->bind_param("issiiis",$eid,$cur_date,$cur_time,$_POST['name'],$_POST['region'],$_POST['awardType'],$signature))){
-			  echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+			      
+			$date = $_POST['date'];
+			$time = $_POST['time'];
+			$name = $_POST['name'];
+			$awardType = $_POST['awardType'];
+			$region = $_POST['region'];
+			
+			if(!($stmt->bind_param("ssiiii", $_POST['date'], $_POST['time'], $_POST['name'], $_POST['awardType'], $_POST['region'], $id))){
+				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
+			      
 			if(!$stmt->execute()){
-                          echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
-                        }
-			// Feedback to the user
-			echo "<div align='center' style='font:15px; color:#ff0000; font-weight:bold'>Award has been created.</div>";  
+				echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+			} else{
+				echo "Updated " . $stmt->affected_rows . " row to awards table.";
+			}
 			      
-			// Display all the awards that exist made by session user     
-                        if(! ($stmt = $mysqli->prepare( 
-                        "SELECT	A.id, A.date AS date, A.time AS time,
+			$stmt->close();
+			      
+                        if(!($stmt = $mysqli->prepare( 
+                        "SELECT	A.id, A.date, A.time,
                             PE.firstname AS PresenterFirstName, 
                             PE.lastname AS PresenterLastName,  
                             AE.firstname AS AwardeeFirstName, 
@@ -455,9 +446,14 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 					</form>
 				</td>';
 			  echo "\n</td>\n</tr>";
-	                } 
+	                }
                         $stmt->close();
-                      }    
+                      }
+		      
+		      
+		      
+		      
+		      
                       ?>						
               </tbody>
             </table>
