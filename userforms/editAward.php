@@ -165,6 +165,13 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		<form method="post" action="editAward.php" id="edit-form"> <!-- post to page handling form-->    
                 <fieldset>
                     <legend>  </legend>
+			<?php 
+			// Set up awardID for referencing after submitting edit form
+			if (isset($_POST['awardID'])){
+				$awardID = $_POST['awardID'];
+			}
+			echo '<input type="hidden" name="awardID" value="' . $id . '">';
+			?>
 		    <p>Date: 
 			    <input type=text name="date" value='yyyy-mm-dd'>
 		    <p>Time:
