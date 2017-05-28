@@ -162,7 +162,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			</div>
 			<div class="col-lg-6">
 	<div id="award-body">
-		<form method="post" action="editAward.php" id="edit-form"> <!-- post to page handling form-->    
+		<form method="post" action="editAward_2.php" id="edit-form"> <!-- post to page handling form-->    
                 <fieldset>
                     <legend>  </legend>
 			<?php 
