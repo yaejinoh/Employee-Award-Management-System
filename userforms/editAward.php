@@ -371,7 +371,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      /* ---------- If the user submits the --EDIT-- form ---------- */
 		      if(isset($_POST["edit-award"])){
 			if(!($stmt = $mysqli->prepare(
-				"UPDATE `Awards` SET date=?, time=?, awardee=?, region=?, type=? WHERE id=?;"))){
+				"UPDATE `Awards` SET date=?, time=?, awardee=?, region=?, WHERE id=?;"))){
 				echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			
@@ -385,7 +385,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			echo "date: " . $date . "          time: " . $time . "          name: " . $name . "          awardType: " . $awardType . "          region: " . $region . "          awardID: " . $awardID . "</br>";
 			*/
 			      
-			if(!($stmt->bind_param("ssiiii", $_POST['date'], $_POST['time'], $_POST['name'], $_POST['awardType'], $_POST['region'], $_POST['awardID']))){
+			if(!($stmt->bind_param("ssiii", $_POST['date'], $_POST['time'], $_POST['name'], $_POST['region'], $_POST['awardID']))){
 				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			      
