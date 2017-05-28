@@ -18,6 +18,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="css/blog.css" rel="stylesheet">
+        <link href="../css/award.css" rel="stylesheet">
         <script src="js/jquery.min.js"></script>
         <script src="js/functions.js"></script>
 
@@ -36,27 +37,27 @@
         <!-- --------------------------------- Registration Form --------------------------------- -->
         <div class="container" >
             <div class="row">
-              <div class="col-sm-8" >   
-            <h1>User Sign In</h1>
-            <form method="POST" onsubmit="userLogin();
+                <div class="col-sm-8" >   
+                    <h1>User Sign In</h1>
+                    <form method="POST" onsubmit="userLogin();
                     return false;">
-                <span class="glyphicon glyphicon-user"></span>
-                <label for="username" class="control-label">Username</label>
-                <input name="username" type="text" class="form-control" id="usernamer" placeholder="Username(Email Address)" required>
-                <span class="glyphicon glyphicon-lock"></span>
-                <label for="password" class="control-label">Password</label>
-                <input name="password" type="password" class="form-control" id="passwordr" placeholder="Password" required>
-                </br>
-                <button type="submit" name="usersignin" class="btn btn-sm btn-primary ">Submit</button>
-            </form>
-            </br>
-            <a href="adminforms/restore.php">Forgot the password</a>
-            </br>
-            <a href="adminforms/adminSignIn.php">Admin Sign In</a>
-            <br/>
+                        <span class="glyphicon glyphicon-user"></span>
+                        <label for="username" class="control-label">Username</label>
+                        <input name="username" type="text" class="form-control" id="usernamer" placeholder="Username(Email Address)" required>
+                        <span class="glyphicon glyphicon-lock"></span>
+                        <label for="password" class="control-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="passwordr" placeholder="Password" required>
+                        </br>
+                        <button type="submit" name="usersignin" class="btn btn-sm btn-primary ">Submit</button>
+                    </form>
+                    </br>
+                    <a href="adminforms/restore.php">Forgot the password</a>
+                    </br>
+                    <a href="adminforms/adminSignIn.php">Admin Sign In</a>
+                    <br/>
 
-        </div>
-        </div>
+                </div>
+            </div>
         </div>   
         <div class="container">
             <div class="row"> 
@@ -83,14 +84,14 @@
                 </br>
                 </br>
             </div>
-             </div>
-              </div>              
         </div>
-        <!-- --------------------------------- Footer --------------------------------- -->
-        <footer class="blog-footer">
-            <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
-        </footer>
-        <script src="js/bootstrap.min.js"></script>
+    </div>              
+</div>
+<!-- --------------------------------- Footer --------------------------------- -->
+<footer class="blog-footer">
+    <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
+</footer>
+<script src="js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 </html>

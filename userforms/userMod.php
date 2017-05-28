@@ -198,6 +198,7 @@ $mysqli->close();
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
+        <link href="../css/award.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
         <script src="../js/functions.js"></script>
         <script src="../js/jquery.cropit.js"></script>

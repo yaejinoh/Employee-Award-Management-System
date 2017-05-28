@@ -148,6 +148,7 @@ if (!empty($_POST)) {
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
+        <link href="../css/award.css" rel="stylesheet">
         <script src="../js/functions.js"></script>
         <script src="../js/jquery.cropit.js"></script>
 
@@ -216,59 +217,59 @@ if (!empty($_POST)) {
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-8"> <a href="adminMenu.php">Admin Menu</a></div>  
-                                <div class="col-sm-8" style="color:#FF0000">
-                                    </br>
-                                    <?php
-                                    if (isset($error_msg)) {
-                                        foreach ($error_msg as $message) {
-                                            echo $message . "<br/>";
-                                        }
+                            <div class="col-sm-8" style="color:#FF0000">
+                                </br>
+                                <?php
+                                if (isset($error_msg)) {
+                                    foreach ($error_msg as $message) {
+                                        echo $message . "<br/>";
                                     }
-                                    ?>  
-                                </div>
+                                }
+                                ?>  
                             </div>
-                        </div> 
-                    </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-            </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
         </div>
-        <!-- --------------------------------- Footer --------------------------------- -->
-        <footer class="blog-footer">
-            <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
-        </footer>
-        <script src="../js/bootstrap.min.js"></script>
+    </div>
+    <!-- --------------------------------- Footer --------------------------------- -->
+    <footer class="blog-footer">
+        <p>Powered by <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a></p>
+    </footer>
+    <script src="../js/bootstrap.min.js"></script>
 
-        <script>
-            $(function () {
-                $('.image-editor').cropit();
-                $('form').submit(function () {
-                    var imageData = $('.image-editor').cropit('export');
-                    $('.hidden-image-data').val(imageData);
-                });
+    <script>
+        $(function () {
+            $('.image-editor').cropit();
+            $('form').submit(function () {
+                var imageData = $('.image-editor').cropit('export');
+                $('.hidden-image-data').val(imageData);
             });
-        </script>       
-    </body>
+        });
+    </script>       
+</body>
 </html>

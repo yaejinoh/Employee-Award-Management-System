@@ -200,6 +200,7 @@ $mysqli->close();
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
+        <link href="../css/award.css" rel="stylesheet">
         <script src="../js/functions.js"></script>
         <script src="../js/jquery.cropit.js"></script>
 

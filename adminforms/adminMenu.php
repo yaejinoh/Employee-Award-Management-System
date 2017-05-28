@@ -31,6 +31,7 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
+        <link href="../css/award.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
         <script src="../js/functions.js"></script>
 
@@ -67,16 +68,29 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
             <h1>Admin Menu</h1>
             </br>
             </br>
-            <a href="userRegist.php">User Registration</a>
-            </br>  
-            </br>
-            <a href="editUser.php">Edit/Delete Users</a>
-            </br> 
-            </br>
-            <a href="adminRegist.php">Admin Registration</a>
-            </br>  
-            </br>
-            <a href="editAdmin.php">Edit/Delete Admin Users</a>
+            <!-- <a href="userRegist.php">User Registration</a>
+             </br>  
+             </br>
+             <a href="editUser.php">Edit/Delete Users</a>
+             </br> 
+             </br>
+             <a href="adminRegist.php">Admin Registration</a>
+             </br>  
+             </br>
+             <a href="editAdmin.php">Edit/Delete Admin Users</a> -->
+
+            <form action="userRegist.php" class="menu-button">
+                <input type="submit" value="User Registration" />
+            </form>
+            <form action="editUser.php" class="menu-button">
+                <input type="submit" value="Edit/Delete Users" />
+            </form>
+            <form action="adminRegist.php" class="menu-button">
+                <input type="submit" value="Admin Registration" />
+            </form>
+            <form action="editAdmin.php" class="menu-button">
+                <input type="submit" value="Edit/Delete Admin Users" />
+            </form>
         </div>
         <div class="container">
             <div class="row">   

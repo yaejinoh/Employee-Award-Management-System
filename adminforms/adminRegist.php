@@ -31,6 +31,7 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="../css/blog.css" rel="stylesheet">
+        <link href="../css/award.css" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
         <script src="../js/functions.js"></script>
 
@@ -68,7 +69,7 @@ if (!isset($_Session['adminEmailAddress']) && !isset($_SESSION['adminLoggedIn'])
                 <div class="col-sm-8" >  
                     <h1>Admin Registration</h1>
                     <form method="POST" onsubmit="adminEdit();
-                    return false;">
+                            return false;">
                         <label for="username" class="control-label">Username</label>
                         <input name="username" type="text" class="form-control" id="adminname2r" placeholder="Username(Email Address)" required>
                         <label for="password" class="control-label">Password</label>
