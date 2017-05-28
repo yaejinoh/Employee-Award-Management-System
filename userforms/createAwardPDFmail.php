@@ -338,7 +338,6 @@ if(!empty($_POST['export-mail'])) {
 		      // Retrieve employee ID number of session user
 		      $eid = $_SESSION['employeeid'];
 		      
-              if(isset($_POST["view"])){
                         if(! ($stmt = $mysqli->prepare( 
                         "SELECT	A.id, A.date, A.time,
                             PE.firstname AS PresenterFirstName, 
@@ -401,7 +400,6 @@ if(!empty($_POST['export-mail'])) {
 			  echo "\n</td>\n</tr>";
 	                }
                         $stmt->close();
-                      }
 
                 ?>						
               </tbody>
