@@ -371,7 +371,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 		      /* ---------- If the user submits the --EDIT-- form ---------- */
 		      if(isset($_POST["edit-award"])){
 			if(!($stmt = $mysqli->prepare(
-				"UPDATE `Awards` SET date=?, time=?, awardee=?, region=?, WHERE id=?;"))){
+				"UPDATE `Awards` SET date=?, time=?, awardee=?, region=? WHERE id=?;"))){
 				echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
 			
