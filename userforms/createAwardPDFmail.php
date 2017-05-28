@@ -196,7 +196,7 @@ if(!empty($_POST['export-mail'])) {
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } else {
-	    echo "<div align='center' style='font:15px; color:#ff0000; font-weight:bold'>Award has been sent to " . $AwardeeFirstName . " " . $AwardeeLastName . ".</div>"; 
+	    echo "<div align='center' style='font:15px; color:#ff0000; font-weight:bold'>Award has been sent to " . $AwardeeFirstName . " " . $AwardeeLastName . ".</div></br></br>"; 
             echo '<div align=\'center\'><form action=\'awards.php\' method="post">
 			<input type="submit" name="return" value="Go Back">
 		  </form></div>';
