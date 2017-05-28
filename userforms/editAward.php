@@ -170,7 +170,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			if (isset($_POST['awardID'])){
 				$awardID = $_POST['awardID'];
 			}
-			echo '<input type="hidden" name="awardID" value="' . $id . '">';
+			echo '<input type="hidden" name="awardID" value="' . $awardID . '">';
 			?>
 		    <p>Date: 
 			    <input type=text name="date" value='yyyy-mm-dd'>
@@ -374,7 +374,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 				"UPDATE `Awards` SET date=?, time=?, awardee=?, region=?, type=? WHERE id=?;"))){
 				echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
 			}
-			      
+			
+			/*
 			$date = $_POST['date'];
 			$time = $_POST['time'];
 			$name = $_POST['name'];
@@ -382,7 +383,8 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			$region = $_POST['region'];
 			$awardID = $_POST['awardID'];
 			echo "date: " . $date . "          time: " . $time . "          name: " . $name . "          awardType: " . $awardType . "          region: " . $region . "          awardID: " . $awardID . "</br>";
-			
+			*/
+			      
 			if(!($stmt->bind_param("ssiiii", $_POST['date'], $_POST['time'], $_POST['name'], $_POST['awardType'], $_POST['region'], $_POST['awardID']))){
 				echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
 			}
