@@ -337,15 +337,14 @@ if(!empty($_POST['export-mail'])) {
     unlink('tempfile.pdf');
     $stmt->close();
     $mysqli->close();
-}
 
 		      
 		      // Retrieve employee ID number of session user
 		      $eid = $_SESSION['employeeid'];
-		      echo "employee ID is: " . $eid . "</br>";
-		      
+
+		      // Display all the awards that exist made by session user     
                         if(! ($stmt = $mysqli->prepare( 
-                        "SELECT	A.id, A.date, A.time,
+                        "SELECT	A.id, A.date AS date, A.time AS time,
                             PE.firstname AS PresenterFirstName, 
                             PE.lastname AS PresenterLastName,  
                             AE.firstname AS AwardeeFirstName, 
@@ -404,10 +403,10 @@ if(!empty($_POST['export-mail'])) {
 					</form>
 				</td>';
 			  echo "\n</td>\n</tr>";
-	                }
+	                } 
                         $stmt->close();
-
-                ?>						
+                      }    
+                      ?>						
               </tbody>
             </table>
 	</div>
