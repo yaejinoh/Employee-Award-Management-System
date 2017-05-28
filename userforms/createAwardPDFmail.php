@@ -66,9 +66,100 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
         <!-- --------------------------------- Admin Sign In Form --------------------------------- -->
         <div class="container" >
-            <h1>Award Creation</h1>
+            <h1>Send Award to Recipient</h1>
             </br>
             </br>
+
+<!-- --------------------------------- Award Creation Form --------------------------------- -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-3">
+			</div>
+			<div class="col-lg-6">
+	<div id="award-body">
+	    <form method="post" action="createAward.php" id="award-form"> <!-- post to page handling form-->    
+                <fieldset>
+                    <legend> Create an Award Certificate </legend>
+                    <p>Name: 
+                        <select name="name"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT id, firstname, lastname, emailaddress FROM `Employees`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($id, $firstname, $lastname, $emailaddress)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $id . ' "> ' . $firstname . ", " . $lastname . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select> </p>
+                    <p>Award Type: 
+                        <select name="awardType"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT ctid, type FROM `CertType`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($ctid, $type)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $ctid . ' "> ' . $type . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>Region: 
+                        <select name="region"> 
+                            <?php
+                            // creates option for origin
+                            if(!($stmt = $mysqli->prepare("SELECT rid, sector FROM `Regions`"))){
+                                echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->execute()){
+                                echo "Execute failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            if(!$stmt->bind_result($rid, $sector)){
+                                echo "Bind failed: " . $stmt->errno . " " . $stmt->error;
+                            }
+                            while($stmt->fetch()){
+                                echo '<option value=" '. $rid . ' "> ' . $sector . '</option>\n';
+                            }
+                            $stmt->close();
+                            ?>
+                        </select>
+                    </p>
+                    <p>
+                        <input type="submit" name="add" value="Create Award">
+                        <input type="submit" name="view" value="Refresh the Page">
+                    </p>
+                </fieldset>
+            </form>
+			</div>
+		</div>
+	</br>
+	</br>
+        </br>
+        </br>
+	</div>
+        </br>
+        </br>
+	</div>
+	</div> <!-- extra div -->
+
+
+
+
 <!-- --------------------------------- If the user submitted --SEND TO RECIPIENT-- button --------------------------------- -->
 <?php
 if(!empty($_POST['export-mail'])) {
