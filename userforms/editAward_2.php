@@ -245,7 +245,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	<div class="col-lg-11">
 	</div>
 	<div class="col-s-1">
-	    <form method="post" action="createAward.php"> <!-- post to page handling form-->    
+	    <form method="post" action="awards.php"> <!-- post to page handling form-->    
                 <fieldset>
                     <p>
 			<input type="submit" name="create" value="Create an Award">
