@@ -342,7 +342,7 @@ if(!empty($_POST['export-mail'])) {
 		      
 		      // Retrieve employee ID number of session user
 		      $eid = $_SESSION['employeeid'];
-		      echo $eid;
+		      echo "employee ID is: " . $eid . "</br>";
 		      
                         if(! ($stmt = $mysqli->prepare( 
                         "SELECT	A.id, A.date, A.time,
