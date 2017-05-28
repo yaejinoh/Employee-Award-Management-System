@@ -1,4 +1,3 @@
-
 <?php
 #awards.php - CS467, Emmalee Jones, Yae Jin Oh 
 #Create Awards 
@@ -157,9 +156,10 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 	</div>
 	</div> <!-- extra div -->
 
+
         <!-- --------------------------------- Awards table view --------------------------------- -->
-            <table id="awards-table">
-              <h4>Awards:</h4>
+            <table class="awards-table">
+	      <div class="table-title"><h4>Awards:</h4></div>
               <tbody>
                       <tr>
                           <td>
@@ -192,7 +192,14 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 			  <td>
                               Signature
                           </td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
+			  <td> </td>
                       </tr>
+                      
                       
                       <?php
 			    // Retrieve employee ID number of session user
