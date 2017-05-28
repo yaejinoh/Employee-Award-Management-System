@@ -154,5 +154,6 @@ if(!empty($_POST['export-mail'])) {
     unlink('tempfile.pdf');
     $stmt->close();
     $mysqli->close();
+}
 ?>
 		      
