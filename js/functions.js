@@ -35,7 +35,7 @@ function userLogin()
             //alert (response);
             if (response === "ok") {
 
-                window.location.href = "userforms/awards.php";
+                window.location.href = "userforms/userMenu.php";
             }
             else {
                 login_message.innerHTML = "Invalid username or password, try again.";
