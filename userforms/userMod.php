@@ -264,7 +264,7 @@ $mysqli->close();
             </form>
             </br>
             </br>
-            <div class="col-sm-6"> <a href="userMenu.php">User Menu</a>  </div>
+            <div align='center'><a href="userMenu.php">Return to Main Page</a></div>
             </br>
             <div class="container">
                 <div class="row">
