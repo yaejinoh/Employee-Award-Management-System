@@ -46,6 +46,9 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
                     <form class="navbar-brand pull-right">
                          <a> <?php echo "Employee Name:" . " " . $_SESSION['employeeFirstName']. " " . $_SESSION['employeeLastName'] ; ?> </a>
                     </form>
+		    <form class="navbar-brand pull-right">
+                         <a href="userMod.php">Edit Profile</a>
+                    </form>
                     <!-- --------------------------------- Logout Form --------------------------------- -->
                     <form class="navbar-form pull-right" method="POST" action="userLogout.php">
                         <input type="submit" value = "Sign out" name="logout form)"> 
