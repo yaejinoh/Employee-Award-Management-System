@@ -402,7 +402,7 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
 
             </br> 
-            <a href="userMenu.php">User Menu</a>
+            <a href="userMenu.php">Return to Main Page</a>
             </br>
  <!--       </div> -->
         <div class="container">
