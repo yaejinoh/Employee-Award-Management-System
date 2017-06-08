@@ -215,7 +215,7 @@ if(!empty($_POST['export-mail'])) {
 
 
             </br> 
-            <div align='center'><a href="userMenu.php">Return to Main Page</a></div>
+
             </br>
        </div> 
         <div class="container">
