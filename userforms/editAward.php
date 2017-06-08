@@ -43,13 +43,15 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
             <div class="container">
                 <nav class="blog-nav">
                     <a class="navbar-brand" href="userLogout.php"> Employee Recognition Awards</a>  
-                    <form class="navbar-brand pull-right">
-                         <a> <?php echo "Employee Name:" . " " . $_SESSION['employeeFirstName']. " " . $_SESSION['employeeLastName'] ; ?> </a>
-                    </form>
                     <!-- --------------------------------- Logout Form --------------------------------- -->
                     <form class="navbar-form pull-right" method="POST" action="userLogout.php">
                         <input type="submit" value = "Sign out" name="logout form)"> 
                     </form>
+		    <!-- --------------------------------- Account Form --------------------------------- -->
+		    <form class="navbar-brand pull-right">
+                         <a> <?php echo "Employee Name:" . " " . $_SESSION['employeeFirstName']. " " . $_SESSION['employeeLastName'] ; ?> </a>
+			    </br><a href="userMod.php"><font size="3">Edit Profile</font></a>
+		    </form>
                 </nav>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             </div>
         </div>
