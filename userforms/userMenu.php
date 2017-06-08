@@ -152,7 +152,6 @@ if (!isset($_Session['employeeLastName']) && !isset($_SESSION['employeeLoggedIn'
 
 
             </br> 
-            <a href="userMenu.php">User Menu</a>
             </br>
         </div>
         <div class="container">
