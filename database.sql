@@ -179,6 +179,27 @@ JOIN Regions R ON R.rid=A.region
 WHERE PE.firstname = 'John' AND PE.lastname = 'Doe'
 ORDER BY A.date, A.time;
 
+/* Show award with ID ____ */
+SELECT	A.id, A.date, A.time,
+		PE.firstname AS PresenterFirstName, 
+		PE.lastname AS PresenterLastName,  
+		AE.firstname AS AwardeeFirstName, 
+		AE.lastname AS AwardeeLastName,
+		CT.type AS CertificateType,
+		R.sector AS Region,
+        A.signature
+FROM Awards A
+JOIN Employees PE ON PE.id=A.name
+JOIN Employees AE ON AE.id=A.awardee
+JOIN CertType CT ON CT.ctid=A.type
+JOIN Regions R ON R.rid=A.region
+WHERE A.id = '131';
+
+/* Update specific award */
+UPDATE `Awards` 
+SET date='2015-05-15', time='05:05:05', awardee=13, region=23, type=3
+WHERE id=63;
+
 /* Delete specific award created by ____ */
 DELETE FROM Awards
 WHERE id = 1
@@ -197,3 +218,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE Employees;
 SET FOREIGN_KEY_CHECKS = 1;
 
+/* Delete all awards made by employee w/ specific ID */
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM Awards 
+WHERE id IN (
+	SELECT * FROM (
+		SELECT id
+		FROM Awards
+		WHERE name = '1'
+	) AS p
+);
+SET SQL_SAFE_UPDATES = 1;
